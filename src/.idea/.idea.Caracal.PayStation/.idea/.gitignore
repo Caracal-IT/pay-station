@@ -3,8 +3,8 @@
 /workspace.xml
 # Rider ignored files
 /projectSettingsUpdater.xml
-/contentModel.xml
 /.idea.Caracal.PayStation.iml
+/contentModel.xml
 /modules.xml
 # Datasource local storage ignored files
 /dataSources/
