@@ -1,3 +1,7 @@
 namespace Caracal.EventBus {
-    public abstract class Event { }
+    public class Event { }
+    
+    public class Event<TData>: Event {
+        public TData Data { get; set; } 
+    }
 }

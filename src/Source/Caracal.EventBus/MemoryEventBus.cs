@@ -8,8 +8,8 @@ namespace Caracal.EventBus {
     public sealed class MemoryEventBus: EventBus {
         private readonly object _subscriptionLock = new();
         private readonly Dictionary<Type, IList<Subscription>> _subscriptions = new();
-
-        public Task<SubscriptionToken> SubscribeAsync<TEvent>(Action<TEvent> action, CancellationToken cancellationToken) where TEvent : Event {
+        
+        public Task<SubscriptionToken> SubscribeAsync<TEvent>(Action<TEvent> action, CancellationToken cancellationToken) where TEvent: Event {
             if (action == null) throw new ArgumentNullException(nameof(action));
 
             lock (_subscriptionLock) {
@@ -17,7 +17,23 @@ namespace Caracal.EventBus {
                     _subscriptions.Add(typeof(TEvent), new List<Subscription>());
 
                 var token = new SubscriptionToken(typeof(TEvent));
-                _subscriptions[typeof(TEvent)].Add(new EventSubscription<TEvent>(action, token));
+                _subscriptions[typeof(TEvent)].Add(new SynchronousSubscription<TEvent>(action, token));
+
+                return Task.FromResult(token);
+            }
+        }
+
+        public Task<SubscriptionToken> SubscribeAsync<TEvent>(Func<TEvent, CancellationToken, Task> actionAsync, CancellationToken cancellationToken) 
+            where TEvent: Event 
+        {
+            if (actionAsync == null) throw new ArgumentNullException(nameof(actionAsync));
+
+            lock (_subscriptionLock) {
+                if (!_subscriptions.ContainsKey(typeof(TEvent)))
+                    _subscriptions.Add(typeof(TEvent), new List<Subscription>());
+
+                var token = new SubscriptionToken(typeof(TEvent));
+                _subscriptions[typeof(TEvent)].Add(new Subscription<TEvent>(actionAsync, token));
 
                 return Task.FromResult(token);
             }
@@ -38,7 +54,7 @@ namespace Caracal.EventBus {
             return Task.CompletedTask;
         }
 
-        public Task PublishAsync<TEvent>(TEvent eventItem, CancellationToken cancellationToken) where TEvent : Event {
+        public async Task PublishAsync<TEvent>(TEvent eventItem, CancellationToken cancellationToken) where TEvent: Event {
             if (eventItem == null) throw new ArgumentNullException(nameof(eventItem));
 
             IList<Subscription> subscriptions = new List<Subscription>();
@@ -49,9 +65,7 @@ namespace Caracal.EventBus {
             }
 
             foreach (var subscription in subscriptions)
-                subscription.Publish(eventItem);
-
-            return Task.CompletedTask;
+                await subscription.PublishAsync(eventItem, cancellationToken);
         }
     }
 }

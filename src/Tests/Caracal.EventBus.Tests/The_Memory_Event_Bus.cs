@@ -10,8 +10,8 @@ using Xunit;
 namespace Caracal.EventBus.Tests {
     public class The_Event_Bus {
         private readonly Person _person;
-        private CancellationToken _cancellationToken;
         private readonly EventBus _eventBus;
+        private readonly CancellationToken _cancellationToken;
         
         public The_Event_Bus() {
             _cancellationToken = CancellationToken.None;
@@ -28,7 +28,7 @@ namespace Caracal.EventBus.Tests {
 
             id.Should().Be(_person.Id);
 
-            void OnRequested(PersonRequestedEvent evt) => id = evt.Id;
+           void OnRequested(PersonRequestedEvent evt) => id = evt.Id;
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Caracal.EventBus.Tests {
         public async Task Should_Listen_To_Only_Subscribed_Events() {
             var id = -1;
             var subscription = await _eventBus.SubscribeAsync<PersonRequestedEvent>(OnRequested, _cancellationToken);
-            await _eventBus.PublishAsync(new PersonResponseEvent {Person = _person}, _cancellationToken);
+            await _eventBus.PublishAsync(new PersonResponseEvent {Data = _person}, _cancellationToken);
             await _eventBus.UnsubscribeAsync(subscription, _cancellationToken);
             
             id.Should().NotBe(_person.Id);
