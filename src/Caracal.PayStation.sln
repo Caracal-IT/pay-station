@@ -4,9 +4,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{F4EE20
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8DA30F4F-7ECE-4FCE-B090-A8C1BFE0C7A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.EventBus", "Source\Caracal.EventBus\Caracal.EventBus.csproj", "{C36E3037-F2D3-4E6B-8283-6117AB1430EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.EventBus.Tests", "Tests\Caracal.EventBus.Tests\Caracal.EventBus.Tests.csproj", "{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C36E3037-F2D3-4E6B-8283-6117AB1430EB} = {F4EE204E-1738-4CF1-9731-85703430B204}
+		{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C} = {8DA30F4F-7ECE-4FCE-B090-A8C1BFE0C7A5}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FAB9FCA-85E8-47E4-AEE6-58C43C3C3B0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
