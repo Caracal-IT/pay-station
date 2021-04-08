@@ -30,7 +30,9 @@ namespace Caracal.EventBus.Tests {
             
             await _eventBus.UnsubscribeAsync(reqSubToken, _cancellationToken);
 
-            result.Id.Should().Be(_personId);
+            result.Id.Should().Be(_person.Id);
+            result.FirstName.Should().Be(_person.FirstName);
+            result.LastName.Should().Be(_person.LastName);
         }
 
         [Fact]
@@ -44,10 +46,7 @@ namespace Caracal.EventBus.Tests {
                      .WithMessage("The operation has timed out.");
         }
 
-        private async Task OnRequested(PersonRequestedEvent request, CancellationToken token) {
-            if(request.Id != _personId) return;
-            
+        private async Task OnRequested(PersonRequestedEvent request, CancellationToken token) => 
             await _eventBus.PublishAsync(new Event<Person>(request.CorrelationId) {Data = _person}, _cancellationToken);
-        }
     }
 }

@@ -9,11 +9,8 @@ namespace Caracal.EventBus {
         public SynchronousSubscription(Action<TEvent> action, SubscriptionToken token): base(token) => 
             _action = action;
 
-        internal override Task PublishAsync(Event @eventItem, CancellationToken token) {
-            if (eventItem is not TEvent evt)
-                throw new ArgumentException("The item is of the wrong type");
-            
-            _action(evt);
+        internal override Task PublishAsync(Event eventItem, CancellationToken token) {
+            _action((TEvent) eventItem);
 
             return Task.CompletedTask;
         }
