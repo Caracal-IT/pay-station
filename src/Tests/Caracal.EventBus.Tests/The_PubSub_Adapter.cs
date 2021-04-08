@@ -1,5 +1,6 @@
 // ReSharper disable InconsistentNaming
-/*
+
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus.Tests.Model;
@@ -14,8 +15,6 @@ namespace Caracal.EventBus.Tests {
         private readonly EventBus _eventBus;
         private readonly CancellationToken _cancellationToken;
         
-        private Person _testPerson;
-        
         public The_PubSub_Adapter() {
             _cancellationToken = CancellationToken.None;
             _personId = 77;
@@ -26,27 +25,29 @@ namespace Caracal.EventBus.Tests {
         [Fact]
         public async Task Should_Send_And_Listen_To_Events() {
             var reqSubToken = await _eventBus.SubscribeAsync<PersonRequestedEvent>(OnRequested, _cancellationToken);
-            var respSubToken = await _eventBus.SubscribeAsync<PersonResponseEvent>(OnResponded, _cancellationToken);
-
-            await _eventBus.PublishAsync(new PersonRequestedEvent{ Id = _personId}, _cancellationToken);
+            var request = new PersonRequestedEvent{ Id = _personId };
+            var result = await _eventBus.SendAndListenAsync<Person, Event<Person>>(request, _cancellationToken);
             
             await _eventBus.UnsubscribeAsync(reqSubToken, _cancellationToken);
-            await _eventBus.UnsubscribeAsync(respSubToken, _cancellationToken);
 
-            var a = await PubSubAdapter<Person, PersonRequestedEvent, PersonResponseEvent>
-                .SendAndListenAsync<Person, PersonRequestedEvent, PersonResponseEvent>(new PersonRequestedEvent{ Id = _personId});
+            result.Id.Should().Be(_personId);
+        }
+
+        [Fact]
+        public void Should_Throw_Exception_On_Timeout() {
+            const int _timeout = 10;
+            var request = new PersonRequestedEvent{ Id = _personId };
             
-            _testPerson.Id.Should().Be(_personId);
+            _eventBus.Invoking(async eBus => await eBus.SendAndListenAsync<Person, Event<Person>>(request, _cancellationToken, _timeout))
+                     .Should()
+                     .Throw<TimeoutException>()
+                     .WithMessage("The operation has timed out.");
         }
 
         private async Task OnRequested(PersonRequestedEvent request, CancellationToken token) {
-            if (request.Id != _personId) return;
-            await _eventBus.PublishAsync(new PersonResponseEvent {Person = _person}, _cancellationToken);
-        }
-
-        private void OnResponded(PersonResponseEvent response) {
-            _testPerson = response.Person;
+            if(request.Id != _personId) return;
+            
+            await _eventBus.PublishAsync(new Event<Person>(request.CorrelationId) {Data = _person}, _cancellationToken);
         }
     }
 }
-*/

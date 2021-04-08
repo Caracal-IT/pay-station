@@ -47,7 +47,7 @@ namespace Caracal.EventBus.Tests {
         public async Task Should_Listen_To_Only_Subscribed_Events() {
             var id = -1;
             var subscription = await _eventBus.SubscribeAsync<PersonRequestedEvent>(OnRequested, _cancellationToken);
-            await _eventBus.PublishAsync(new PersonResponseEvent {Data = _person}, _cancellationToken);
+            await _eventBus.PublishAsync(new Event<Person> {Data = _person}, _cancellationToken);
             await _eventBus.UnsubscribeAsync(subscription, _cancellationToken);
             
             id.Should().NotBe(_person.Id);

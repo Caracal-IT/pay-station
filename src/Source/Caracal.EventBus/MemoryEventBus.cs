@@ -62,6 +62,8 @@ namespace Caracal.EventBus {
             lock (_subscriptionLock) {
                 if (_subscriptions.ContainsKey(typeof(TEvent)))
                     subscriptions = _subscriptions[typeof(TEvent)];
+                else if (_subscriptions.ContainsKey(eventItem.GetType()))
+                    subscriptions = _subscriptions[eventItem.GetType()];
             }
 
             foreach (var subscription in subscriptions)
