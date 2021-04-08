@@ -9,13 +9,13 @@ using FluentAssertions;
 using Xunit;
 
 namespace Caracal.EventBus.Tests {
-    public class The_PubSub_Adapter {
+    public class The_Send_And_Listen_Extension {
         private readonly int _personId;
         private readonly Person _person;
         private readonly EventBus _eventBus;
         private readonly CancellationToken _cancellationToken;
         
-        public The_PubSub_Adapter() {
+        public The_Send_And_Listen_Extension() {
             _cancellationToken = CancellationToken.None;
             _personId = 77;
             _person = new Person(77, "Joe", "Soap");
