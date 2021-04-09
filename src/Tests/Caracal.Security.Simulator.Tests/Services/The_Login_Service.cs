@@ -1,5 +1,6 @@
 // ReSharper disable InconsistentNaming
 
+using System;
 using System.Threading.Tasks;
 using Caracal.Security.Model;
 using Caracal.Security.Services;
@@ -21,6 +22,18 @@ namespace Caracal.Security.Simulator.Tests.Services {
             var result = await _service.Login(new Login(username, password, tenantId));
             
             result.UserId.Should().Be(userId);
+        }
+
+        [Theory]
+        [InlineData("Invalid", "Password1", 100)]
+        [InlineData("JoeS", "Invalid", 100)]
+        [InlineData("JoeS", "Password1", 101)]
+        public void Should_Throw_Unauthorized_Access_Exception_If_User_Login_Failed(string username, string password, long tenantId) {
+            _service
+                .Invoking(async s => await s.Login(new Login(username, password, tenantId)))
+                .Should()
+                .Throw<UnauthorizedAccessException>()
+                .WithMessage("Attempted to perform an unauthorized operation.");
         }
     }
 }

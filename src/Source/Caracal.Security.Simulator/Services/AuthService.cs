@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Caracal.Security.Model;
 using Caracal.Security.Services;
-using Caracal.Security.Simulator.Exceptions;
 using Caracal.Security.Simulator.Stores;
 
 namespace Caracal.Security.Simulator.Services {
@@ -17,11 +16,8 @@ namespace Caracal.Security.Simulator.Services {
                 l.UserName == request.Username 
                 &&  l.Password == request.Password 
                 && l.TenantId == request.TenantId);
-
-            if (user == null)
-                throw new UserNotFoundException();
-
-            if (!user.IsAuthorized)
+            
+            if (user == null || !user.IsAuthorized)
                 throw new UnauthorizedAccessException();
 
             return Task.FromResult<User>(user);
