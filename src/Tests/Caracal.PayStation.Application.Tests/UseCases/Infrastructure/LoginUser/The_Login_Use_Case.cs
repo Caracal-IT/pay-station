@@ -34,8 +34,8 @@ namespace Caracal.PayStation.Application.Tests.UseCases.Infrastructure.LoginUser
             result.Should().Be(_response);
         }
 
-        private AuthService CreateAuthService() {
-            var authService = Substitute.For<AuthService>();
+        private LoginService CreateAuthService() {
+            var authService = Substitute.For<LoginService>();
             
             authService.Login(new Login(_request.Username, _request.Password, _request.TenantId))
                        .Returns(new User(_response.UserId));

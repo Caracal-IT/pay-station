@@ -7,15 +7,15 @@ using Caracal.Security.Services;
 namespace Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser {
     public class LoginUseCase: UseCase<LoginResponse, LoginRequest> {
         private readonly IMapper _mapper;
-        private readonly AuthService _authService;
+        private readonly LoginService _loginService;
 
-        public LoginUseCase(AuthService authService) {
+        public LoginUseCase(LoginService loginService) {
             _mapper = Mappings.Create();
-            _authService = authService;
+            _loginService = loginService;
         }
 
         public override async Task Execute() {
-            var result = await _authService.Login(_mapper.Map<Login>(Request));
+            var result = await _loginService.Login(_mapper.Map<Login>(Request));
             Response = _mapper.Map<LoginResponse>(result);
         }
     }
