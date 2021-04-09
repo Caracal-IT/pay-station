@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Caracal.Security.Model;
 
@@ -19,7 +20,7 @@ namespace Caracal.Security.Simulator.Model {
             string username, 
             string password, 
             long tenantId, 
-            bool isAuthorized = true) : base(userId) 
+            bool isAuthorized = true) : base(userId, Guid.NewGuid().ToString()) 
         {
             FirstName = firstName;
             LastName = lastName;

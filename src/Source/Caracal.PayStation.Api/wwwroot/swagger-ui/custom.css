@@ -1,0 +1,45 @@
+.topbar-wrapper img[alt="Swagger UI"], .topbar-wrapper span {
+   
+   visibility: hidden;
+    
+}
+
+
+.topbar-wrapper .link:after {
+    content: 'Caracal Pay Station';
+    color: #000;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding: 45px;
+    font-family: "Comic Sans MS", serif;
+    font-size: 32px;
+}
+ 
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border-color: #c80680;
+}
+
+.swagger-ui .info .title small:last-child {
+    background-color: #c80680 !important;
+}
+
+.swagger-ui .topbar {
+    background: #c80680;
+    /* Old browsers */
+    background: #c80680;
+    /* Old browsers  */
+    background: -moz-linear-gradient(left, #efb7da 0%, #731472 41%);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(left, #efb7da 0%, #731472 41%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #efb7da 0%, #731472 41%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #efb7da 0%, #731472 41%);
+    /* IE10+ */
+    background: linear-gradient(to right, #efb7da 0%, #731472 41%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$left', endColorstr='$right',GradientType=0 );
+    /* IE6-9 */
+}
