@@ -10,7 +10,7 @@ namespace Caracal.PayStation.Api.Controllers.User {
     [Route("users/[controller]")]
     public class LoginController: ControllerBase {
         private readonly InfrastructureUseCaseBuilder _infrastructure;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
         
         public LoginController(IMapper mapper, InfrastructureUseCaseBuilder infrastructure) {
             _mapper = mapper;
