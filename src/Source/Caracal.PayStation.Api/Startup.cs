@@ -1,3 +1,6 @@
+using Caracal.PayStation.Application.Builders.Infrastructure;
+using Caracal.Security.Services;
+using Caracal.Security.Simulator.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +21,8 @@ namespace Caracal.PayStation.Api {
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Caracal.PayStation.Api", Version = "v1"}); });
             
-            //services.AddScoped<IMyDependency, MyDependency2>();
+            services.AddSingleton<LoginService, AuthService>();
+            services.AddSingleton<InfrastructureUseCaseBuilder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

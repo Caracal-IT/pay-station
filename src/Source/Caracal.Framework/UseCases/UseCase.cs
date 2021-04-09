@@ -11,7 +11,7 @@ namespace Caracal.Framework.UseCases {
         
         public async Task<TResponse> Execute(TRequest request) {
             Request = request;
-            await base.Execute();
+            await Execute();
             return Response;
         }
     }
