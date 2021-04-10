@@ -49,6 +49,11 @@
       <_ContentIncludedByDefault Remove="ClientApp2\package-lock.json" />
       <_ContentIncludedByDefault Remove="ClientApp2\package.json" />
       <_ContentIncludedByDefault Remove="ClientApp2\public\manifest.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\data\settings.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\default.wf.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\login.wf.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\host.config.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\manifest.json" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

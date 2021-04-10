@@ -11,11 +11,11 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
-    "@stencil/core": "^2.0.0",
+    "@stencil/core": "^2.5.2",
     "@stencil/sass": "^1.4.1"
   },
   "license": "MIT",
   "dependencies": {
-    "caracal_polaris": "^2.0.0"
+    "caracal_polaris": "^2.0.3"
   }
 }
