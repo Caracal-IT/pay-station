@@ -24,6 +24,9 @@
         <Content Include="ClientApp\readme.md" />
         <Content Include="ClientApp\src\assets\icon\favicon.ico" />
         <Content Include="ClientApp\src\assets\icon\icon.png" />
+        <Content Include="ClientApp\src\assets\workflow\data\settings.json" />
+        <Content Include="ClientApp\src\assets\workflow\wf\default.wf.json" />
+        <Content Include="ClientApp\src\assets\workflow\wf\login.wf.json" />
         <Content Include="ClientApp\src\components\app-home\app-home.css" />
         <Content Include="ClientApp\src\components\app-profile\app-profile.css" />
         <Content Include="ClientApp\src\components\app-root\app-root.css" />

@@ -23,10 +23,14 @@ export class AppHome {
   render() {
     return (
       <div class="app-home">
-        <p>aaaaa
+        <p>
           Welcome to the Stencil App Starter. You can use this starter to build entire apps all with web components using Stencil! Check out our docs on{' '}
           <a href="https://stenciljs.com">stenciljs.com</a> to get started.
         </p>
+
+        <polaris-workflow url="assets/workflow/data/settings.json" process="login">
+
+        </polaris-workflow>
 
         <stencil-route-link url="/profile/stencil">
           <button>Profile page</button>

@@ -1,0 +1,13 @@
+{
+  "name" : "login",
+  "activities": [
+    {
+      "name": "start",
+      "type": "page-activity",
+      "controls": [
+        {"tag" : "h1", "innerHTML": "Polaris" },
+        {"tag" : "div", "innerHTML": "The Login Page" }
+      ]
+    }
+  ]
+}

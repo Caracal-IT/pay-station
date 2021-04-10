@@ -1,0 +1,4 @@
+{
+  "[WF]": "assets/workflow/wf/[SELF].wf.json",
+  "[DATA]": "assets/workflow/data/[SELF].json"
+}
