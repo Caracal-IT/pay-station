@@ -27,9 +27,6 @@
         <Content Include="ClientApp\src\assets\workflow\data\settings.json" />
         <Content Include="ClientApp\src\assets\workflow\wf\default.wf.json" />
         <Content Include="ClientApp\src\assets\workflow\wf\login.wf.json" />
-        <Content Include="ClientApp\src\components\app-home\app-home.css" />
-        <Content Include="ClientApp\src\components\app-profile\app-profile.css" />
-        <Content Include="ClientApp\src\components\app-root\app-root.css" />
         <Content Include="ClientApp\src\components\forms\mars-button\mars-button.scss" />
         <Content Include="ClientApp\src\global\app.scss" />
         <Content Include="ClientApp\src\global\_variables.scss" />
@@ -42,13 +39,6 @@
 
     <ItemGroup>
       <TypeScriptCompile Include="ClientApp\src\components.d.ts" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-home\app-home.e2e.ts" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-home\app-home.tsx" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-profile\app-profile.e2e.ts" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-profile\app-profile.spec.ts" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-profile\app-profile.tsx" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-root\app-root.e2e.ts" />
-      <TypeScriptCompile Include="ClientApp\src\components\app-root\app-root.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\mars-button\mars-button.tsx" />
       <TypeScriptCompile Include="ClientApp\src\global\app.ts" />
       <TypeScriptCompile Include="ClientApp\src\index.ts" />
@@ -71,24 +61,7 @@
         <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     </Target>
 
-    <Target Name="RunClient" AfterTargets="PublishRunWebpack" Condition=" '$(Configuration)' == 'Debug'">
+    <Target Name="RunClient" BeforeTargets="Run" Condition=" '$(Configuration)' == 'Debug'">
         <Exec WorkingDirectory="$(SpaRoot)" Command="npm run start" />
     </Target>
-
-    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-        <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
-
-        <!-- Include the newly-built files in the publish output -->
-        <ItemGroup>
-            <DistFiles Include="$(SpaRoot)build\**" />
-            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-                <RelativePath>%(DistFiles.Identity)</RelativePath>
-                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-                <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-            </ResolvedFileToPublish>
-        </ItemGroup>
-    </Target>
-
 </Project>
