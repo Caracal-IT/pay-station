@@ -1,5 +1,6 @@
 // ReSharper disable InconsistentNaming
 
+using System;
 using System.Threading.Tasks;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser;
@@ -11,7 +12,7 @@ using Xunit;
 
 namespace Caracal.PayStation.Application.Tests.UseCases.Infrastructure.LoginUser {
     public class The_Login_Use_Case {
-        private readonly LoginResponse _response = new (777);
+        private readonly LoginResponse _response = new (777, Guid.NewGuid().ToString());
         private readonly LoginRequest _request = new ("JoeSoap", "Password1", 1234);
         
         private readonly UseCase<LoginResponse, LoginRequest> _useCase;
@@ -38,7 +39,7 @@ namespace Caracal.PayStation.Application.Tests.UseCases.Infrastructure.LoginUser
             var authService = Substitute.For<LoginService>();
             
             authService.Login(new Login(_request.Username, _request.Password, _request.TenantId))
-                       .Returns(new User(_response.UserId));
+                       .Returns(new User(_response.UserId, Guid.NewGuid().ToString()));
 
             return authService;
         }
