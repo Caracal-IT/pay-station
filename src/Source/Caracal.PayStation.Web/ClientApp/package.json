@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "@stencil/core": "^2.0.0",
-    "@stencil/router": "^1.0.1"
+    "@stencil/router": "^1.0.1",
+    "@stencil/sass": "^1.4.1"
   },
   "license": "MIT",
   "dependencies": {

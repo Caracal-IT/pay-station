@@ -1,0 +1,31 @@
+$input-background: whitesmoke;
+$input-background-2: #C0C0C0;
+$input-background-3: #B7B7B7;
+$input-background-4: #888;
+
+$primary-color: green;
+$primary-bg-font-color: whitesmoke;
+$primary-font-color: black;
+$primary-disabled-color: #888;
+$primary-font-disabled-color: white;
+
+$primary-color-hover: lighten($primary-color, 20%);
+$primary-bg-font-color-hover: darken($primary-bg-font-color, 80%);
+
+$border-color: #686868;
+$border: 1px solid $border-color;
+$border-active: 2px solid $primary-color;
+$border-in-active: 2px solid $border-color;
+$border-component: 2px solid $border-color;
+
+$border-radius-small: 5px;
+$border-radius-medium: 10px;
+$border-radius-large: 15px;
+
+$shadow-light: 3px 2px 2px rgba(0, 0, 0, .5);
+$shadow-medium: 3px 4px 4px rgba(0, 0, 0, .5);
+$backdrop: rgba(0, 0, 0, .5);
+
+$error-color: red;
+$error-border-color: red;
+$error-light-color: lightpink;

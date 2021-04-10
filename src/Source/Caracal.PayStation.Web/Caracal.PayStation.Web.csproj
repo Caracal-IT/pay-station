@@ -30,7 +30,9 @@
         <Content Include="ClientApp\src\components\app-home\app-home.css" />
         <Content Include="ClientApp\src\components\app-profile\app-profile.css" />
         <Content Include="ClientApp\src\components\app-root\app-root.css" />
-        <Content Include="ClientApp\src\global\app.css" />
+        <Content Include="ClientApp\src\components\forms\mars-button\mars-button.scss" />
+        <Content Include="ClientApp\src\global\app.scss" />
+        <Content Include="ClientApp\src\global\_variables.scss" />
         <Content Include="ClientApp\src\index.html" />
         <Content Include="ClientApp\src\manifest.json" />
         <Content Include="ClientApp\tsconfig.json" />
@@ -47,9 +49,16 @@
       <TypeScriptCompile Include="ClientApp\src\components\app-profile\app-profile.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\app-root\app-root.e2e.ts" />
       <TypeScriptCompile Include="ClientApp\src\components\app-root\app-root.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\components\forms\mars-button\mars-button.tsx" />
       <TypeScriptCompile Include="ClientApp\src\global\app.ts" />
       <TypeScriptCompile Include="ClientApp\src\index.ts" />
       <TypeScriptCompile Include="ClientApp\stencil.config.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ClientApp2\package-lock.json" />
+      <_ContentIncludedByDefault Remove="ClientApp2\package.json" />
+      <_ContentIncludedByDefault Remove="ClientApp2\public\manifest.json" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

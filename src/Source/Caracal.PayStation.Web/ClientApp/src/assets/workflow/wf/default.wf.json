@@ -6,7 +6,17 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "Welcome to polaris workflow" }
+        {"tag" : "div", "innerHTML": "Welcome to polaris workflow" },
+        {"tag" : "mars-button", "caption": "Next Page", "next": "next-page", "isDefault": true }
+      ]
+    },
+    {
+      "name": "next-page",
+      "type": "page-activity",
+      "controls": [
+        {"tag" : "h1", "innerHTML": "Polaris" },
+        {"tag" : "div", "innerHTML": "Go Back To The Start!!" },
+        {"tag" : "mars-button", "caption": "Go Back", "next": "start", "isDefault": true }
       ]
     }
   ]
