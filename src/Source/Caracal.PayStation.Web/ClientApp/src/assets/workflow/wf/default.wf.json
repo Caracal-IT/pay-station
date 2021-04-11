@@ -17,9 +17,36 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "Go Back To The Start!!" },
-        {"tag" : "input", "id": "confirm.test" },
-        {"tag" : "input", "id": "login.username" },
+        {"tag" : "div", "innerHTML": "Are you sure {{login.username}} you want to login?" },
+        {"tag" : "apx-button", "caption": "Go Back", "next": "start", "isDefault": true },
+        {"tag" : "apx-button", "caption": "Login", "next": "login" }
+      ]
+    },
+    {
+      "name": "login",
+      "type": "api-activity",
+      "next": "logged-in",
+      "endpoints": [
+        {
+          "url": "[AUTH_API]/user/login",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "login.username", "remote": "username", "direction": "out"},
+            {"client": "login.password", "remote": "password", "direction": "out"},
+            {"client": "context.welcomeMessage", "remote": "welcomeMessage", "direction": "in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "logged-in",
+      "type": "page-activity",
+      "controls": [
+        {"tag" : "h1", "innerHTML": "Polaris" },
+        {"tag" : "div", "innerHTML": "{{context.welcomeMessage}}!!" },
         {"tag" : "apx-button", "caption": "Go Back", "next": "start", "isDefault": true }
       ]
     }

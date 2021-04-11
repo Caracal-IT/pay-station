@@ -1,4 +1,5 @@
 {
   "[WF]": "assets/workflow/wf/[SELF].wf.json",
+  "[AUTH_API]": "[SELF]",
   "[DATA]": "assets/workflow/data/[SELF].json"
 }
