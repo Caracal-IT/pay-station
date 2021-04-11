@@ -36,7 +36,7 @@
           "mappings":[
             {"client": "login.username", "remote": "username", "direction": "out"},
             {"client": "login.password", "remote": "password", "direction": "out"},
-            {"client": "context.welcomeMessage", "remote": "welcomeMessage", "direction": "in"}
+            {"client": "context.welcomeMessage", "remote": "message", "direction": "in"}
           ]
         }
       ]

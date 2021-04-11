@@ -1,7 +1,6 @@
-using System;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Caracal.PayStation.Web.Gateways.Security;
+using Caracal.PayStation.Web.Model.Security.Login;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,25 +8,13 @@ namespace Caracal.PayStation.Web.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class UserController: ControllerBase {
-        static HttpClient client = new HttpClient();
+        private readonly LoginGateway _loginGateway;
+        
+        public UserController(LoginGateway loginGateway) =>
+            _loginGateway = loginGateway;
         
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request) {
-            var reason = "Login Failed";
-            HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:5001/users/Login", request);
-          //  response.EnsureSuccessStatusCode();
-          if (response.IsSuccessStatusCode) {
-              var ctx = await response.Content.ReadFromJsonAsync<UserContext>();
-              reason = ctx?.UserId.ToString();
-          }
-
-          return Ok(new LoginResponse($"Welcome <em style='color:hotpink'>{reason}</em>"));
-        }
+        public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request) => 
+            Ok(await _loginGateway.Login(request));
     }
-
-    public record LoginRequest(string Username, string Password, long TenantId = 207);
-
-    public record LoginResponse(string WelcomeMessage);
-
-    public record UserContext(int UserId, string Token);
 }

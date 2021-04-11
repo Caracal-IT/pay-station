@@ -1,4 +1,6 @@
 using System;
+using System.Net.Http;
+using Caracal.PayStation.Web.Gateways.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +21,9 @@ namespace Caracal.PayStation.Web {
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/www"; });
+
+            services.AddSingleton<HttpClient>();
+            services.AddSingleton<LoginGateway, ApiLoginGateway>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
