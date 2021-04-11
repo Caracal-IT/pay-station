@@ -2,11 +2,11 @@ import { Component, Listen, Prop, h } from '@stencil/core';
 import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
-  tag: 'mars-button',
-  styleUrl: 'mars-button.scss',
+  tag: 'apx-button',
+  styleUrl: 'apx-button.scss',
   shadow: true,
 })
-export class MarsButton {
+export class ApexButton {
   @Prop() caption: string;
   @Prop() ctx: Context;
   @Prop() next: string;

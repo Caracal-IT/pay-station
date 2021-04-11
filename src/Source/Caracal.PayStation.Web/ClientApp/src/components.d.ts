@@ -7,40 +7,63 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Context } from "caracal_polaris/dist/types/model/context.model";
 export namespace Components {
-    interface MarsButton {
+    interface ApxButton {
         "caption": string;
         "ctx": Context;
         "isDefault": boolean;
         "next": string;
     }
+    interface ApxInput {
+        "caption": string;
+        "ctx": Context;
+        "name": string;
+        "type": string;
+        "value": string;
+    }
 }
 declare global {
-    interface HTMLMarsButtonElement extends Components.MarsButton, HTMLStencilElement {
+    interface HTMLApxButtonElement extends Components.ApxButton, HTMLStencilElement {
     }
-    var HTMLMarsButtonElement: {
-        prototype: HTMLMarsButtonElement;
-        new (): HTMLMarsButtonElement;
+    var HTMLApxButtonElement: {
+        prototype: HTMLApxButtonElement;
+        new (): HTMLApxButtonElement;
+    };
+    interface HTMLApxInputElement extends Components.ApxInput, HTMLStencilElement {
+    }
+    var HTMLApxInputElement: {
+        prototype: HTMLApxInputElement;
+        new (): HTMLApxInputElement;
     };
     interface HTMLElementTagNameMap {
-        "mars-button": HTMLMarsButtonElement;
+        "apx-button": HTMLApxButtonElement;
+        "apx-input": HTMLApxInputElement;
     }
 }
 declare namespace LocalJSX {
-    interface MarsButton {
+    interface ApxButton {
         "caption"?: string;
         "ctx"?: Context;
         "isDefault"?: boolean;
         "next"?: string;
     }
+    interface ApxInput {
+        "caption"?: string;
+        "ctx"?: Context;
+        "name"?: string;
+        "type"?: string;
+        "value"?: string;
+    }
     interface IntrinsicElements {
-        "mars-button": MarsButton;
+        "apx-button": ApxButton;
+        "apx-input": ApxInput;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "mars-button": LocalJSX.MarsButton & JSXBase.HTMLAttributes<HTMLMarsButtonElement>;
+            "apx-button": LocalJSX.ApxButton & JSXBase.HTMLAttributes<HTMLApxButtonElement>;
+            "apx-input": LocalJSX.ApxInput & JSXBase.HTMLAttributes<HTMLApxInputElement>;
         }
     }
 }

@@ -7,7 +7,9 @@
       "controls": [
         {"tag" : "h1", "innerHTML": "Polaris" },
         {"tag" : "div", "innerHTML": "Welcome to polaris workflow" },
-        {"tag" : "mars-button", "caption": "Next Page", "next": "next-page", "isDefault": true }
+        {"tag":  "apx-input", "caption":  "Username", "id":"login.username", "value": "" },
+        {"tag":  "apx-input", "caption":  "Password", "id":"login.password", "value": "", "type": "password" },
+        {"tag" : "apx-button", "caption": "Next Page", "next": "next-page", "isDefault": true }
       ]
     },
     {
@@ -16,7 +18,7 @@
       "controls": [
         {"tag" : "h1", "innerHTML": "Polaris" },
         {"tag" : "div", "innerHTML": "Go Back To The Start!!" },
-        {"tag" : "mars-button", "caption": "Go Back", "next": "start", "isDefault": true }
+        {"tag" : "apx-button", "caption": "Go Back", "next": "start", "isDefault": true }
       ]
     }
   ]
