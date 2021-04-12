@@ -10,6 +10,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.1" />
     </ItemGroup>
 
@@ -31,6 +33,7 @@
         <Content Include="ClientApp\src\assets\workflow\wf\login.wf.json" />
         <Content Include="ClientApp\src\assets\workflow\wf\withdrawals.wf.json" />
         <Content Include="ClientApp\src\components\forms\apx-button\apx-button.scss" />
+        <Content Include="ClientApp\src\components\forms\apx-grid\apx-grid.scss" />
         <Content Include="ClientApp\src\components\forms\apx-input\apx-input.scss" />
         <Content Include="ClientApp\src\components\page\apx-loader\apx-loader.scss" />
         <Content Include="ClientApp\src\components\page\apx-main\apx-main.scss" />
@@ -47,6 +50,7 @@
     <ItemGroup>
       <TypeScriptCompile Include="ClientApp\src\components.d.ts" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-button\apx-button.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\components\forms\apx-grid\apx-grid.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-input\apx-input.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\apx-loader\apx-loader.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\apx-main\apx-main.tsx" />
@@ -65,6 +69,9 @@
       <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\login.wf.json" />
       <_ContentIncludedByDefault Remove="ClientApp\www\host.config.json" />
       <_ContentIncludedByDefault Remove="ClientApp\www\manifest.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\data\menu.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\home.wf.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\withdrawals.wf.json" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

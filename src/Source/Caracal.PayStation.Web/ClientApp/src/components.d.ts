@@ -13,6 +13,10 @@ export namespace Components {
         "isDefault": boolean;
         "next": string;
     }
+    interface ApxGrid {
+        "caption": string;
+        "ctx": Context;
+    }
     interface ApxInput {
         "caption": string;
         "ctx": Context;
@@ -41,6 +45,12 @@ declare global {
         prototype: HTMLApxButtonElement;
         new (): HTMLApxButtonElement;
     };
+    interface HTMLApxGridElement extends Components.ApxGrid, HTMLStencilElement {
+    }
+    var HTMLApxGridElement: {
+        prototype: HTMLApxGridElement;
+        new (): HTMLApxGridElement;
+    };
     interface HTMLApxInputElement extends Components.ApxInput, HTMLStencilElement {
     }
     var HTMLApxInputElement: {
@@ -67,6 +77,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "apx-button": HTMLApxButtonElement;
+        "apx-grid": HTMLApxGridElement;
         "apx-input": HTMLApxInputElement;
         "apx-loader": HTMLApxLoaderElement;
         "apx-main": HTMLApxMainElement;
@@ -79,6 +90,10 @@ declare namespace LocalJSX {
         "ctx"?: Context;
         "isDefault"?: boolean;
         "next"?: string;
+    }
+    interface ApxGrid {
+        "caption"?: string;
+        "ctx"?: Context;
     }
     interface ApxInput {
         "caption"?: string;
@@ -102,6 +117,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "apx-button": ApxButton;
+        "apx-grid": ApxGrid;
         "apx-input": ApxInput;
         "apx-loader": ApxLoader;
         "apx-main": ApxMain;
@@ -113,6 +129,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "apx-button": LocalJSX.ApxButton & JSXBase.HTMLAttributes<HTMLApxButtonElement>;
+            "apx-grid": LocalJSX.ApxGrid & JSXBase.HTMLAttributes<HTMLApxGridElement>;
             "apx-input": LocalJSX.ApxInput & JSXBase.HTMLAttributes<HTMLApxInputElement>;
             "apx-loader": LocalJSX.ApxLoader & JSXBase.HTMLAttributes<HTMLApxLoaderElement>;
             "apx-main": LocalJSX.ApxMain & JSXBase.HTMLAttributes<HTMLApxMainElement>;

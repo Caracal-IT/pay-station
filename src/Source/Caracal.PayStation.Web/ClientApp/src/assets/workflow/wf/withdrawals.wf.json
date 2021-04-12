@@ -3,10 +3,27 @@
   "activities": [
     {
       "name": "start",
+      "type": "api-activity",
+      "next": "landing",
+      "endpoints": [
+        {
+          "url": "[WITHDRAWAL_API]",
+          "method": "Get",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "withdrawals.searchResult", "remote": "withdrawals", "direction": "in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "Withdrawals" }
+        {"tag" : "h1", "innerHTML": "Withdrawals" },
+        {"tag":  "apx-grid", "caption":  "Withdrawal Results"}
       ]
     }
   ]

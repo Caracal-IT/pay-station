@@ -1,7 +1,12 @@
 polaris-workflow {
   margin: 10px;
   width: 100%;
-  max-width: 600px;
+  max-width: calc(100% - 270px);
+  display: inline-block;
+}
+
+#small {
+  width: 700px;
   display: inline-block;
 }
 

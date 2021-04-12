@@ -5,11 +5,16 @@
       "name": "start",
       "type": "page-activity",
       "controls": [
-        {"tag" : "h1", "innerHTML": "PayStation" },
-        {"tag" : "div", "innerHTML": "Welcome to the PayStation" },
-        {"tag":  "apx-input", "caption":  "Username", "id":"login.username", "value": "" },
-        {"tag":  "apx-input", "type": "password", "caption":  "Password", "id":"login.password", "value": "" },
-        {"tag" : "apx-button", "caption": "Next Page", "next": "login", "isDefault": true }
+        { "tag" : "div",
+          "id": "small",
+          "controls": [
+                {"tag" : "h1", "innerHTML": "PayStation" },
+                {"tag" : "div", "innerHTML": "Welcome to the PayStation" },
+                {"tag":  "apx-input", "caption":  "Username", "id":"login.username", "value": "" },
+                {"tag":  "apx-input", "type": "password", "caption":  "Password", "id":"login.password", "value": "" },
+                {"tag" : "apx-button", "caption": "Login", "next": "login", "isDefault": true }
+          ]
+        }
       ]
     },
     {

@@ -1,3 +1,3 @@
-namespace Caracal.PayStation.Web.Model.Security.Login {
+namespace Caracal.PayStation.Web.Gateways.Security.Model.Login {
     public record LoginRequest(string Username, string Password, long TenantId = 207);
 }

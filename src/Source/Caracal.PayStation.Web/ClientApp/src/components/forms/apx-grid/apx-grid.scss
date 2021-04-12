@@ -1,0 +1,26 @@
+@import '../../../global/variables';
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid var(--border-color, $border-color);
+  padding: 8px;
+}
+
+table tr:nth-child(even){background-color: var(--input-background-2, $input-background-2);}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--primary-color, $primary-color);
+  color: var(--primary-bg-font-color, $primary-bg-font-color);
+}
+
+table tr:hover {
+  background-color: var(--primary-color-hover, $primary-color-hover);
+  color: var(--primary-bg-font-color-hover, $primary-bg-font-color-hover);
+}
