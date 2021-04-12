@@ -1,0 +1,13 @@
+{
+  "name" : "withdrawals",
+  "activities": [
+    {
+      "name": "start",
+      "type": "page-activity",
+      "controls": [
+        {"tag" : "h1", "innerHTML": "Polaris" },
+        {"tag" : "div", "innerHTML": "Withdrawals" }
+      ]
+    }
+  ]
+}

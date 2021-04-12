@@ -1,0 +1,51 @@
+polaris-workflow {
+  margin: 10px;
+  width: 100%;
+  max-width: 600px;
+  display: inline-block;
+}
+
+h1 {
+  color: purple;
+}
+
+.text {
+  margin: 5px;
+  color: #757575;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: darkgreen;
+  font-weight: bolder;
+}
+
+input {
+  font-size: 1rem;
+  padding: .8rem .8rem .8rem .4rem;
+  margin: 5px 1px;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #757575;
+
+  &:focus {
+    outline: none;
+    margin: 4px 0;
+    border: 2px solid purple;
+  }
+
+  &[error="true"] {
+    margin: 4px 0;
+    background-color: lightpink;
+    border: 2px solid red;
+  }
+}
+
+[wf-error] {
+  color: red;
+  font-weight: bolder;
+}

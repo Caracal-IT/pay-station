@@ -5,9 +5,53 @@
       "name": "start",
       "type": "page-activity",
       "controls": [
-        {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "The Login Page" }
+        {"tag" : "h1", "innerHTML": "PayStation" },
+        {"tag" : "div", "innerHTML": "Welcome to the PayStation" },
+        {"tag":  "apx-input", "caption":  "Username", "id":"login.username", "value": "" },
+        {"tag":  "apx-input", "type": "password", "caption":  "Password", "id":"login.password", "value": "" },
+        {"tag" : "apx-button", "caption": "Next Page", "next": "login", "isDefault": true }
       ]
+    },
+    {
+      "name": "login",
+      "type": "api-activity",
+      "next": "check-login-succeeded",
+      "endpoints": [
+        {
+          "url": "[AUTH_API]/user/login",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "login.username", "remote": "username", "direction": "out"},
+            {"client": "login.password", "remote": "password", "direction": "out"},
+            {"client": "context.welcomeMessage", "remote": "message", "direction": "in"},
+            {"client": "context.loginSucceeded", "remote": "succeeded", "direction": "in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "check-login-succeeded",
+      "type": "decision-activity",
+      "trueAction": "home",
+      "falseAction": "logged-in-failed",
+      "expression" : "{{context.loginSucceeded||false}}"
+    },
+    {
+      "name": "logged-in-failed",
+      "type": "page-activity",
+      "controls": [
+        {"tag" : "h1", "innerHTML": "PayStation" },
+        {"tag" : "div", "innerHTML": "Login Failed" }
+      ]
+    },
+    {
+      "name": "home",
+      "type": "ipc-activity",
+      "process" : "home",
+      "next": ""
     }
   ]
 }

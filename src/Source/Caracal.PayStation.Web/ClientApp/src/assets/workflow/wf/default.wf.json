@@ -3,51 +3,31 @@
   "activities": [
     {
       "name": "start",
-      "type": "page-activity",
-      "controls": [
-        {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "Welcome to polaris workflow" },
-        {"tag":  "apx-input", "caption":  "Username", "id":"login.username", "value": "" },
-        {"tag":  "apx-input", "type": "password", "caption":  "Password", "id":"login.password", "value": "" },
-        {"tag" : "apx-button", "caption": "Next Page", "next": "next-page", "isDefault": true }
-      ]
-    },
-    {
-      "name": "next-page",
-      "type": "page-activity",
-      "controls": [
-        {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "Are you sure {{login.username}} you want to login?" },
-        {"tag" : "apx-button", "caption": "Go Back", "next": "start", "isDefault": true },
-        {"tag" : "apx-button", "caption": "Login", "next": "login" }
-      ]
-    },
-    {
-      "name": "login",
       "type": "api-activity",
-      "next": "logged-in",
+      "next": "landing",
       "endpoints": [
         {
-          "url": "[AUTH_API]/user/login",
-          "method": "POST",
-          "headers": [
-            {"content-type": "application/json"}
-          ],
+          "url": "[DATA]/menu",
+          "method": "GET",
           "mappings":[
-            {"client": "login.username", "remote": "username", "direction": "out"},
-            {"client": "login.password", "remote": "password", "direction": "out"},
-            {"client": "context.welcomeMessage", "remote": "message", "direction": "in"}
+            {"client": "menu", "remote": "items", "direction": "in"}
           ]
         }
       ]
     },
     {
-      "name": "logged-in",
+      "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag" : "h1", "innerHTML": "Polaris" },
-        {"tag" : "div", "innerHTML": "{{context.welcomeMessage}}!!" },
-        {"tag" : "apx-button", "caption": "Go Back", "next": "start", "isDefault": true }
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "Default" },
+        {
+          "tag": "div",
+          "id": "content",
+          "controls": [
+            {"tag": "apx-menu", "items": "menu" },
+            {"tag": "apx-main"}
+          ]
+        }
       ]
     }
   ]

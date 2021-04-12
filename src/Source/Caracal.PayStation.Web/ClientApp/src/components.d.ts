@@ -20,6 +20,19 @@ export namespace Components {
         "type": string;
         "value": string;
     }
+    interface ApxLoader {
+        "ctx": Context;
+    }
+    interface ApxMain {
+        "activity": string;
+        "ctx": Context;
+        "process": string;
+        "sessionId": string;
+    }
+    interface ApxMenu {
+        "ctx": Context;
+        "items": any;
+    }
 }
 declare global {
     interface HTMLApxButtonElement extends Components.ApxButton, HTMLStencilElement {
@@ -34,9 +47,30 @@ declare global {
         prototype: HTMLApxInputElement;
         new (): HTMLApxInputElement;
     };
+    interface HTMLApxLoaderElement extends Components.ApxLoader, HTMLStencilElement {
+    }
+    var HTMLApxLoaderElement: {
+        prototype: HTMLApxLoaderElement;
+        new (): HTMLApxLoaderElement;
+    };
+    interface HTMLApxMainElement extends Components.ApxMain, HTMLStencilElement {
+    }
+    var HTMLApxMainElement: {
+        prototype: HTMLApxMainElement;
+        new (): HTMLApxMainElement;
+    };
+    interface HTMLApxMenuElement extends Components.ApxMenu, HTMLStencilElement {
+    }
+    var HTMLApxMenuElement: {
+        prototype: HTMLApxMenuElement;
+        new (): HTMLApxMenuElement;
+    };
     interface HTMLElementTagNameMap {
         "apx-button": HTMLApxButtonElement;
         "apx-input": HTMLApxInputElement;
+        "apx-loader": HTMLApxLoaderElement;
+        "apx-main": HTMLApxMainElement;
+        "apx-menu": HTMLApxMenuElement;
     }
 }
 declare namespace LocalJSX {
@@ -53,9 +87,25 @@ declare namespace LocalJSX {
         "type"?: string;
         "value"?: string;
     }
+    interface ApxLoader {
+        "ctx"?: Context;
+    }
+    interface ApxMain {
+        "activity"?: string;
+        "ctx"?: Context;
+        "process"?: string;
+        "sessionId"?: string;
+    }
+    interface ApxMenu {
+        "ctx"?: Context;
+        "items"?: any;
+    }
     interface IntrinsicElements {
         "apx-button": ApxButton;
         "apx-input": ApxInput;
+        "apx-loader": ApxLoader;
+        "apx-main": ApxMain;
+        "apx-menu": ApxMenu;
     }
 }
 export { LocalJSX as JSX };
@@ -64,6 +114,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "apx-button": LocalJSX.ApxButton & JSXBase.HTMLAttributes<HTMLApxButtonElement>;
             "apx-input": LocalJSX.ApxInput & JSXBase.HTMLAttributes<HTMLApxInputElement>;
+            "apx-loader": LocalJSX.ApxLoader & JSXBase.HTMLAttributes<HTMLApxLoaderElement>;
+            "apx-main": LocalJSX.ApxMain & JSXBase.HTMLAttributes<HTMLApxMainElement>;
+            "apx-menu": LocalJSX.ApxMenu & JSXBase.HTMLAttributes<HTMLApxMenuElement>;
         }
     }
 }

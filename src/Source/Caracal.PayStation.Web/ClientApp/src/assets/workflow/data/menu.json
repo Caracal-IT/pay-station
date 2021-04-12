@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"name": "Home", "process": "home"},
+    {"name": "Login", "process": "login"},
+    {"name": "Withdrawals", "process": "withdrawals"}
+  ]
+}
