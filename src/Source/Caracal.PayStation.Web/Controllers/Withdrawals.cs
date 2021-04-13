@@ -16,5 +16,12 @@ namespace Caracal.PayStation.Web.Controllers {
             
             return response;
         }
+
+        [HttpPost("flush")]
+        public WithdrawalSearchResponseViewModel Flush() {
+            var results = Get();
+            results.Withdrawals.ForEach(r => r.Status = "Flushed");
+            return results;
+        }
     }
 }

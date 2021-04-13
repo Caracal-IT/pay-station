@@ -8,7 +8,7 @@
       "endpoints": [
         {
           "url": "[WITHDRAWAL_API]",
-          "method": "Get",
+          "method": "GET",
           "headers": [
             {"content-type": "application/json"}
           ],
@@ -23,7 +23,29 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "h1", "innerHTML": "Withdrawals" },
-        {"tag":  "apx-grid", "caption":  "Withdrawal Results"}
+        {"tag":  "apx-grid", "caption":  "Withdrawal Results"},
+        {"tag":  "div",
+         "controls": [
+           {"tag" : "apx-button", "caption": "Flush", "next": "flush", "isDefault": true }
+         ]
+        }
+      ]
+    },
+    {
+      "name": "flush",
+      "type": "api-activity",
+      "next": "landing",
+      "endpoints": [
+        {
+          "url": "[WITHDRAWAL_API]flush",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "withdrawals.searchResult", "remote": "withdrawals", "direction": "in"}
+          ]
+        }
       ]
     }
   ]
