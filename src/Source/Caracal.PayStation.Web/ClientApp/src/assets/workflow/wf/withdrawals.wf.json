@@ -7,13 +7,13 @@
       "next": "landing",
       "endpoints": [
         {
-          "url": "[WITHDRAWAL_API]",
-          "method": "GET",
+          "url": "[WITHDRAWAL_API]filter",
+          "method": "POST",
           "headers": [
             {"content-type": "application/json"}
           ],
           "mappings":[
-            {"client": "withdrawals.searchResult", "remote": "withdrawals", "direction": "in"}
+            {"client": "withdrawals.searchResult", "remote": "items", "direction": "in"}
           ]
         }
       ]
@@ -43,7 +43,7 @@
             {"content-type": "application/json"}
           ],
           "mappings":[
-            {"client": "withdrawals.searchResult", "remote": "withdrawals", "direction": "in"}
+            {"client": "withdrawals.searchResult", "remote": "items", "direction": "in"}
           ]
         }
       ]

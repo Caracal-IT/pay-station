@@ -1,4 +1,5 @@
 using AutoMapper;
+using Model = Caracal.PayStation.PaymentModels.Withdrawals;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
     public class Mappings {
@@ -6,7 +7,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
             new MapperConfiguration(CreateMappings).CreateMapper();
 
         private static void CreateMappings(IMapperConfigurationExpression cfg) {
-            
+            cfg.CreateMap<Model.Withdrawal, Withdrawal>();
         }
     }
 }

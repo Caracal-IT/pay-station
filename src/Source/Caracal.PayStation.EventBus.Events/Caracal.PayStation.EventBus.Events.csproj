@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Caracal.EventBus\Caracal.EventBus.csproj" />
+      <ProjectReference Include="..\Caracal.PayStation.PaymentModels\Caracal.PayStation.PaymentModels.csproj" />
+    </ItemGroup>
+
+</Project>

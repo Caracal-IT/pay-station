@@ -1,5 +1,7 @@
-using System.Linq;
-using Caracal.PayStation.Web.ViewModel.Security.Withdrawals;
+using System.Threading.Tasks;
+using AutoMapper;
+using Caracal.Framework.Data;
+using Caracal.PayStation.Web.Gateways.Core.Withdrawals;
 using Caracal.PayStation.Web.ViewModel.Security.Withdrawals.WithdrawalSearch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,21 +9,27 @@ namespace Caracal.PayStation.Web.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class Withdrawals : ControllerBase {
-        [HttpGet]
-        public WithdrawalSearchResponseViewModel Get() {
-            var response = new WithdrawalSearchResponseViewModel();
-            
-            foreach (var i in Enumerable.Range(1, 5)) 
-                response.Withdrawals.Add(new WithdrawalViewModel(i, $"account {i}", $"R {i}0.44", "Requested"));
-            
-            return response;
+        private readonly IMapper _mapper;
+        private readonly WithdrawalGateway _withdrawalGateway;
+        
+        public Withdrawals(IMapper mapper, WithdrawalGateway withdrawalGateway) {
+            _mapper = mapper;
+            _withdrawalGateway = withdrawalGateway;
+        }
+        
+        [HttpPost("filter")]
+        public async Task<ActionResult<WithdrawalSearchResponseViewModel>> Filter([FromBody] WithdrawalSearchRequestViewModel request) {
+            var resp = await _withdrawalGateway.GetWithdrawalsAsync(_mapper.Map<PagedDataFilter>(request));
+            return Ok(_mapper.Map<WithdrawalSearchResponseViewModel>(resp));
         }
 
         [HttpPost("flush")]
-        public WithdrawalSearchResponseViewModel Flush() {
-            var results = Get();
-            results.Withdrawals.ForEach(r => r.Status = "Flushed");
-            return results;
+        public async Task<ActionResult<WithdrawalSearchResponseViewModel>> Flush() {
+            var resp = await _withdrawalGateway.GetWithdrawalsAsync(new PagedDataFilter());
+            var response = _mapper.Map<WithdrawalSearchResponseViewModel>(resp);
+            response.Items.ForEach(r => r.Status = "Flushed");
+            
+            return response;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using Caracal.PayStation.Web.Gateways.Core.Withdrawals;
 using Caracal.PayStation.Web.Gateways.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace Caracal.PayStation.Web {
 
             services.AddSingleton<HttpClient>();
             services.AddSingleton<LoginGateway, ApiLoginGateway>();
+            services.AddSingleton<WithdrawalGateway, ApiWithdrawalGateway>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

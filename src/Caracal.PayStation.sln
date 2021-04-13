@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Application.Tests", "Tests\Caracal.PayStation.Application.Tests\Caracal.PayStation.Application.Tests.csproj", "{4607C783-658C-410C-BD4B-2389E231C05C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.Paystation.EventBus.Events", "Source\Caracal.Paystation.EventBus.Events\Caracal.Paystation.EventBus.Events.csproj", "{DDE02D9A-9047-461E-B04D-582C217CC295}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.EventBus.Events", "Source\Caracal.PayStation.EventBus.Events\Caracal.PayStation.EventBus.Events.csproj", "{DDE02D9A-9047-461E-B04D-582C217CC295}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.Paystation.EventBus.Events.Tests", "Tests\Caracal.Paystation.EventBus.Events.Tests\Caracal.Paystation.EventBus.Events.Tests.csproj", "{33DD049A-B634-4F44-94FC-ED9B9308F656}"
 EndProject
@@ -49,6 +49,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Api", "Source\Caracal.PayStation.Api\Caracal.PayStation.Api.csproj", "{C6962446-BD93-4590-9339-BFDB8C622A44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Web", "Source\Caracal.PayStation.Web\Caracal.PayStation.Web.csproj", "{F0F337B5-C74C-45A7-A3D2-0856D6E2AE71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{1710C560-A350-4735-AD8B-5667E528F86F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E8D0296D-D568-4A28-8A73-EA64A0BF0FB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engines", "Engines", "{74209E2C-F162-4E8D-99F6-E914BC856D36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.PaymentEngine", "Source\Caracal.PayStation.PaymentEngine\Caracal.PayStation.PaymentEngine.csproj", "{25276854-DF36-4553-9237-E8D35F45D300}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PayStation", "PayStation", "{5151CA60-6ADD-4C37-886E-3EE5DA0C4983}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{195F3ABA-3E90-419F-81F6-05AB3BF4AC6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.PaymentModels", "Source\Caracal.PayStation.PaymentModels\Caracal.PayStation.PaymentModels.csproj", "{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +93,13 @@ Global
 		{9962C1F4-1D42-4EFD-8AED-41B1B57E6299} = {F0E1ADEC-DCC2-4B0C-AFFB-32515EF17AB8}
 		{C6962446-BD93-4590-9339-BFDB8C622A44} = {F4EE204E-1738-4CF1-9731-85703430B204}
 		{F0F337B5-C74C-45A7-A3D2-0856D6E2AE71} = {F4EE204E-1738-4CF1-9731-85703430B204}
+		{25276854-DF36-4553-9237-E8D35F45D300} = {74209E2C-F162-4E8D-99F6-E914BC856D36}
+		{5151CA60-6ADD-4C37-886E-3EE5DA0C4983} = {F4EE204E-1738-4CF1-9731-85703430B204}
+		{74209E2C-F162-4E8D-99F6-E914BC856D36} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
+		{E8D0296D-D568-4A28-8A73-EA64A0BF0FB7} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
+		{1710C560-A350-4735-AD8B-5667E528F86F} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
+		{195F3ABA-3E90-419F-81F6-05AB3BF4AC6C} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
+		{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31} = {195F3ABA-3E90-419F-81F6-05AB3BF4AC6C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -149,5 +170,13 @@ Global
 		{F0F337B5-C74C-45A7-A3D2-0856D6E2AE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0F337B5-C74C-45A7-A3D2-0856D6E2AE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0F337B5-C74C-45A7-A3D2-0856D6E2AE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25276854-DF36-4553-9237-E8D35F45D300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25276854-DF36-4553-9237-E8D35F45D300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25276854-DF36-4553-9237-E8D35F45D300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25276854-DF36-4553-9237-E8D35F45D300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A94DD6-BADB-4F2A-BF4C-7F9448D19A31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
