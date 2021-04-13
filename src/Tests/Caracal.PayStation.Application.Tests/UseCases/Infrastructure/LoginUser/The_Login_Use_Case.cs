@@ -30,7 +30,7 @@ namespace Caracal.PayStation.Application.Tests.UseCases.Infrastructure.LoginUser
 
         [Fact]
         public async Task Should_Login_With() {
-            var result = await _useCase.Execute(_request);
+            var result = await _useCase.ExecuteAsync(_request);
             
             result.Should().Be(_response);
         }

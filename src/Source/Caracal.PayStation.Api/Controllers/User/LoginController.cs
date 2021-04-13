@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.PayStation.Api.Models.User;
@@ -50,7 +49,7 @@ namespace Caracal.PayStation.Api.Controllers.User {
             return TryExecute<UserContext>(async () => {
                 var uc = _infrastructure.Build<LoginUseCase>();
                 var req = _mapper.Map<LoginRequest>(login);
-                var resp = await uc.Execute(req);
+                var resp = await uc.ExecuteAsync(req);
 
                 return Ok(_mapper.Map<UserContext>(resp));
             });

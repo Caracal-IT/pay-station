@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 using AutoMapper;
+using Caracal.PayStation.Application.Builders.Core;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
@@ -51,6 +52,7 @@ namespace Caracal.PayStation.Api {
             
             services.AddSingleton<LoginService, AuthService>();
             services.AddSingleton<InfrastructureUseCaseBuilder>();
+            services.AddSingleton<WithdrawalsUseCaseBuilder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

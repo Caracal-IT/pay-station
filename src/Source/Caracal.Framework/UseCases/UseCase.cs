@@ -9,7 +9,7 @@ namespace Caracal.Framework.UseCases {
         public TRequest Request { get; set; }
         public TResponse Response { get; set; }
         
-        public async Task<TResponse> Execute(TRequest request) {
+        public async Task<TResponse> ExecuteAsync(TRequest request) {
             Request = request;
             await Execute();
             return Response;
