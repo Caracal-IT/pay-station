@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using Caracal.PayStation.Application.Builders.Infrastructure;
 using Caracal.Security.Services;
 using Caracal.Security.Simulator.Services;
@@ -11,10 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-using AutoMapper;
 using Caracal.EventBus;
+using Caracal.PayStation.Application;
 using Caracal.PayStation.Application.Builders.Core;
 using Caracal.PayStation.PaymentEngine;
+using Caracal.PayStation.WorkflowEngine;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
@@ -58,10 +60,13 @@ namespace Caracal.PayStation.Api {
 
             services.AddSingleton<Caracal.EventBus.EventBus, MemoryEventBus>();
             services.AddSingleton<WithdrawalEngine, WithdrawalEngineWithEventBus>();
+            services.AddSingleton<ChangeStateEngine, ChangeStateEngineWithEventBus>();
+            
+            services.AddSingleton<Start>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Start appStart) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseStaticFiles();
@@ -81,6 +86,9 @@ namespace Caracal.PayStation.Api {
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            var t = Task.Run(async() => await appStart.Initialize());
+            Task.WhenAny(t);
         }
     }
 }

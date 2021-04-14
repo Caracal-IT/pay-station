@@ -5,16 +5,15 @@ using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.EventBus.Events.Withdrawals;
-using Caracal.PayStation.PaymentEngine;
 using Model = Caracal.PayStation.PaymentModels.Withdrawals;
 
-namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
-    public class GetWithdrawalsUseCase: UseCase<GetWithdrawalsResponse, GetWithdrawalsRequest>  {
+namespace Caracal.PayStation.Application.UseCases.Withdrawals.FlushWithdrawals {
+    public class FlushWithdrawalsUseCase: UseCase<FlushWithdrawalsResponse, FlushWithdrawalsRequest>  {
         private readonly IMapper _mapper;
         //private readonly WithdrawalEngine _withdrawalEngine;
         private readonly Caracal.EventBus.EventBus _eventBus;
 
-        public GetWithdrawalsUseCase(Caracal.EventBus.EventBus eventBus) {
+        public FlushWithdrawalsUseCase(Caracal.EventBus.EventBus eventBus) {
             _mapper = Mappings.Create();
             _eventBus = eventBus;
         }
@@ -26,12 +25,12 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
         }
         */
         
-        public override async Task<GetWithdrawalsResponse> ExecuteAsync(GetWithdrawalsRequest request) {
+        public override async Task<FlushWithdrawalsResponse> ExecuteAsync(FlushWithdrawalsRequest request) {
             Request = request;
             
-            var evt = new RequestWithdrawalsEvent{Data = request};
-            var result = await _eventBus.SendAndListenAsync<PagedData<Model.Withdrawal>, ResponseWithdrawalsEvent>(evt, CancellationToken.None);
-            Response = _mapper.Map<GetWithdrawalsResponse>(result);
+            var evt = new RequestFlushEvent{Data = request};
+            var result = await _eventBus.SendAndListenAsync<PagedData<Model.Withdrawal>, ResponseFlushEvent>(evt, CancellationToken.None);
+            Response = _mapper.Map<FlushWithdrawalsResponse>(result);
             return Response;
         }
 
@@ -39,8 +38,8 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
         //    Response = _mapper.Map<FlushWithdrawalsResponse>(await _withdrawalEngine.GetWithdrawals(Request));
         //}
 
-        private Task SetWithdrawals(ResponseWithdrawalsEvent evt, CancellationToken token) {
-            Response = _mapper.Map<GetWithdrawalsResponse>(evt.Data);
+        private Task SetWithdrawals(ResponseFlushEvent evt, CancellationToken token) {
+            Response = _mapper.Map<FlushWithdrawalsResponse>(evt.Data);
 
             return Task.CompletedTask;
         }

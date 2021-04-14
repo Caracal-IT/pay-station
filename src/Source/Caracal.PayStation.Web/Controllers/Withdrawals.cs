@@ -25,11 +25,8 @@ namespace Caracal.PayStation.Web.Controllers {
 
         [HttpPost("flush")]
         public async Task<ActionResult<WithdrawalSearchResponseViewModel>> Flush() {
-            var resp = await _withdrawalGateway.GetWithdrawalsAsync(new PagedDataFilter());
-            var response = _mapper.Map<WithdrawalSearchResponseViewModel>(resp);
-            response.Items.ForEach(r => r.Status = "Flushed");
-            
-            return response;
+            var resp = await _withdrawalGateway.FlushWithdrawalsAsync(new PagedDataFilter());
+            return _mapper.Map<WithdrawalSearchResponseViewModel>(resp);
         }
     }
 }

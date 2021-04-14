@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
 using Caracal.PayStation.Application.Builders.Core;
-using Caracal.PayStation.Application.Builders.Infrastructure;
+using Caracal.PayStation.Application.UseCases.Withdrawals.FlushWithdrawals;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 using Microsoft.AspNetCore.Mvc;
+
+using Model = Caracal.PayStation.Api.Models.Core.Withdrawals;
 
 namespace Caracal.PayStation.Api.Controllers.Core {
     /// <summary>
@@ -34,10 +34,22 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// <param name="request">The request to select withdrawals</param>
         /// <returns>The filtered withdrawals</returns>
         [HttpPost("filter")]
-        public async Task<PagedData<Withdrawal>> GetWithdrawals([FromBody] PagedDataFilter request) {
+        public async Task<PagedData<Model.Withdrawal>> GetWithdrawals([FromBody] PagedDataFilter request) {
             var uc = _builder.Build<GetWithdrawalsUseCase>();
             var resp = await uc.ExecuteAsync(_mapper.Map<GetWithdrawalsRequest>(request));
-            return _mapper.Map<PagedData<Withdrawal>>(resp);
+            return _mapper.Map<PagedData<Model.Withdrawal>>(resp);
         }
+        
+        /// <summary>
+        /// Get the withdrawals for the user.
+        /// </summary>
+        /// <param name="request">The request to select withdrawals</param>
+        /// <returns>The filtered withdrawals</returns>
+        [HttpPost("flush")]
+        public async Task<PagedData<Model.Withdrawal>> FlushWithdrawals([FromBody] PagedDataFilter request) {
+            var uc = _builder.Build<FlushWithdrawalsUseCase>();
+            FlushWithdrawalsResponse resp = await uc.ExecuteAsync(_mapper.Map<FlushWithdrawalsRequest>(request));
+            return _mapper.Map<PagedData<Model.Withdrawal>>(resp);
+        } 
     }
 }

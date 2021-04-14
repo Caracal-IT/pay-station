@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Caracal.Framework.Data;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
