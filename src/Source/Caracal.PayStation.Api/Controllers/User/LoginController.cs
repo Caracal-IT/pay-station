@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.PayStation.Api.Models.User;
@@ -45,14 +46,16 @@ namespace Caracal.PayStation.Api.Controllers.User {
         /// <response code="401">The login failed, and the user is unauthorized.</response> 
         [HttpPost]
         [Produces("application/json")]
-        public Task<ActionResult<UserContext>> Post([FromBody] Login login) {
-            return TryExecute<UserContext>(async () => {
+        public async Task<ActionResult<UserContext>> PostAsync([FromBody] Login login, CancellationToken cancellationToken) {
+            return await TryExecute(LoginAsync, cancellationToken);
+            
+            async Task<ActionResult<UserContext>> LoginAsync(CancellationToken token) {
                 var uc = _infrastructure.Build<LoginUseCase>();
                 var req = _mapper.Map<LoginRequest>(login);
-                var resp = await uc.ExecuteAsync(req);
+                var resp = await uc.ExecuteAsync(req, token);
 
                 return Ok(_mapper.Map<UserContext>(resp));
-            });
+            }
         }
     }
 }

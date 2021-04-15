@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
@@ -36,10 +37,14 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// <param name="request">The request to select withdrawals</param>
         /// <returns>The filtered withdrawals</returns>
         [HttpPost("filter")]
-        public async Task<PagedData<Model.Withdrawal>> GetWithdrawals([FromBody] PagedDataFilter request) {
-            var uc = _builder.Build<GetWithdrawalsUseCase>();
-            var resp = await uc.ExecuteAsync(_mapper.Map<GetWithdrawalsRequest>(request));
-            return _mapper.Map<PagedData<Model.Withdrawal>>(resp);
+        public async Task<ActionResult<PagedData<Model.Withdrawal>>> GetWithdrawals([FromBody] PagedDataFilter request, CancellationToken cancellationToken) {
+            return await TryExecute(GetWithdrawalAsync, cancellationToken);
+            
+            async Task<ActionResult<PagedData<Model.Withdrawal>>> GetWithdrawalAsync(CancellationToken token) {
+                var uc = _builder.Build<GetWithdrawalsUseCase>();
+                var resp = await uc.ExecuteAsync(_mapper.Map<GetWithdrawalsRequest>(request), token);
+                return Ok(_mapper.Map<PagedData<Model.Withdrawal>>(resp));
+            }
         }
         
         /// <summary>
@@ -48,10 +53,14 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// <param name="request">The statuses to update</param>
         /// <returns>The filtered withdrawals</returns>
         [HttpPost("status/update")]
-        public async Task<IEnumerable<Model2.WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync([FromBody] IEnumerable<Model2.WithdrawalStatus> request) {
-            var uc = _builder.Build<ChangeWithdrawalStatusUseCase>();
-            ChangeWithdrawalStatusResponse resp = await uc.ExecuteAsync(_mapper.Map<ChangeWithdrawalStatusRequest>(request));
-            return _mapper.Map<IEnumerable<Model2.WithdrawalStatusUpdateResult>>(resp);
+        public async Task<ActionResult<IEnumerable<Model2.WithdrawalStatusUpdateResult>>> UpdateWithdrawalStatusAsync([FromBody] IEnumerable<Model2.WithdrawalStatus> request, CancellationToken cancellationToken) {
+            return await TryExecute(UpdateStatusAsync, cancellationToken);
+            
+            async Task<ActionResult<IEnumerable<Model2.WithdrawalStatusUpdateResult>>> UpdateStatusAsync(CancellationToken token) {
+                var uc = _builder.Build<ChangeWithdrawalStatusUseCase>();
+                var resp = await uc.ExecuteAsync(_mapper.Map<ChangeWithdrawalStatusRequest>(request), cancellationToken);
+                return Ok(_mapper.Map<IEnumerable<Model2.WithdrawalStatusUpdateResult>>(resp));
+            }
         } 
     }
 }

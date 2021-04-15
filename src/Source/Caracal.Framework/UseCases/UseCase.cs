@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Caracal.Framework.UseCases {
@@ -9,7 +10,7 @@ namespace Caracal.Framework.UseCases {
         public TRequest Request { get; set; }
         public TResponse Response { get; set; }
         
-        public virtual async Task<TResponse> ExecuteAsync(TRequest request) {
+        public virtual async Task<TResponse> ExecuteAsync(TRequest request, CancellationToken cancellationToken) {
             Request = request;
             await Execute();
             return Response;

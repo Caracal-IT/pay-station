@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Caracal.Security.Model;
 using Caracal.Security.Services;
@@ -11,7 +12,7 @@ namespace Caracal.Security.Simulator.Services {
 
         public AuthService() => _userStore = UserStore.Create();
 
-        Task<User> LoginService.Login(Login request) {
+        Task<User> LoginService.LoginAsync(Login request, CancellationToken cancellationToken) {
             var user = _userStore.FirstOrDefault(l => 
                 l.UserName == request.Username 
                 &&  l.Password == request.Password 

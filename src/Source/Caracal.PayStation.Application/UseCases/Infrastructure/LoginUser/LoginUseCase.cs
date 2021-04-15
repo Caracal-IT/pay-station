@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.UseCases;
@@ -15,7 +16,7 @@ namespace Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser {
         }
 
         public override async Task Execute() {
-            var result = await _loginService.Login(_mapper.Map<Login>(Request));
+            var result = await _loginService.LoginAsync(_mapper.Map<Login>(Request), CancellationToken.None);
             Response = _mapper.Map<LoginResponse>(result);
         }
     }

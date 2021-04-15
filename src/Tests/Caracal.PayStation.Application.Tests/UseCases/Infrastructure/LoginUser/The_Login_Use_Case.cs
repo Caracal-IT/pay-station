@@ -1,6 +1,7 @@
 // ReSharper disable InconsistentNaming
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser;
@@ -25,20 +26,20 @@ namespace Caracal.PayStation.Application.Tests.UseCases.Infrastructure.LoginUser
             _useCase.Request = _request;
             await _useCase.Execute();
 
-            _useCase.Response.Should().Be(_response);
+            _useCase.Response.UserId.Should().Be(_response.UserId);
         }
 
         [Fact]
         public async Task Should_Login_With() {
-            var result = await _useCase.ExecuteAsync(_request);
+            var result = await _useCase.ExecuteAsync(_request, CancellationToken.None);
             
-            result.Should().Be(_response);
+            result.UserId.Should().Be(_response.UserId);
         }
 
         private LoginService CreateAuthService() {
             var authService = Substitute.For<LoginService>();
             
-            authService.Login(new Login(_request.Username, _request.Password, _request.TenantId))
+            authService.LoginAsync(new Login(_request.Username, _request.Password, _request.TenantId), Arg.Any<CancellationToken>())
                        .Returns(new User(_response.UserId, Guid.NewGuid().ToString()));
 
             return authService;

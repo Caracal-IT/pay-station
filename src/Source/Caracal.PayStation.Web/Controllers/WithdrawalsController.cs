@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
@@ -23,14 +24,14 @@ namespace Caracal.PayStation.Web.Controllers {
         }
         
         [HttpPost("filter")]
-        public async Task<ActionResult<WithdrawalSearchResponseViewModel>> FilterAsync([FromBody] WithdrawalSearchRequestViewModel request) {
-            var resp = await _withdrawalGateway.GetWithdrawalsAsync(_mapper.Map<PagedDataFilter>(request));
+        public async Task<ActionResult<WithdrawalSearchResponseViewModel>> FilterAsync([FromBody] WithdrawalSearchRequestViewModel request, CancellationToken cancellationToken) {
+            var resp = await _withdrawalGateway.GetWithdrawalsAsync(_mapper.Map<PagedDataFilter>(request), cancellationToken);
             return Ok(_mapper.Map<WithdrawalSearchResponseViewModel>(resp));
         }
 
         [HttpPost("status/change")]
-        public async Task<ActionResult<ListViewModel<StatusUpdateResultViewModel>>> ChangeStatusAsync(ListViewModel<StatusViewModel> request) {
-            var response = await _withdrawalGateway.UpdateStatusAsync(_mapper.Map<IEnumerable<WithdrawalStatus>>(request.Items));
+        public async Task<ActionResult<ListViewModel<StatusUpdateResultViewModel>>> ChangeStatusAsync(ListViewModel<StatusViewModel> request, CancellationToken cancellationToken) {
+            var response = await _withdrawalGateway.UpdateStatusAsync(_mapper.Map<IEnumerable<WithdrawalStatus>>(request.Items), cancellationToken);
             var resp = new ListViewModel<StatusUpdateResultViewModel> {
                 Items = _mapper.Map<IEnumerable<StatusUpdateResultViewModel>>(response).ToList()
             };

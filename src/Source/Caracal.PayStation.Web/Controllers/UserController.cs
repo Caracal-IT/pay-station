@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.PayStation.Web.Gateways.Security;
@@ -20,11 +21,11 @@ namespace Caracal.PayStation.Web.Controllers {
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginRequestViewModel request) {
-            var response = await _loginGateway.Login(_mapper.Map<LoginRequest>(request));
+        public async Task<ActionResult<LoginResponseViewModel>> LoginAsync([FromBody] LoginRequestViewModel request, CancellationToken cancellationToken) {
+            var response = await _loginGateway.LoginAsync(_mapper.Map<LoginRequest>(request), cancellationToken);
             
             if(string.IsNullOrWhiteSpace(response?.Token))
-                return Ok(new LoginResponseViewModel("Login failed", false));
+                return Ok(new LoginResponseViewModel("LoginAsync failed", false));
 
             Cookies.SetUserToken(Response, response.Token);
             
