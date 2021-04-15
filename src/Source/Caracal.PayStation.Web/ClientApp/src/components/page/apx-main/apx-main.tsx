@@ -16,12 +16,12 @@ export class ApexMain {
 
   connectedCallback() {
     this.baseUrl = this.ctx.config.getSetting("[baseUrl]");
+    this.changeProcess();
   }
 
   @Listen('hashchange', { capture: true, target: 'window' })
   changeProcess() {
     const params = window.location.hash.replace('#', '').split('-');
-
     if(this.process === params[0] || params[0] === "default")
       return;
 
