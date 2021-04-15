@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Caracal.PayStation.Web.Gateways.Core.Withdrawals.Model;
 namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
     public interface WithdrawalGateway {
         Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter request);
-        Task<PagedData<Withdrawal>> FlushWithdrawalsAsync(PagedDataFilter request);
+        Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateStatusAsync(IEnumerable<WithdrawalStatus> request);
     }
     
     public class ApiWithdrawalGateway: WithdrawalGateway {
@@ -16,19 +17,19 @@ namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
         public ApiWithdrawalGateway(HttpClient client) => _client = client;
         
         public async Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter request) {
-            var response = await _client.PostAsJsonAsync($"{ApiConfig.PayStationApi}Withdrawals/filter", request);
+            var response = await _client.PostAsJsonAsync($"{ApiConfig.PayStationApi}Withdrawal/filter", request);
 
             if (!response.IsSuccessStatusCode) return null;
             
             return await response.Content.ReadFromJsonAsync<PagedData<Withdrawal>>();
         }
         
-        public async Task<PagedData<Withdrawal>> FlushWithdrawalsAsync(PagedDataFilter request) {
-            var response = await _client.PostAsJsonAsync($"{ApiConfig.PayStationApi}Withdrawals/flush", request);
+        public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateStatusAsync(IEnumerable<WithdrawalStatus> request) {
+            var response = await _client.PostAsJsonAsync($"{ApiConfig.PayStationApi}Withdrawal/status/update", request);
 
             if (!response.IsSuccessStatusCode) return null;
             
-            return await response.Content.ReadFromJsonAsync<PagedData<Withdrawal>>();
+            return await response.Content.ReadFromJsonAsync<IEnumerable<WithdrawalStatusUpdateResult>>();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Caracal.PayStation.Api.Controllers.Core {
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class WithdrawalsController : Controller {
+    public class WithdrawalController : Controller {
         private WithdrawalsUseCaseBuilder _builder;
         private readonly IMapper _mapper;
 
@@ -25,7 +25,7 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// </summary>
         /// <param name="mapper">Maps the view model and use case models.</param>
         /// <param name="builder">The withdrawals use case builder</param>
-        public WithdrawalsController(IMapper mapper, WithdrawalsUseCaseBuilder builder) {
+        public WithdrawalController(IMapper mapper, WithdrawalsUseCaseBuilder builder) {
             _mapper = mapper;
             _builder = builder;
         }
@@ -47,8 +47,8 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// </summary>
         /// <param name="request">The statuses to update</param>
         /// <returns>The filtered withdrawals</returns>
-        [HttpPost("flush")]
-        public async Task<IEnumerable<Model2.WithdrawalStatusUpdateResult>> FlushWithdrawals([FromBody] IEnumerable<Model2.WithdrawalStatus> request) {
+        [HttpPost("status/update")]
+        public async Task<IEnumerable<Model2.WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync([FromBody] IEnumerable<Model2.WithdrawalStatus> request) {
             var uc = _builder.Build<ChangeWithdrawalStatusUseCase>();
             ChangeWithdrawalStatusResponse resp = await uc.ExecuteAsync(_mapper.Map<ChangeWithdrawalStatusRequest>(request));
             return _mapper.Map<IEnumerable<Model2.WithdrawalStatusUpdateResult>>(resp);

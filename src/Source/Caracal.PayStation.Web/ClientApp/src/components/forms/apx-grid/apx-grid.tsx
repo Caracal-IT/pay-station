@@ -10,12 +10,20 @@ export class ApexGrid {
   @Prop() caption: string;
   @Prop() ctx: Context;
 
+  onStatusInput(evt) {
+    const updateStatus = [
+      { "withdrawalId": 2, "status": evt.target.value }
+    ]
+
+    this.ctx.model.setValue("withdrawals.status", updateStatus);
+  }
+
   render() {
     const model = this.ctx.model.getValue("withdrawals.searchResult");
-    console.dir(model);
 
     return [
-      <div>{this.caption}</div>,
+      <div><h2>{this.caption}</h2></div>,
+      <div><span>Status for 2</span><input onInput={this.onStatusInput.bind(this)} /></div>,
       <table>
         <thead>
           <tr>

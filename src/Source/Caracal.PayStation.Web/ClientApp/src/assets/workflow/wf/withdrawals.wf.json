@@ -26,24 +26,24 @@
         {"tag":  "apx-grid", "caption":  "Withdrawal Results"},
         {"tag":  "div",
          "controls": [
-           {"tag" : "apx-button", "caption": "Flush", "next": "flush", "isDefault": true }
+           {"tag" : "apx-button", "caption": "Update", "next": "update-state", "isDefault": true }
          ]
         }
       ]
     },
     {
-      "name": "flush",
+      "name": "update-state",
       "type": "api-activity",
       "next": "start",
       "endpoints": [
         {
-          "url": "[WITHDRAWAL_API]flush",
+          "url": "[WITHDRAWAL_API]status/change",
           "method": "POST",
           "headers": [
             {"content-type": "application/json"}
           ],
           "mappings":[
-            {"client": "test", "remote": "items", "direction": "out"}
+            {"client": "withdrawals.status", "remote": "items", "direction": "out"}
           ]
         }
       ]

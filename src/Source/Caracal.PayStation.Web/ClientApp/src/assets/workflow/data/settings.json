@@ -2,5 +2,5 @@
   "[WF]": "assets/workflow/wf/[SELF].wf.json",
   "[AUTH_API]": "[SELF]",
   "[DATA]": "assets/workflow/data/[SELF].json",
-  "[WITHDRAWAL_API]": "withdrawals/[SELF]"
+  "[WITHDRAWAL_API]": "withdrawal/[SELF]"
 }
