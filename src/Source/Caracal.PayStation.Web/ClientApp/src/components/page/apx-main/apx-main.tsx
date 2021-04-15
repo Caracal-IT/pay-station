@@ -8,7 +8,7 @@ import {Context} from 'caracal_polaris/dist/types/model/context.model';
 })
 export class ApexMain {
   @Prop() ctx: Context;
-  @Prop({mutable: true, reflect: true}) process: string = "home";
+  @Prop({mutable: true, reflect: true}) process: string;
   @Prop({mutable: true, reflect: true}) activity: string;
   @Prop({mutable: true, reflect: true}) sessionId: string;
 
@@ -21,6 +21,7 @@ export class ApexMain {
   @Listen('hashchange', { capture: true, target: 'window' })
   changeProcess() {
     const params = window.location.hash.replace('#', '').split('-');
+
     if(this.process === params[0] || params[0] === "default")
       return;
 
