@@ -5,6 +5,7 @@ using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.EventBus.Events.Withdrawals;
+using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
 using Caracal.PayStation.PaymentEngine;
 using Model = Caracal.PayStation.PaymentModels.Withdrawals;
 
@@ -20,7 +21,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
         }
 
         /*
-        public FlushWithdrawalsUseCase(WithdrawalEngine withdrawalEngine) {
+        public ChangeWithdrawalStatusUseCase(WithdrawalEngine withdrawalEngine) {
             _mapper = Mappings.Create();
             _withdrawalEngine = withdrawalEngine;
         }
@@ -36,7 +37,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
         }
 
         //public override async Task Execute() {
-        //    Response = _mapper.Map<FlushWithdrawalsResponse>(await _withdrawalEngine.GetWithdrawals(Request));
+        //    Response = _mapper.Map<ChangeWithdrawalStatusResponse>(await _withdrawalEngine.GetWithdrawals(Request));
         //}
 
         private Task SetWithdrawals(ResponseWithdrawalsEvent evt, CancellationToken token) {

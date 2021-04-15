@@ -34,7 +34,7 @@
     {
       "name": "flush",
       "type": "api-activity",
-      "next": "landing",
+      "next": "start",
       "endpoints": [
         {
           "url": "[WITHDRAWAL_API]flush",
@@ -43,7 +43,7 @@
             {"content-type": "application/json"}
           ],
           "mappings":[
-            {"client": "withdrawals.searchResult", "remote": "items", "direction": "in"}
+            {"client": "test", "remote": "items", "direction": "out"}
           ]
         }
       ]

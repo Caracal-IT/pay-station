@@ -1,15 +1,16 @@
 using AutoMapper;
-using Caracal.Framework.Data;
 using Model = Caracal.PayStation.PaymentModels.Withdrawals;
 
-namespace Caracal.PayStation.Application.UseCases.Withdrawals.FlushWithdrawals {
+namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
     public class Mappings {
         public static IMapper Create() => 
             new MapperConfiguration(CreateMappings).CreateMapper();
 
         private static void CreateMappings(IMapperConfigurationExpression cfg) {
-            cfg.CreateMap<Model.Withdrawal, Withdrawal>();
-            cfg.CreateMap<PagedData<Model.Withdrawal>, FlushWithdrawalsResponse>();
+            cfg.CreateMap<WithdrawalStatus, Model.WithdrawalStatus>()
+                .ReverseMap();
+            
+            cfg.CreateMap<Model.WithdrawalStatusUpdateResult, WithdrawalStatusUpdateResult>();
         }
     }
 }

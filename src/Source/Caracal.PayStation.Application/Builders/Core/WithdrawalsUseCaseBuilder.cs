@@ -1,5 +1,5 @@
 using Caracal.Framework.UseCases;
-using Caracal.PayStation.Application.UseCases.Withdrawals.FlushWithdrawals;
+using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 
 namespace Caracal.PayStation.Application.Builders.Core {
@@ -9,9 +9,9 @@ namespace Caracal.PayStation.Application.Builders.Core {
         public WithdrawalsUseCaseBuilder(Caracal.EventBus.EventBus eventBus) => _eventBus = eventBus;
 
         public TUseCase Build<TUseCase>() where TUseCase : UseCase => typeof(TUseCase).Name switch {
-            nameof(FlushWithdrawalsUseCase) => new FlushWithdrawalsUseCase(_eventBus) as TUseCase,
+            nameof(ChangeWithdrawalStatusUseCase) => new ChangeWithdrawalStatusUseCase(_eventBus) as TUseCase,
             nameof(GetWithdrawalsUseCase) => new GetWithdrawalsUseCase(_eventBus) as TUseCase,
-            //nameof(FlushWithdrawalsUseCase) => new FlushWithdrawalsUseCase(_withdrawalEngine, _eventBus) as TUseCase,
+            //nameof(ChangeWithdrawalStatusUseCase) => new ChangeWithdrawalStatusUseCase(_withdrawalEngine, _eventBus) as TUseCase,
             _ => default
         };
     }

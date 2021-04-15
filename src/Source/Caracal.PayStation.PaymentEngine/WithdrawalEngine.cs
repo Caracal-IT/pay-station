@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.PayStation.EventBus.Events.Withdrawals;
+using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
 using Caracal.PayStation.PaymentModels.Withdrawals;
 using Caracal.PayStation.Storage.Simulator;
 
@@ -41,7 +42,7 @@ namespace Caracal.PayStation.PaymentEngine {
 
         private Task<PagedData<Withdrawal>> GetWithdrawals(PagedDataFilter filter) {
             var response = new PagedData<Withdrawal> {PageNumber = 1, NumberOfResults = 5, NumberOfRows = 5};
-            response.Items.AddRange(Store.Withdrawals);
+            response.Items.AddRange(Store.Withdrawals.Values);
             
             return Task.FromResult(response);
         }

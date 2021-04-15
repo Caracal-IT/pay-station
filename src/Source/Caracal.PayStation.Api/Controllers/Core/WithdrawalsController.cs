@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
 using Caracal.PayStation.Application.Builders.Core;
-using Caracal.PayStation.Application.UseCases.Withdrawals.FlushWithdrawals;
+using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 using Microsoft.AspNetCore.Mvc;
 
 using Model = Caracal.PayStation.Api.Models.Core.Withdrawals;
+using Model2 = Caracal.PayStation.Api.Models.Core.Workflow;
 
 namespace Caracal.PayStation.Api.Controllers.Core {
     /// <summary>
@@ -43,13 +45,13 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         /// <summary>
         /// Get the withdrawals for the user.
         /// </summary>
-        /// <param name="request">The request to select withdrawals</param>
+        /// <param name="request">The statuses to update</param>
         /// <returns>The filtered withdrawals</returns>
         [HttpPost("flush")]
-        public async Task<PagedData<Model.Withdrawal>> FlushWithdrawals([FromBody] PagedDataFilter request) {
-            var uc = _builder.Build<FlushWithdrawalsUseCase>();
-            FlushWithdrawalsResponse resp = await uc.ExecuteAsync(_mapper.Map<FlushWithdrawalsRequest>(request));
-            return _mapper.Map<PagedData<Model.Withdrawal>>(resp);
+        public async Task<IEnumerable<Model2.WithdrawalStatusUpdateResult>> FlushWithdrawals([FromBody] IEnumerable<Model2.WithdrawalStatus> request) {
+            var uc = _builder.Build<ChangeWithdrawalStatusUseCase>();
+            ChangeWithdrawalStatusResponse resp = await uc.ExecuteAsync(_mapper.Map<ChangeWithdrawalStatusRequest>(request));
+            return _mapper.Map<IEnumerable<Model2.WithdrawalStatusUpdateResult>>(resp);
         } 
     }
 }
