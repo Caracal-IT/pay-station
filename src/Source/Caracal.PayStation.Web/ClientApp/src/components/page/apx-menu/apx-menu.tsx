@@ -7,6 +7,10 @@ import {Context} from 'caracal_polaris/dist/types/model/context.model';
   shadow: true,
 })
 export class ApexMenu {
+  isLoggedIn = undefined;
+  mainMenuUrl = "[DATA]/main-menu";
+  menuUrl = "[DATA]/menu";
+
   @Prop() ctx: Context;
   @Prop({attribute: "items"}) items;
 
@@ -14,7 +18,7 @@ export class ApexMenu {
   @State() process: string;
 
   async connectedCallback() {
-    this.setActiveMenuItem();
+    await this.setActiveMenuItem();
 
     if(this.items) {
       const items = this.ctx.model.getValue(this.items);
@@ -24,7 +28,7 @@ export class ApexMenu {
   }
 
   @Listen('hashchange',{ capture: true, target: 'window' })
-  setActiveMenuItem() {
+  async setActiveMenuItem() {
     const params = window.location
                          .hash
                          .replace('#', '')
@@ -36,6 +40,28 @@ export class ApexMenu {
     if(this.process && this.process === params[0]) return;
 
     this.process = params[0];
+
+    await this.reloadMenu();
+  }
+
+  async reloadMenu() {
+    const isLoggedIn = this.ctx.model.getValue("context.isLoggedIn");
+
+    if(isLoggedIn === undefined || this.isLoggedIn == isLoggedIn)
+      return;
+
+   this.isLoggedIn = isLoggedIn;
+    let menuUrl = isLoggedIn ? this.mainMenuUrl : this.menuUrl;
+
+    const menu = await this.ctx.http.fetch({
+      method: "GET",
+      "headers": [
+        {"content-type": "application/json"}
+      ],
+      url: menuUrl
+    });
+
+    this.menuItems = [...menu.items];
   }
 
   @Listen('wfMessage', { capture: true, target: 'document' })

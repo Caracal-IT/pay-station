@@ -1,0 +1,25 @@
+{
+  "name" : "login",
+  "activities": [
+    {
+      "name": "start",
+      "type": "assign-activity",
+      "key": "context",
+      "value": null,
+      "next": "set-login-status"
+    },
+    {
+      "name": "set-login-status",
+      "type": "assign-activity",
+      "key": "context.isLoggedIn",
+      "value": "false",
+      "next": "home"
+    },
+    {
+      "name": "home",
+      "type": "ipc-activity",
+      "process" : "home",
+      "next": ""
+    }
+  ]
+}

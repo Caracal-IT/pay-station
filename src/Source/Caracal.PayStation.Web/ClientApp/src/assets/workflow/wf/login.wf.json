@@ -40,7 +40,7 @@
     {
       "name": "check-login-succeeded",
       "type": "decision-activity",
-      "trueAction": "home",
+      "trueAction": "logged-in-succeeded",
       "falseAction": "logged-in-failed",
       "expression" : "{{context.loginSucceeded||false}}"
     },
@@ -51,6 +51,13 @@
         {"tag" : "h1", "innerHTML": "PayStation" },
         {"tag" : "div", "innerHTML": "Login Failed" }
       ]
+    },
+    {
+      "name": "logged-in-succeeded",
+      "type": "assign-activity",
+      "key": "context.isLoggedIn",
+      "value": "true",
+      "next": "home"
     },
     {
       "name": "home",
