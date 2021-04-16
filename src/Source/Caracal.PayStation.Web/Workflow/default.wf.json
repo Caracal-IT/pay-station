@@ -19,7 +19,7 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag": "h1", "id": "pageHeader", "innerHTML": "Default" },
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "Default {{[VERSION]}}" },
         {
           "tag": "div",
           "id": "content",

@@ -10,9 +10,10 @@ namespace Caracal.PayStation.Web.Controllers {
         private bool IsLoggedIn => !string.IsNullOrWhiteSpace(Cookies.GetUserToken(Request));
 
         [HttpGet("settings")]
-        [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 604800)]
+        [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 1)]
         public ActionResult<Dictionary<string, string>> Settings() {
             return Ok(new Dictionary<string, string> {
+                {"[VERSION]", "1.0.0.2"},
                 {"[WF]", "workflow/process[SELF]"},
                 {"[AUTH_API]", "[SELF]"},
                 {"[DATA]", "assets/workflow/data/[SELF].json"},
