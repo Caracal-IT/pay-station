@@ -12,13 +12,13 @@ namespace Caracal.PayStation.Web.Controllers {
         [HttpGet("menu")]
         public ActionResult<MenuViewModel> GetMenu() => Ok(IsLoggedIn ? GetLoggedInMenu() : GetDefaultMenu());
         
-        private MenuViewModel GetDefaultMenu() =>
+        private static MenuViewModel GetDefaultMenu() =>
             new (new List<MenuItemViewModel> {
                 new("Home", "home"),
                 new("Login", "login")
             });
 
-        private MenuViewModel GetLoggedInMenu() =>
+        private static MenuViewModel GetLoggedInMenu() =>
             new (new List<MenuItemViewModel> {
                 new("Home", "home"),
                 new("Logout", "logout"),
