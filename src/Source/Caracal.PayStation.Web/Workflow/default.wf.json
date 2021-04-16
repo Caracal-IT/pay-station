@@ -19,7 +19,7 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag": "h1", "id": "pageHeader", "innerHTML": "Default {{[VERSION]}}" },
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "PayStation {{[VERSION]}}" },
         {
           "tag": "div",
           "id": "content",

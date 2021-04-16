@@ -54,7 +54,7 @@ namespace Caracal.PayStation.Web {
             
             app.Use((context, next) =>
             {
-                context.Response.Headers["X-Version"] = "1.0.0.2";
+                context.Response.Headers["X-Version"] = "1.0.0.3";
                 return next.Invoke();
             });
 
