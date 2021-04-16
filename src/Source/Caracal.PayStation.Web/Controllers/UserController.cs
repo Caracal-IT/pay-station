@@ -31,5 +31,12 @@ namespace Caracal.PayStation.Web.Controllers {
             
             return Ok(new LoginResponseViewModel($"Welcome {request.Username}", true));
         }
+        
+        [HttpPost("logout")]
+        public ActionResult<LoginResponseViewModel> LogoutAsync(CancellationToken cancellationToken) {
+            Cookies.SetUserToken(Response, string.Empty);
+            
+            return Ok(new LoginResponseViewModel("Logged out", true));
+        }
     }
 }

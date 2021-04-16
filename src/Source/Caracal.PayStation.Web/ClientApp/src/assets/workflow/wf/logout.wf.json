@@ -1,12 +1,29 @@
 {
-  "name" : "login",
+  "name" : "logout",
   "activities": [
     {
       "name": "start",
       "type": "assign-activity",
       "key": "context",
       "value": null,
-      "next": "set-login-status"
+      "next": "logout"
+    },
+    {
+      "name": "logout",
+      "type": "api-activity",
+      "next": "set-login-status",
+      "endpoints": [
+        {
+          "url": "[AUTH_API]/user/logout",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "context.loginSucceeded", "remote": "succeeded", "direction": "in"}
+          ]
+        }
+      ]
     },
     {
       "name": "set-login-status",

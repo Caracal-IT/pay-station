@@ -1,6 +1,0 @@
-{
-  "items": [
-    {"name": "Home", "process": "home"},
-    {"name": "Login", "process": "login"}
-  ]
-}

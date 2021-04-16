@@ -7,8 +7,8 @@ using Caracal.Framework.Data;
 using Caracal.PayStation.Web.Gateways.Core.Withdrawals;
 using Caracal.PayStation.Web.Gateways.Core.Withdrawals.Model;
 using Caracal.PayStation.Web.ViewModel;
-using Caracal.PayStation.Web.ViewModel.Security.Withdrawals.Status;
-using Caracal.PayStation.Web.ViewModel.Security.Withdrawals.WithdrawalSearch;
+using Caracal.PayStation.Web.ViewModel.Withdrawals.Status;
+using Caracal.PayStation.Web.ViewModel.Withdrawals.WithdrawalSearch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caracal.PayStation.Web.Controllers {

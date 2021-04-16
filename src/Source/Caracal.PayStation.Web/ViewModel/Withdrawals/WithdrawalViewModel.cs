@@ -1,4 +1,4 @@
-namespace Caracal.PayStation.Web.ViewModel.Security.Withdrawals {
+namespace Caracal.PayStation.Web.ViewModel.Withdrawals {
     public class WithdrawalViewModel {
         public WithdrawalViewModel(long id, string account, string amount, string status) {
             Id = id;

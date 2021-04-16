@@ -8,8 +8,7 @@ import {Context} from 'caracal_polaris/dist/types/model/context.model';
 })
 export class ApexMenu {
   isLoggedIn = undefined;
-  mainMenuUrl = "[DATA]/main-menu";
-  menuUrl = "[DATA]/menu";
+  menuUrl = "[CORE]menu";
 
   @Prop() ctx: Context;
   @Prop({attribute: "items"}) items;
@@ -50,15 +49,11 @@ export class ApexMenu {
     if(isLoggedIn === undefined || this.isLoggedIn == isLoggedIn)
       return;
 
-   this.isLoggedIn = isLoggedIn;
-    let menuUrl = isLoggedIn ? this.mainMenuUrl : this.menuUrl;
+    this.isLoggedIn = isLoggedIn;
 
     const menu = await this.ctx.http.fetch({
       method: "GET",
-      "headers": [
-        {"content-type": "application/json"}
-      ],
-      url: menuUrl
+      url: this.menuUrl
     });
 
     this.menuItems = [...menu.items];

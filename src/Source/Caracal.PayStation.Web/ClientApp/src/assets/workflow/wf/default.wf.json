@@ -7,7 +7,7 @@
       "next": "landing",
       "endpoints": [
         {
-          "url": "[DATA]/menu",
+          "url": "[CORE]menu",
           "method": "GET",
           "mappings":[
             {"client": "menu", "remote": "items", "direction": "in"}
