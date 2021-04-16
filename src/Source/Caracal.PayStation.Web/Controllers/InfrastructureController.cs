@@ -8,6 +8,18 @@ namespace Caracal.PayStation.Web.Controllers {
     [Route("[controller]")]
     public class InfrastructureController : ControllerBase {
         private bool IsLoggedIn => !string.IsNullOrWhiteSpace(Cookies.GetUserToken(Request));
+
+        [HttpGet("settings")]
+        [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 604800)]
+        public ActionResult<Dictionary<string, string>> Settings() {
+            return Ok(new Dictionary<string, string> {
+                {"[WF]", "workflow/process[SELF]"},
+                {"[AUTH_API]", "[SELF]"},
+                {"[DATA]", "assets/workflow/data/[SELF].json"},
+                {"[WITHDRAWAL_API]", "withdrawal/[SELF]"},
+                {"[CORE]", "Infrastructure/[SELF]"}
+            });
+        }
         
         [HttpGet("menu")]
         public ActionResult<MenuViewModel> GetMenu() => Ok(IsLoggedIn ? GetLoggedInMenu() : GetDefaultMenu());

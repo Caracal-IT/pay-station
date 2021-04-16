@@ -1,8 +1,0 @@
-{
-  "[WF]": "workflow/process[SELF]",
-  "[WF1]": "assets/workflow/wf/[SELF].wf.json",
-  "[AUTH_API]": "[SELF]",
-  "[DATA]": "assets/workflow/data/[SELF].json",
-  "[WITHDRAWAL_API]": "withdrawal/[SELF]",
-  "[CORE]": "Infrastructure/[SELF]"
-}

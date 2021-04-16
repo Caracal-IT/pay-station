@@ -51,6 +51,12 @@ namespace Caracal.PayStation.Web {
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+            
+            app.Use((context, next) =>
+            {
+                context.Response.Headers["X-Version"] = "1.0.0.1";
+                return next.Invoke();
+            });
 
             app.UseSpa(spa => {
                 spa.Options.SourcePath = "ClientApp";
