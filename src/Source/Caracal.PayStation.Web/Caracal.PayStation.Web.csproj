@@ -27,11 +27,6 @@
         <Content Include="ClientApp\src\assets\icon\favicon.ico" />
         <Content Include="ClientApp\src\assets\icon\icon.png" />
         <Content Include="ClientApp\src\assets\workflow\data\settings.json" />
-        <Content Include="ClientApp\src\assets\workflow\wf\default.wf.json" />
-        <Content Include="ClientApp\src\assets\workflow\wf\home.wf.json" />
-        <Content Include="ClientApp\src\assets\workflow\wf\login.wf.json" />
-        <Content Include="ClientApp\src\assets\workflow\wf\logout.wf.json" />
-        <Content Include="ClientApp\src\assets\workflow\wf\withdrawals.wf.json" />
         <Content Include="ClientApp\src\components\forms\apx-button\apx-button.scss" />
         <Content Include="ClientApp\src\components\forms\apx-grid\apx-grid.scss" />
         <Content Include="ClientApp\src\components\forms\apx-input\apx-input.scss" />
