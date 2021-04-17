@@ -1,0 +1,36 @@
+@import '../../../global/variables';
+
+label {
+  display: inline;
+}
+
+input {
+  display: none;
+}
+
+input + label {
+  background-color: var(--input-background, $input-background);
+  border: var(--border, $border);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  color: var(--primary-color, $primary-color);
+}
+
+input:checked + label:after {
+  content: '\2714';
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+  color: var(--primary-color, $primary-color);
+}
+
+label:last-of-type {
+  position: relative;
+  display: inline-block;
+  color: var(--primary-font-color, $primary-font-color);
+  vertical-align: top;
+  top: 2px;
+}

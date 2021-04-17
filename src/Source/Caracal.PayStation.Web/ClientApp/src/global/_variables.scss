@@ -12,6 +12,9 @@ $primary-font-disabled-color: white;
 $primary-color-hover: lighten($primary-color, 20%);
 $primary-bg-font-color-hover: lighten($primary-bg-font-color, 80%);
 
+$primary-color-selected: lighten($primary-color, 70%);
+$primary-color-selected-alt: lighten($primary-color, 55%);
+
 $border-color: #686868;
 $border: 1px solid $border-color;
 $border-active: 2px solid $primary-color;

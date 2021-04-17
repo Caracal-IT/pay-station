@@ -6,9 +6,45 @@ table {
   margin: 5px 0;
 }
 
+table tr td:first-of-type {
+  width: 25px;
+}
+
+.selected {
+  background-color: var(--primary-color-selected, $primary-color-selected);
+}
+
+.selected:nth-child(even){background-color: var(--primary-color-selected-alt, $primary-color-selected-alt);}
+
 table td, table th {
-  border: 1px solid var(--border-color, $border-color);
+  position: relative;
+  border: 2px solid var(--border-color, $border-color);
   padding: 8px;
+}
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  opacity: 0;
+  width: 5px;
+  cursor: col-resize;
+}
+
+resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 100;
+  width: 5px;
+  cursor: col-resize;
+  border-right: 1px solid transparent;
+
+  &:hover {
+    border-right: 1px solid var(--border-color, $border-color);
+  }
 }
 
 table tr:nth-child(even){background-color: var(--input-background-2, $input-background-2);}
@@ -19,9 +55,13 @@ table th {
   text-align: left;
   background-color: var(--primary-color, $primary-color);
   color: var(--primary-bg-font-color, $primary-bg-font-color);
+  text-transform: capitalize;
 }
 
-table tr:hover {
+table tr:hover,
+.selected:nth-child(even):hover
+{
   background-color: var(--primary-color-hover, $primary-color-hover);
   color: var(--primary-bg-font-color-hover, $primary-bg-font-color-hover);
+  cursor: pointer;
 }

@@ -13,9 +13,17 @@ export namespace Components {
         "isDefault": boolean;
         "next": string;
     }
+    interface ApxCheckbox {
+        "caption": string;
+        "ctx": Context;
+        "name": string;
+        "value": boolean;
+    }
     interface ApxGrid {
         "caption": string;
         "ctx": Context;
+        "headers": any;
+        "value": Array<any>;
     }
     interface ApxInput {
         "caption": string;
@@ -37,6 +45,8 @@ export namespace Components {
         "ctx": Context;
         "items": any;
     }
+    interface ResizeHandle {
+    }
 }
 declare global {
     interface HTMLApxButtonElement extends Components.ApxButton, HTMLStencilElement {
@@ -44,6 +54,12 @@ declare global {
     var HTMLApxButtonElement: {
         prototype: HTMLApxButtonElement;
         new (): HTMLApxButtonElement;
+    };
+    interface HTMLApxCheckboxElement extends Components.ApxCheckbox, HTMLStencilElement {
+    }
+    var HTMLApxCheckboxElement: {
+        prototype: HTMLApxCheckboxElement;
+        new (): HTMLApxCheckboxElement;
     };
     interface HTMLApxGridElement extends Components.ApxGrid, HTMLStencilElement {
     }
@@ -75,13 +91,21 @@ declare global {
         prototype: HTMLApxMenuElement;
         new (): HTMLApxMenuElement;
     };
+    interface HTMLResizeHandleElement extends Components.ResizeHandle, HTMLStencilElement {
+    }
+    var HTMLResizeHandleElement: {
+        prototype: HTMLResizeHandleElement;
+        new (): HTMLResizeHandleElement;
+    };
     interface HTMLElementTagNameMap {
         "apx-button": HTMLApxButtonElement;
+        "apx-checkbox": HTMLApxCheckboxElement;
         "apx-grid": HTMLApxGridElement;
         "apx-input": HTMLApxInputElement;
         "apx-loader": HTMLApxLoaderElement;
         "apx-main": HTMLApxMainElement;
         "apx-menu": HTMLApxMenuElement;
+        "resize-handle": HTMLResizeHandleElement;
     }
 }
 declare namespace LocalJSX {
@@ -91,9 +115,18 @@ declare namespace LocalJSX {
         "isDefault"?: boolean;
         "next"?: string;
     }
+    interface ApxCheckbox {
+        "caption"?: string;
+        "ctx"?: Context;
+        "name"?: string;
+        "onCheckChanged"?: (event: CustomEvent<boolean>) => void;
+        "value"?: boolean;
+    }
     interface ApxGrid {
         "caption"?: string;
         "ctx"?: Context;
+        "headers"?: any;
+        "value"?: Array<any>;
     }
     interface ApxInput {
         "caption"?: string;
@@ -115,13 +148,17 @@ declare namespace LocalJSX {
         "ctx"?: Context;
         "items"?: any;
     }
+    interface ResizeHandle {
+    }
     interface IntrinsicElements {
         "apx-button": ApxButton;
+        "apx-checkbox": ApxCheckbox;
         "apx-grid": ApxGrid;
         "apx-input": ApxInput;
         "apx-loader": ApxLoader;
         "apx-main": ApxMain;
         "apx-menu": ApxMenu;
+        "resize-handle": ResizeHandle;
     }
 }
 export { LocalJSX as JSX };
@@ -129,11 +166,13 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "apx-button": LocalJSX.ApxButton & JSXBase.HTMLAttributes<HTMLApxButtonElement>;
+            "apx-checkbox": LocalJSX.ApxCheckbox & JSXBase.HTMLAttributes<HTMLApxCheckboxElement>;
             "apx-grid": LocalJSX.ApxGrid & JSXBase.HTMLAttributes<HTMLApxGridElement>;
             "apx-input": LocalJSX.ApxInput & JSXBase.HTMLAttributes<HTMLApxInputElement>;
             "apx-loader": LocalJSX.ApxLoader & JSXBase.HTMLAttributes<HTMLApxLoaderElement>;
             "apx-main": LocalJSX.ApxMain & JSXBase.HTMLAttributes<HTMLApxMainElement>;
             "apx-menu": LocalJSX.ApxMenu & JSXBase.HTMLAttributes<HTMLApxMenuElement>;
+            "resize-handle": LocalJSX.ResizeHandle & JSXBase.HTMLAttributes<HTMLResizeHandleElement>;
         }
     }
 }

@@ -23,7 +23,7 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "h1", "innerHTML": "Withdrawals" },
-        {"tag":  "apx-grid", "caption":  "Withdrawal Results"},
+        {"tag":  "apx-grid", "caption":  "Withdrawal Results", "id" : "withdrawals.searchResult", "value":  ""},
         {"tag":  "div",
          "controls": [
            {"tag" : "apx-button", "caption": "Update", "next": "update-state", "isDefault": true }
