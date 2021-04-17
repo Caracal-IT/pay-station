@@ -29,8 +29,8 @@
         <Content Include="ClientApp\src\components\forms\apx-button\apx-button.scss" />
         <Content Include="ClientApp\src\components\forms\apx-checkbox\apx-checkbox.scss" />
         <Content Include="ClientApp\src\components\forms\apx-grid\apx-grid.scss" />
+        <Content Include="ClientApp\src\components\forms\apx-grid\resize-handle\resize-handle.scss" />
         <Content Include="ClientApp\src\components\forms\apx-input\apx-input.scss" />
-        <Content Include="ClientApp\src\components\forms\resize-handle\resize-handle.scss" />
         <Content Include="ClientApp\src\components\page\apx-loader\apx-loader.scss" />
         <Content Include="ClientApp\src\components\page\apx-main\apx-main.scss" />
         <Content Include="ClientApp\src\components\page\apx-menu\apx-menu.scss" />
@@ -48,8 +48,8 @@
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-button\apx-button.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-checkbox\apx-checkbox.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-grid\apx-grid.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\components\forms\apx-grid\resize-handle\resize-handle.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\apx-input\apx-input.tsx" />
-      <TypeScriptCompile Include="ClientApp\src\components\forms\resize-handle\resize-handle.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\apx-loader\apx-loader.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\apx-main\apx-main.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\apx-menu\apx-menu.tsx" />
