@@ -4,6 +4,17 @@
     {
       "name": "start",
       "type": "api-activity",
+      "next": "load-menu",
+      "endpoints": [
+        {
+          "url": "[DATA]translations/default-en",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "name": "load-menu",
+      "type": "api-activity",
       "next": "landing",
       "endpoints": [
         {
@@ -19,15 +30,10 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag": "h1", "id": "pageHeader", "innerHTML": "PayStation {{[VERSION]}}" },
-        {
-          "tag": "div",
-          "id": "content",
-          "controls": [
-            {"tag": "dcx-menu", "items": "menu" },
-            {"tag": "dcx-main"}
-          ]
-        }
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "PayStation - {{[VERSION]}}" },
+        {"tag": "dcx-menu", "items": "menu" },
+        {"tag": "dcx-main"},
+        {"tag":  "footer", "innerHTML": "&copy;Caracal"}
       ]
     }
   ]

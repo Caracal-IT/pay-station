@@ -32,15 +32,36 @@ body {
    */
 }
 
-#content {
-  display: inline-block;
-  width: 100%;
-  height: calc(100vh - 94px);
+dcx-menu {
+  grid-area: menu;
 }
 
-dcx-menu {
-  width: 250px;
-  display: inline-block;
-  height: 100%;
-  vertical-align: top;
+dcx-main {
+  grid-area: main;
+}
+
+#pageHeader {
+  grid-area: header;
+}
+
+footer {
+  grid-area: footer;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 6px;
+  background-color: var(--input-background, $input-background);
+  color: var(--input-background-4, $input-background-4);
+}
+
+#main-wf {
+  display: grid;
+  height: 100vh;
+  margin-right: 10px;
+  grid-gap: 5px 5px;
+  grid-template-areas:
+    'header header'
+    'menu main'
+    'footer footer';
+  grid-template-columns: 220px auto;
+  grid-template-rows: 55px auto 25px;
 }

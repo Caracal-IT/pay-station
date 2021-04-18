@@ -22,20 +22,37 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag" : "h1", "innerHTML": "Withdrawals" },
+        {"tag" : "apx-header", "caption": "Withdrawals" },
+        {"tag":  "div",
+          "style": "width:33%",
+          "controls": [
+            {"tag":  "h2", "innerHTML": "{{[translation_withdrawal_filter]}}" },
+            {
+              "tag": "apx-combo",
+              "id": "withdrawals.searchStatus",
+              "caption": "Status",
+              "items": [
+                {"caption": "Requested", "value": "Requested"},
+                {"caption": "Batched", "value": "Batched"},
+                {"caption": "Flushed", "value": "Flushed"},
+                {"caption": "Approved", "value": "Approved"},
+                {"caption": "Processed", "value": "Processed"}
+              ]
+            },
+            {"tag" : "hr" },
+            {"tag" : "apx-button", "caption": "Filter", "next": "filter-grid", "isDefault": false }
+          ]
+        },
         {"tag":  "dcx-grid", 
           "caption":  "Withdrawal Results", 
           "id" : "withdrawals.searchResult", 
           "value":  ""},
         {"tag":  "div",
-         "controls": [
-           {
+            "controls": [
+            {
              "tag": "apx-combo",
              "id": "withdrawals.nextStatus",
              "caption": "Status",
-             "validators": [
-               { "name": "required", "message": "The field is required" }
-             ],
              "items": [
                {"caption": "Requested", "value": "Requested"},
                {"caption": "Batched", "value": "Batched"},
@@ -49,6 +66,31 @@
          ]
         }
       ]
+    },
+
+    {
+      "name": "filter-grid",
+      "type": "api-activity",
+      "next": "apply-filter",
+      "endpoints": [
+        {
+          "url": "[WITHDRAWAL_API]filter",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "withdrawals.searchResult", "remote": "items", "direction": "in"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "name": "apply-filter",
+      "type": "code-activity",
+      "next": "landing",
+      "expression": "var status = ctx.model.getValue('withdrawals.searchStatus');if(status.length === 0) return; var items = ctx.model.getValue('withdrawals.searchResult'); ctx.model.setValue('withdrawals.searchResult', [...items.filter(i => i.status === status)]);"
     },
     {
       "name": "update-state",
