@@ -24,8 +24,8 @@
           "tag": "div",
           "id": "content",
           "controls": [
-            {"tag": "apx-menu", "items": "menu" },
-            {"tag": "apx-main"}
+            {"tag": "dcx-menu", "items": "menu" },
+            {"tag": "dcx-main"}
           ]
         }
       ]

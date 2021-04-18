@@ -2,11 +2,11 @@ import {Component, Listen, Prop, State, h} from '@stencil/core';
 import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
-  tag: 'apx-menu',
-  styleUrl: 'apx-menu.scss',
+  tag: 'dcx-menu',
+  styleUrl: 'dcx-menu.scss',
   shadow: true,
 })
-export class ApexMenu {
+export class DcxMenu {
   isLoggedIn = undefined;
   menuUrl = "[CORE]menu";
 

@@ -2,11 +2,11 @@ import {Component, Prop, h, State, Listen} from '@stencil/core';
 import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
-  tag: 'apx-main',
-  styleUrl: 'apx-main.scss',
+  tag: 'dcx-main',
+  styleUrl: 'dcx-main.scss',
   shadow: true,
 })
-export class ApexMain {
+export class DcxMain {
   @Prop() ctx: Context;
   @Prop({mutable: true, reflect: true}) process: string;
   @Prop({mutable: true, reflect: true}) activity: string;

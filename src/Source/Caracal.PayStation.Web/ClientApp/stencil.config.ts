@@ -17,6 +17,9 @@ export const config: Config = {
       serviceWorker: null,
       empty: true,
       baseUrl: 'https://myapp.local/',
+      copy: [
+        { src: '../node_modules/caracal_apex/dist', dest: 'lib/caracal_apex' }
+      ]
     },
   ],
 };

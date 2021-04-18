@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "caracal_apex": "^1.0.6",
     "caracal_polaris": "^2.0.3"
   }
 }

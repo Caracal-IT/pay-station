@@ -23,9 +23,28 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "h1", "innerHTML": "Withdrawals" },
-        {"tag":  "apx-grid", "caption":  "Withdrawal Results", "id" : "withdrawals.searchResult", "value":  ""},
+        {"tag":  "dcx-grid", 
+          "caption":  "Withdrawal Results", 
+          "id" : "withdrawals.searchResult", 
+          "value":  ""},
         {"tag":  "div",
          "controls": [
+           {
+             "tag": "apx-combo",
+             "id": "withdrawals.nextStatus",
+             "caption": "Status",
+             "validators": [
+               { "name": "required", "message": "The field is required" }
+             ],
+             "items": [
+               {"caption": "Requested", "value": "Requested"},
+               {"caption": "Batched", "value": "Batched"},
+               {"caption": "Flushed", "value": "Flushed"},
+               {"caption": "Approved", "value": "Approved"},
+               {"caption": "Processed", "value": "Processed"}
+             ]
+           },
+           {"tag" : "hr" },
            {"tag" : "apx-button", "caption": "Update", "next": "update-state", "isDefault": true }
          ]
         }
@@ -33,6 +52,12 @@
     },
     {
       "name": "update-state",
+      "type": "code-activity",
+      "next": "update-state-api",
+      "expression": "var nextStatus = ctx.model.getValue('withdrawals.nextStatus');var items = ctx.model.getValue('withdrawals.searchResult').filter(i => i.selected).map(i => {return { \"withdrawalId\": i.id, \"status\": nextStatus }});if(items.length > 0){ctx.model.setValue('withdrawals.status', [...items]);ctx.model.setValue('withdrawals.nextStatus','');}"
+    },
+    {
+      "name": "update-state-api",
       "type": "api-activity",
       "next": "start",
       "endpoints": [

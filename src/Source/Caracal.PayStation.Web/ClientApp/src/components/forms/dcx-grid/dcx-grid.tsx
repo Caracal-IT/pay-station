@@ -2,23 +2,15 @@ import { Component, Prop, h } from '@stencil/core';
 import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
-  tag: 'apx-grid',
-  styleUrl: 'apx-grid.scss',
+  tag: 'dcx-grid',
+  styleUrl: 'dcx-grid.scss',
   shadow: true,
 })
-export class ApexGrid {
+export class DcxGrid {
   @Prop() headers: any;
   @Prop() caption: string;
   @Prop() ctx: Context;
   @Prop({mutable: true, reflect: true}) value: Array<any>;
-
-  onStatusInput(evt) {
-    const updateStatus = [
-      { "withdrawalId": 2, "status": evt.target.value }
-    ]
-
-    this.ctx.model.setValue("withdrawals.status", updateStatus);
-  }
 
   onSelected(item, evt) {
     item.selected = evt.detail;
@@ -53,7 +45,7 @@ export class ApexGrid {
 
   renderRow(i) {
     return <tr onClick={this.onSelectedRow.bind(this, i)}  class={i.selected?'selected':''}>
-      <td><apx-checkbox value={i.selected} onCheckChanged={this.onSelected.bind(this, i)}/></td>
+      <td><apx-check value={i.selected} onCheckChanged={this.onSelected.bind(this, i)}/></td>
       {this.headers.map(head => <td>{i[head.key]}<resize-handle/></td>)}
     </tr>;
   }
@@ -64,7 +56,6 @@ export class ApexGrid {
 
     return [
       <div><h2>{this.caption}</h2></div>,
-      <div><span>Status for 2</span><input onInput={this.onStatusInput.bind(this)} /></div>,
       <table>
         <thead>{this.renderHeader()}</thead>
         <tbody>{this.value.map(this.renderRow.bind(this))}</tbody>

@@ -2,11 +2,11 @@ import {Component, Prop, Listen, h, State} from '@stencil/core';
 import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
-  tag: 'apx-loader',
-  styleUrl: 'apx-loader.scss',
+  tag: 'dcx-loader',
+  styleUrl: 'dcx-loader.scss',
   shadow: true,
 })
-export class ApexLoader {
+export class DcxLoader {
   showLoader = false;
 
   @Prop() ctx: Context;
