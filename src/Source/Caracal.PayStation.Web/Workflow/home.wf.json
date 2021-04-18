@@ -6,12 +6,12 @@
       "type": "page-activity",
       "controls": [
         {"tag": "h1", "id": "pageHeader", "innerHTML": "Caracal PayStation" },
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "bar"},
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "line"},
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "bar"},
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "doughnut"},
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "polarArea"},
-        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "radar"}
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "bar", "value": ""},
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "line", "value": ""},
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "bar", "value": ""},
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "doughnut", "value": ""},
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "polarArea", "value": ""},
+        {"tag":  "dcx-dashboard", "id": "context.isLoggedIn", "type":  "radar", "value": ""}
       ]
     }
   ]

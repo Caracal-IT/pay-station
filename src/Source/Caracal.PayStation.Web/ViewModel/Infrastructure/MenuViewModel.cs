@@ -1,5 +1,5 @@
 using System.Collections.Generic;
 
 namespace Caracal.PayStation.Web.ViewModel.Infrastructure {
-    public record MenuViewModel(List<MenuItemViewModel> Items);
+    public record MenuViewModel(List<MenuItemViewModel> Items, bool IsLoggedIn = false);
 }

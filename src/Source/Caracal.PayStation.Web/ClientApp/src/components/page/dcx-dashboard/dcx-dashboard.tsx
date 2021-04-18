@@ -1,5 +1,6 @@
 import {Component, h, Element, Prop} from '@stencil/core';
 import Chart from 'chart.js/auto';
+import {Context} from 'caracal_polaris/dist/types/model/context.model';
 
 @Component({
   tag: 'dcx-dashboard',
@@ -10,7 +11,8 @@ export class DcxDashboard {
 
   @Element() el: HTMLElement;
   @Prop() type: string = 'line';
-
+  @Prop() ctx: Context;
+  @Prop() value;
 
   componentDidLoad() {
     const canvas: any = this.el.querySelector('#myChart');
@@ -52,8 +54,7 @@ export class DcxDashboard {
     });
   }
 
-
   render() {
-    return <canvas id="myChart" width="100px" height="80px"></canvas>;
+    return <div class={this.value === true || this.value ==="true"?'visible': 'hidden'}><canvas id="myChart" width="100px" height="80px"></canvas></div>;
   }
 }

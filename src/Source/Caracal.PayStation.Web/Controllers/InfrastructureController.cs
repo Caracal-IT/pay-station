@@ -36,6 +36,6 @@ namespace Caracal.PayStation.Web.Controllers {
                 new("Home", "home"),
                 new("Logout", "logout"),
                 new("Withdrawals", "withdrawals")
-            });
+            }, IsLoggedIn:true);
     }
 }

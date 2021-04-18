@@ -6,10 +6,7 @@
       "type": "api-activity",
       "next": "load-menu",
       "endpoints": [
-        {
-          "url": "[DATA]translations/default-en",
-          "method": "GET"
-        }
+        {"url": "[DATA]translations/default-en", "method": "GET" }
       ]
     },
     {
@@ -21,7 +18,8 @@
           "url": "[CORE]menu",
           "method": "GET",
           "mappings":[
-            {"client": "menu", "remote": "items", "direction": "in"}
+            {"client": "menu", "remote": "items", "direction": "in"},
+            {"client": "context.isLoggedIn", "remote": "isLoggedIn", "direction": "in"}
           ]
         }
       ]

@@ -8,7 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Context } from "caracal_polaris/dist/types/model/context.model";
 export namespace Components {
     interface DcxDashboard {
+        "ctx": Context;
         "type": string;
+        "value": any;
     }
     interface DcxGrid {
         "caption": string;
@@ -80,7 +82,9 @@ declare global {
 }
 declare namespace LocalJSX {
     interface DcxDashboard {
+        "ctx"?: Context;
         "type"?: string;
+        "value"?: any;
     }
     interface DcxGrid {
         "caption"?: string;
