@@ -22,11 +22,11 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag" : "apx-header", "caption": "Withdrawals" },
+        {"tag" : "apx-header" ,"caption": "Withdrawals" },
         {"tag":  "div",
-          "style": "vertical-align:top;",
+          "style": "vertical-align:top;border: 1px solid black; padding: 5px;margin:0;border-radius:5px;background:#E0E0E0;",
           "controls": [
-            {"tag":  "h2", "innerHTML": "{{[translation_withdrawal_filter]}}" },
+            {"tag":  "h2", "style": "margin:0", "innerHTML": "{{[translation_withdrawal_filter]}}" },
             {
               "tag": "apx-combo",
               "style": "width:33%;display:inline-block;vertical-align:top",
@@ -48,15 +48,17 @@
           ]
         },
         {"tag":  "dcx-grid", 
-          "caption":  "Withdrawal Results", 
+          "caption":  "", 
           "id" : "withdrawals.searchResult", 
           "value":  ""},
+        {"tag" : "hr" },
         {"tag":  "div",
             "controls": [
             {
              "tag": "apx-combo",
              "id": "withdrawals.nextStatus",
-             "caption": "Status",
+             "caption": "",
+              "style": "width:60%;display:inline-block",
              "items": [
                {"caption": "Requested", "value": "Requested"},
                {"caption": "Batched", "value": "Batched"},
@@ -65,7 +67,6 @@
                {"caption": "Processed", "value": "Processed"}
              ]
            },
-           {"tag" : "hr" },
            {"tag" : "apx-button", "caption": "Update", "next": "update-state", "isDefault": true }
          ]
         }

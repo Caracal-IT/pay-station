@@ -50,16 +50,25 @@ export class DcxGrid {
     </tr>;
   }
 
-  render() {
-    if(!this.value)
+  renderCaption() {
+    if(this.caption == '')
       return null;
 
+    return <div><h2>{this.caption}</h2></div>;
+  }
+
+  render() {
+    if(!this.value || this.value.length == 0)
+      return <div id="tableDiv"><h2>No Results</h2></div>;
+
     return [
-      <div><h2>{this.caption}</h2></div>,
-      <table>
-        <thead>{this.renderHeader()}</thead>
-        <tbody>{this.value.map(this.renderRow.bind(this))}</tbody>
-      </table>
+      this.renderCaption(),
+      <div id="tableDiv">
+        <table>
+          <thead>{this.renderHeader()}</thead>
+          <tbody>{this.value.map(this.renderRow.bind(this))}</tbody>
+        </table>
+      </div>
     ];
   }
 }

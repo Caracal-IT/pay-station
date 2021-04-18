@@ -30,7 +30,7 @@
       "name": "landing",
       "type": "page-activity",
       "controls": [
-        {"tag": "h1", "id": "pageHeader", "innerHTML": "PayStation - {{[VERSION]}}" },
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "<img src='assets/images/caracal.png'> Pay Station<span>{{[VERSION]}}</span>" },
         {"tag": "dcx-menu", "items": "menu" },
         {"tag": "dcx-main"},
         {"tag":  "footer", "innerHTML": "&copy;Caracal"}

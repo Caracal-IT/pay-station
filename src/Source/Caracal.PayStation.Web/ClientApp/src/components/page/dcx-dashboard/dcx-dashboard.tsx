@@ -54,6 +54,6 @@ export class DcxDashboard {
 
 
   render() {
-    return <canvas id="myChart" width="100px" height="100px"></canvas>;
+    return <canvas id="myChart" width="100px" height="80px"></canvas>;
   }
 }
