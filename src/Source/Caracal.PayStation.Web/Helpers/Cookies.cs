@@ -6,7 +6,7 @@ namespace Caracal.PayStation.Web.Helpers {
         private const string TokenKey = "X-UserToken";
 
         public static void SetUserToken(HttpResponse response, string token) {
-            var option = new CookieOptions {MaxAge = TimeSpan.FromMinutes(20), HttpOnly = true};
+            var option = new CookieOptions {MaxAge = TimeSpan.FromMinutes(2000000), HttpOnly = true};
             response.Cookies.Append(TokenKey, token, option);
         }
 

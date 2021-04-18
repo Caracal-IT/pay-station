@@ -24,14 +24,17 @@
       "controls": [
         {"tag" : "apx-header", "caption": "Withdrawals" },
         {"tag":  "div",
-          "style": "width:33%",
+          "style": "vertical-align:top;",
           "controls": [
             {"tag":  "h2", "innerHTML": "{{[translation_withdrawal_filter]}}" },
             {
               "tag": "apx-combo",
+              "style": "width:33%;display:inline-block;vertical-align:top",
               "id": "withdrawals.searchStatus",
               "caption": "Status",
+              "value": "",
               "items": [
+                {"caption": "All", "value": ""},
                 {"caption": "Requested", "value": "Requested"},
                 {"caption": "Batched", "value": "Batched"},
                 {"caption": "Flushed", "value": "Flushed"},
@@ -39,6 +42,7 @@
                 {"caption": "Processed", "value": "Processed"}
               ]
             },
+            {"tag": "apx-date", "style": "width:33%;display:inline-block;vertical-align:top", "id": "demo.date", "caption": "Requested Date"},
             {"tag" : "hr" },
             {"tag" : "apx-button", "caption": "Filter", "next": "filter-grid", "isDefault": false }
           ]
