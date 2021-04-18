@@ -29,6 +29,7 @@
         <Content Include="ClientApp\src\assets\workflow\data\translations\default-en.json" />
         <Content Include="ClientApp\src\components\forms\dcx-grid\dcx-grid.scss" />
         <Content Include="ClientApp\src\components\forms\dcx-grid\resize-handle\resize-handle.scss" />
+        <Content Include="ClientApp\src\components\page\dcx-dashboard\dcx-dashboard.scss" />
         <Content Include="ClientApp\src\components\page\dcx-loader\dcx-loader.scss" />
         <Content Include="ClientApp\src\components\page\dcx-main\dcx-main.scss" />
         <Content Include="ClientApp\src\components\page\dcx-menu\dcx-menu.scss" />
@@ -45,6 +46,7 @@
       <TypeScriptCompile Include="ClientApp\src\components.d.ts" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\dcx-grid\dcx-grid.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\forms\dcx-grid\resize-handle\resize-handle.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\components\page\dcx-dashboard\dcx-dashboard.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\dcx-loader\dcx-loader.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\dcx-main\dcx-main.tsx" />
       <TypeScriptCompile Include="ClientApp\src\components\page\dcx-menu\dcx-menu.tsx" />
@@ -65,6 +67,10 @@
       <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\data\menu.json" />
       <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\home.wf.json" />
       <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\wf\withdrawals.wf.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\assets\workflow\data\translations\default-en.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\lib\caracal_apex\data\settings.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\lib\caracal_apex\data\users.json" />
+      <_ContentIncludedByDefault Remove="ClientApp\www\lib\caracal_apex\workflow\default.wf.json" />
     </ItemGroup>
 
     <ItemGroup>

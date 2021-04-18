@@ -7,6 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Context } from "caracal_polaris/dist/types/model/context.model";
 export namespace Components {
+    interface DcxDashboard {
+        "type": string;
+    }
     interface DcxGrid {
         "caption": string;
         "ctx": Context;
@@ -30,6 +33,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLDcxDashboardElement extends Components.DcxDashboard, HTMLStencilElement {
+    }
+    var HTMLDcxDashboardElement: {
+        prototype: HTMLDcxDashboardElement;
+        new (): HTMLDcxDashboardElement;
+    };
     interface HTMLDcxGridElement extends Components.DcxGrid, HTMLStencilElement {
     }
     var HTMLDcxGridElement: {
@@ -61,6 +70,7 @@ declare global {
         new (): HTMLResizeHandleElement;
     };
     interface HTMLElementTagNameMap {
+        "dcx-dashboard": HTMLDcxDashboardElement;
         "dcx-grid": HTMLDcxGridElement;
         "dcx-loader": HTMLDcxLoaderElement;
         "dcx-main": HTMLDcxMainElement;
@@ -69,6 +79,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface DcxDashboard {
+        "type"?: string;
+    }
     interface DcxGrid {
         "caption"?: string;
         "ctx"?: Context;
@@ -91,6 +104,7 @@ declare namespace LocalJSX {
     interface ResizeHandle {
     }
     interface IntrinsicElements {
+        "dcx-dashboard": DcxDashboard;
         "dcx-grid": DcxGrid;
         "dcx-loader": DcxLoader;
         "dcx-main": DcxMain;
@@ -102,6 +116,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "dcx-dashboard": LocalJSX.DcxDashboard & JSXBase.HTMLAttributes<HTMLDcxDashboardElement>;
             "dcx-grid": LocalJSX.DcxGrid & JSXBase.HTMLAttributes<HTMLDcxGridElement>;
             "dcx-loader": LocalJSX.DcxLoader & JSXBase.HTMLAttributes<HTMLDcxLoaderElement>;
             "dcx-main": LocalJSX.DcxMain & JSXBase.HTMLAttributes<HTMLDcxMainElement>;

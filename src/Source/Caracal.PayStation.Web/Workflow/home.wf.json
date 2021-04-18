@@ -5,7 +5,12 @@
       "name": "start",
       "type": "page-activity",
       "controls": [
-        {"tag": "h1", "id": "pageHeader", "innerHTML": "Caracal PayStation" }
+        {"tag": "h1", "id": "pageHeader", "innerHTML": "Caracal PayStation" },
+        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "bar"},
+        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "line"},
+        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "doughnut"},
+        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "polarArea"},
+        {"tag":  "dcx-dashboard", "id": "context.test", "type":  "radar"}
       ]
     }
   ]

@@ -18,7 +18,8 @@ export const config: Config = {
       empty: true,
       baseUrl: 'https://myapp.local/',
       copy: [
-        { src: '../node_modules/caracal_apex/dist', dest: 'lib/caracal_apex' }
+        { src: '../node_modules/caracal_apex/dist', dest: 'lib/caracal_apex' },
+        { src: '../node_modules/chart.js/dist', dest: 'lib/chart_js' }
       ]
     },
   ],
