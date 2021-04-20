@@ -12,12 +12,6 @@ export namespace Components {
         "type": string;
         "value": any;
     }
-    interface DcxGrid {
-        "caption": string;
-        "ctx": Context;
-        "headers": any;
-        "value": Array<any>;
-    }
     interface DcxLoader {
         "ctx": Context;
     }
@@ -31,8 +25,6 @@ export namespace Components {
         "ctx": Context;
         "items": any;
     }
-    interface ResizeHandle {
-    }
 }
 declare global {
     interface HTMLDcxDashboardElement extends Components.DcxDashboard, HTMLStencilElement {
@@ -40,12 +32,6 @@ declare global {
     var HTMLDcxDashboardElement: {
         prototype: HTMLDcxDashboardElement;
         new (): HTMLDcxDashboardElement;
-    };
-    interface HTMLDcxGridElement extends Components.DcxGrid, HTMLStencilElement {
-    }
-    var HTMLDcxGridElement: {
-        prototype: HTMLDcxGridElement;
-        new (): HTMLDcxGridElement;
     };
     interface HTMLDcxLoaderElement extends Components.DcxLoader, HTMLStencilElement {
     }
@@ -65,19 +51,11 @@ declare global {
         prototype: HTMLDcxMenuElement;
         new (): HTMLDcxMenuElement;
     };
-    interface HTMLResizeHandleElement extends Components.ResizeHandle, HTMLStencilElement {
-    }
-    var HTMLResizeHandleElement: {
-        prototype: HTMLResizeHandleElement;
-        new (): HTMLResizeHandleElement;
-    };
     interface HTMLElementTagNameMap {
         "dcx-dashboard": HTMLDcxDashboardElement;
-        "dcx-grid": HTMLDcxGridElement;
         "dcx-loader": HTMLDcxLoaderElement;
         "dcx-main": HTMLDcxMainElement;
         "dcx-menu": HTMLDcxMenuElement;
-        "resize-handle": HTMLResizeHandleElement;
     }
 }
 declare namespace LocalJSX {
@@ -85,12 +63,6 @@ declare namespace LocalJSX {
         "ctx"?: Context;
         "type"?: string;
         "value"?: any;
-    }
-    interface DcxGrid {
-        "caption"?: string;
-        "ctx"?: Context;
-        "headers"?: any;
-        "value"?: Array<any>;
     }
     interface DcxLoader {
         "ctx"?: Context;
@@ -105,15 +77,11 @@ declare namespace LocalJSX {
         "ctx"?: Context;
         "items"?: any;
     }
-    interface ResizeHandle {
-    }
     interface IntrinsicElements {
         "dcx-dashboard": DcxDashboard;
-        "dcx-grid": DcxGrid;
         "dcx-loader": DcxLoader;
         "dcx-main": DcxMain;
         "dcx-menu": DcxMenu;
-        "resize-handle": ResizeHandle;
     }
 }
 export { LocalJSX as JSX };
@@ -121,11 +89,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "dcx-dashboard": LocalJSX.DcxDashboard & JSXBase.HTMLAttributes<HTMLDcxDashboardElement>;
-            "dcx-grid": LocalJSX.DcxGrid & JSXBase.HTMLAttributes<HTMLDcxGridElement>;
             "dcx-loader": LocalJSX.DcxLoader & JSXBase.HTMLAttributes<HTMLDcxLoaderElement>;
             "dcx-main": LocalJSX.DcxMain & JSXBase.HTMLAttributes<HTMLDcxMainElement>;
             "dcx-menu": LocalJSX.DcxMenu & JSXBase.HTMLAttributes<HTMLDcxMenuElement>;
-            "resize-handle": LocalJSX.ResizeHandle & JSXBase.HTMLAttributes<HTMLResizeHandleElement>;
         }
     }
 }
