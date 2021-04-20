@@ -47,9 +47,11 @@
             {"tag" : "apx-button", "caption": "Filter", "next": "filter-grid", "isDefault": false }
           ]
         },
-        {"tag":  "dcx-grid", 
+        {"tag":  "apx-grid", 
           "caption":  "", 
+          "selectable": true,
           "id" : "withdrawals.searchResult", 
+          "items": "withdrawals.searchResult",
           "value":  ""},
         {"tag" : "hr" },
         {"tag":  "div",
