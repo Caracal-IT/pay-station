@@ -23,28 +23,18 @@
       "type": "page-activity",
       "controls": [
         {"tag" : "apx-header" ,"caption": "Withdrawals" },
-        {"tag":  "div",
-          "style": "vertical-align:top;border: 1px solid black; padding: 5px;margin:0;border-radius:5px;background:var(--input-background-2,#E0E0E0);",
-          "controls": [
-            {"tag":  "h2", "style": "margin:0", "innerHTML": "{{[translation_withdrawal_filter]}}" },
-            {
-              "tag": "apx-combo",
-              "style": "width:33%;display:inline-block;vertical-align:top",
-              "id": "withdrawals.searchStatus",
-              "caption": "Status",
-              "value": "",
-              "items": [
-                {"caption": "All", "value": ""},
-                {"caption": "Requested", "value": "Requested"},
-                {"caption": "Batched", "value": "Batched"},
-                {"caption": "Flushed", "value": "Flushed"},
-                {"caption": "Approved", "value": "Approved"},
-                {"caption": "Processed", "value": "Processed"}
-              ]
-            },
-            {"tag": "apx-date", "style": "width:33%;display:inline-block;vertical-align:top", "id": "demo.date", "caption": "Requested Date"},
-            {"tag" : "hr" },
-            {"tag" : "apx-button", "caption": "Filter", "next": "filter-grid", "isDefault": false }
+        { "tag":  "apx-filter", 
+          "caption":  "Filter",
+          "id":  "withdrawalFilter",
+          "next": "filter-grid",
+          "value": { "field":  "Batched"},
+          "fields": [
+            {"caption": "All", "value": ""},
+            {"caption": "Requested", "value": "Requested"},
+            {"caption": "Batched", "value": "Batched"},
+            {"caption": "Flushed", "value": "Flushed"},
+            {"caption": "Approved", "value": "Approved"},
+            {"caption": "Processed", "value": "Processed"}
           ]
         },
         {"tag":  "apx-grid", 
@@ -97,7 +87,7 @@
       "name": "apply-filter",
       "type": "code-activity",
       "next": "landing",
-      "expression": "var status = ctx.model.getValue('withdrawals.searchStatus');if(status.length === 0) return; var items = ctx.model.getValue('withdrawals.searchResult'); ctx.model.setValue('withdrawals.searchResult', [...items.filter(i => i.status === status)]);"
+      "expression": "var status = ctx.model.getValue('withdrawalFilter.field');if(status.length === 0) return; var items = ctx.model.getValue('withdrawals.searchResult'); ctx.model.setValue('withdrawals.searchResult', [...items.filter(i => i.status === status)]);"
     },
     {
       "name": "update-state",
