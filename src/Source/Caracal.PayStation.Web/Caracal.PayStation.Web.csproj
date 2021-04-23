@@ -24,8 +24,12 @@
         <Content Include="ClientApp\LICENSE" />
         <Content Include="ClientApp\package.json" />
         <Content Include="ClientApp\readme.md" />
+        <Content Include="ClientApp\src\assets\css\style.css" />
+        <Content Include="ClientApp\src\assets\css\themes\dark.theme.css" />
+        <Content Include="ClientApp\src\assets\css\themes\default.theme.css" />
         <Content Include="ClientApp\src\assets\icon\favicon.ico" />
         <Content Include="ClientApp\src\assets\icon\icon.png" />
+        <Content Include="ClientApp\src\assets\images\caracal-dark.png" />
         <Content Include="ClientApp\src\assets\images\caracal.jpg">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

@@ -1,3 +1,5 @@
+@import '../../../global/variables';
+
 nav {
   position: relative;
   height: 100%;
@@ -25,11 +27,12 @@ a:active,
 a:hover {
   margin: 0 5px;
   cursor: pointer;
-  color: purple;
+  color: var(--primary-bg-font-color-hover, $primary-bg-font-color-hover);
+  background-color: var(--primary-color-selected, $primary-color-selected);
   text-decoration: underline;
 }
 
 a.active {
-  color: purple;
-  background-color: rgb(238, 177, 238);
+  color: var(--primary-bg-font-color-hover, $primary-bg-font-color-hover);
+  background-color: var(--primary-color-selected-alt, $primary-color-selected-alt);
 }

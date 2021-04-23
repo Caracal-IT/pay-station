@@ -9,6 +9,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
 
+  <link rel="stylesheet" href="/assets/css/themes/default.theme.css"/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+
   <script type="module" src="/lib/caracal_apex/components.js"></script>
 
   <script type="module" src="/build/app.esm.js"></script>
@@ -21,6 +24,33 @@
 </head>
 <body>
   <dcx-loader></dcx-loader>
+
+  <div id="theme">
+    <h4>Theme</h4>
+    <button data-theme='dark' id="dark-button">Dark</button>
+    <button data-theme= 'default' id="light-button">Light</button>
+  </div>
+
   <polaris-workflow id="main-wf" url="Infrastructure/settings?v=1.0.0.3" process="default"></polaris-workflow>
+
+  <script>
+    const style = document.querySelector('link:first-of-type');
+    const darkThemeButton = document.querySelector("#dark-button");
+    const lightThemeButton = document.querySelector("#light-button");
+
+    lightThemeButton.addEventListener('click', setTheme);
+    darkThemeButton.addEventListener('click', setTheme);
+
+    function setTheme(e){
+      const theme = e.target.dataset.theme||'default';
+      localStorage.setItem('caracal-pay-station-theme', theme);
+      style.href = `/assets/css/themes/${theme}.theme.css`;
+    }
+
+    const theme = localStorage.getItem('caracal-pay-station-theme');
+
+    if(theme)
+      style.href = `/assets/css/themes/${theme}.theme.css`;
+  </script>
 </body>
 </html>

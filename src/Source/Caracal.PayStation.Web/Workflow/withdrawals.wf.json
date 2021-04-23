@@ -24,7 +24,7 @@
       "controls": [
         {"tag" : "apx-header" ,"caption": "Withdrawals" },
         {"tag":  "div",
-          "style": "vertical-align:top;border: 1px solid black; padding: 5px;margin:0;border-radius:5px;background:#E0E0E0;",
+          "style": "vertical-align:top;border: 1px solid black; padding: 5px;margin:0;border-radius:5px;background:var(--input-background-2,#E0E0E0);",
           "controls": [
             {"tag":  "h2", "style": "margin:0", "innerHTML": "{{[translation_withdrawal_filter]}}" },
             {
