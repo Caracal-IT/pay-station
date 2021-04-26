@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using Caracal.PayStation.PaymentEngine;
-using Caracal.PayStation.WorkflowEngine;
+using Caracal.PayStation.Withdrawals;
+using Caracal.PayStation.Workflow;
 
 namespace Caracal.PayStation.Application {
     public class Start {
-        private WithdrawalEngine _withdrawalEngine;
-        private ChangeStateEngine _changeStateEngine;
+        private readonly WithdrawalEngine _withdrawalEngine;
+        private readonly ChangeStateEngine _changeStateEngine;
         
         public Start(WithdrawalEngine withdrawalEngine, ChangeStateEngine changeStateEngine) {
             _withdrawalEngine = withdrawalEngine;

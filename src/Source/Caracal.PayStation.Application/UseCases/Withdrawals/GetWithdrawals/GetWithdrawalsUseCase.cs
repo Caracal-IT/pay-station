@@ -4,9 +4,8 @@ using AutoMapper;
 using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.Framework.UseCases;
-using Caracal.PayStation.EventBus.Events.Withdrawals;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
-using Caracal.PayStation.PaymentEngine;
+
 using Model = Caracal.PayStation.PaymentModels.Withdrawals;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {

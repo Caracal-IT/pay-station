@@ -5,12 +5,9 @@ using Caracal.EventBus;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow.WithdrawalStatusChange;
 using Caracal.PayStation.PaymentModels.Withdrawals;
 using Caracal.PayStation.Storage.Simulator;
+using Caracal.PayStation.Workflow;
 
 namespace Caracal.PayStation.WorkflowEngine {
-    public interface ChangeStateEngine {
-        Task RegisterEventListener();
-    }
-
     public class ChangeStateEngineWithEventBus : ChangeStateEngine {
         private readonly Caracal.EventBus.EventBus _eventBus;
         private SubscriptionToken _subscription;
@@ -45,7 +42,7 @@ namespace Caracal.PayStation.WorkflowEngine {
         }
 
         private static void ChangeStatus(WithdrawalStatus status) {
-            if (!Store.Withdrawals.Keys.Contains(status.WithdrawalId))
+            if (!Store.Withdrawals.Keys.Contains(status.WithdrawalId) || string.IsNullOrWhiteSpace(status.Status))
                 return;
                 
             var item = Store.Withdrawals[status.WithdrawalId];

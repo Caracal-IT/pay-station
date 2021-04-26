@@ -66,6 +66,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DB6F0D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Application.Tests", "Tests\Caracal.PayStation.Application.Tests\Caracal.PayStation.Application.Tests.csproj", "{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Withdrawals", "Source\Caracal.PayStation.Withdrawals\Caracal.PayStation.Withdrawals.csproj", "{55C1D3AD-6024-4240-91DB-E89DAFFF9808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Workflow", "Source\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj", "{718389EE-E8F2-4453-8521-CF7F0C97A7DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +107,8 @@ Global
 		{D89C9570-E386-4CA8-903D-2D170DAE7C4F} = {DB6F0D2D-FF37-4D67-86E7-38C090CD3561}
 		{75AE1BA5-A235-46E2-8C7D-E5F3578E3652} = {DB6F0D2D-FF37-4D67-86E7-38C090CD3561}
 		{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126} = {DB6F0D2D-FF37-4D67-86E7-38C090CD3561}
+		{55C1D3AD-6024-4240-91DB-E89DAFFF9808} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
+		{718389EE-E8F2-4453-8521-CF7F0C97A7DF} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -173,5 +179,13 @@ Global
 		{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C1D3AD-6024-4240-91DB-E89DAFFF9808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C1D3AD-6024-4240-91DB-E89DAFFF9808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C1D3AD-6024-4240-91DB-E89DAFFF9808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C1D3AD-6024-4240-91DB-E89DAFFF9808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{718389EE-E8F2-4453-8521-CF7F0C97A7DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{718389EE-E8F2-4453-8521-CF7F0C97A7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{718389EE-E8F2-4453-8521-CF7F0C97A7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{718389EE-E8F2-4453-8521-CF7F0C97A7DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

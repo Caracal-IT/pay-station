@@ -2,17 +2,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.Framework.Data;
-using Caracal.PayStation.EventBus.Events.Withdrawals;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
 using Caracal.PayStation.PaymentModels.Withdrawals;
 using Caracal.PayStation.Storage.Simulator;
+using Caracal.PayStation.Withdrawals;
 
 namespace Caracal.PayStation.PaymentEngine {
-    public interface WithdrawalEngine {
-        //Task<PagedData<Withdrawal>> GetWithdrawals(PagedDataFilter filter);
-        Task RegisterEventListener();
-    }
-    
     public class WithdrawalEngineWithEventBus: WithdrawalEngine {
         private readonly Caracal.EventBus.EventBus _eventBus;
         private SubscriptionToken _subscription;
@@ -25,7 +20,7 @@ namespace Caracal.PayStation.PaymentEngine {
             if (_subscription == null) return;
             
             var task = Task.Run(() => _eventBus.UnsubscribeAsync(_subscription, CancellationToken.None));
-            Task.WaitAny(task);
+            Task.WaitAny(task, Task.Delay(4000));
         }
 
         public async Task RegisterEventListener() {
