@@ -15,8 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Caracal.PayStation.Application\Caracal.PayStation.Application.csproj" />
-      <ProjectReference Include="..\Caracal.PayStation.PaymentEngine\Caracal.PayStation.PaymentEngine.csproj" />
-      <ProjectReference Include="..\Caracal.PayStation.PaymentModels\Caracal.PayStation.PaymentModels.csproj" />
+      <ProjectReference Include="..\Caracal.PayStation.PaymentEngine\Caracal.PayStation.PaymentEngine.csproj" />      
       <ProjectReference Include="..\Caracal.PayStation.WorkflowEngine\Caracal.PayStation.WorkflowEngine.csproj" />
       <ProjectReference Include="..\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj" />
     </ItemGroup>

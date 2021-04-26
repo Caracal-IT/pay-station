@@ -1,3 +1,3 @@
-namespace Caracal.PayStation.PaymentModels.Withdrawals {
+namespace Caracal.PayStation.Withdrawals.Models {
     public record WithdrawalStatus(long WithdrawalId, string Status);
 }

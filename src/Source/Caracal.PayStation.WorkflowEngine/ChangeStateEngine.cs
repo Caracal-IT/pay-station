@@ -3,9 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow.WithdrawalStatusChange;
-using Caracal.PayStation.PaymentModels.Withdrawals;
+using Caracal.PayStation.Workflow.Models.Withdrawals;
 using Caracal.PayStation.Storage.Simulator;
 using Caracal.PayStation.Workflow;
+using Withdrawal = Caracal.PayStation.Storage.Simulator.Model.Withdrawals.Withdrawal;
 
 namespace Caracal.PayStation.WorkflowEngine {
     public class ChangeStateEngineWithEventBus : ChangeStateEngine {

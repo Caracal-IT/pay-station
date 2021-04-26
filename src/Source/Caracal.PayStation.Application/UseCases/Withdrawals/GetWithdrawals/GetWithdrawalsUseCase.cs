@@ -6,7 +6,7 @@ using Caracal.Framework.Data;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
 
-using Model = Caracal.PayStation.PaymentModels.Withdrawals;
+using Model = Caracal.PayStation.Withdrawals.Models;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
     public class GetWithdrawalsUseCase: UseCase<GetWithdrawalsResponse, GetWithdrawalsRequest>  {

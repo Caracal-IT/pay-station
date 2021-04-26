@@ -3,9 +3,9 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-
+    
     <ItemGroup>
-      <ProjectReference Include="..\Caracal.PayStation.PaymentModels\Caracal.PayStation.PaymentModels.csproj" />
+      <Folder Include="Model" />
     </ItemGroup>
 
 </Project>

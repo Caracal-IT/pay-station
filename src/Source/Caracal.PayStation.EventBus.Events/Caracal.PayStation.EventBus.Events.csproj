@@ -6,7 +6,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Caracal.EventBus\Caracal.EventBus.csproj" />
-      <ProjectReference Include="..\Caracal.PayStation.PaymentModels\Caracal.PayStation.PaymentModels.csproj" />
+      <ProjectReference Include="..\Caracal.PayStation.Withdrawals\Caracal.PayStation.Withdrawals.csproj" />
+      <ProjectReference Include="..\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj" />
     </ItemGroup>
 
 </Project>

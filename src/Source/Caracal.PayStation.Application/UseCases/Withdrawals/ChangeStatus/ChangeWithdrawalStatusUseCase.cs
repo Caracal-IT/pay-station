@@ -5,7 +5,7 @@ using AutoMapper;
 using Caracal.EventBus;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow.WithdrawalStatusChange;
-using Model = Caracal.PayStation.PaymentModels.Withdrawals;
+using Model = Caracal.PayStation.Workflow.Models.Withdrawals;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
     public class ChangeWithdrawalStatusUseCase: UseCase<ChangeWithdrawalStatusResponse, ChangeWithdrawalStatusRequest>  {

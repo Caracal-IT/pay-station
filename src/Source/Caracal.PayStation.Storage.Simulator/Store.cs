@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Caracal.PayStation.PaymentModels.Withdrawals;
+using Caracal.PayStation.Storage.Simulator.Model.Withdrawals;
 
 namespace Caracal.PayStation.Storage.Simulator {
     public static class Store {

@@ -1,11 +1,12 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
-using Caracal.PayStation.PaymentModels.Withdrawals;
 using Caracal.PayStation.Storage.Simulator;
 using Caracal.PayStation.Withdrawals;
+using Caracal.PayStation.Withdrawals.Models;
 
 namespace Caracal.PayStation.PaymentEngine {
     public class WithdrawalEngineWithEventBus: WithdrawalEngine {
@@ -37,7 +38,7 @@ namespace Caracal.PayStation.PaymentEngine {
 
         private Task<PagedData<Withdrawal>> GetWithdrawals(PagedDataFilter filter) {
             var response = new PagedData<Withdrawal> {PageNumber = 1, NumberOfResults = 5, NumberOfRows = 5};
-            response.Items.AddRange(Store.Withdrawals.Values);
+            response.Items.AddRange(Store.Withdrawals.Values.Select(i => new Withdrawal(i.Id, i.Account, i.Amount, i.Status)));
             
             return Task.FromResult(response);
         }

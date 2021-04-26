@@ -1,5 +1,5 @@
 using AutoMapper;
-using Model = Caracal.PayStation.PaymentModels.Withdrawals;
+using Model = Caracal.PayStation.Workflow.Models.Withdrawals;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
     public class Mappings {
