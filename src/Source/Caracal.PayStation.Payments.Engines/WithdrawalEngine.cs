@@ -1,20 +1,18 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus;
-using Caracal.Framework.Data;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
-using Caracal.PayStation.Payments;
-using Caracal.PayStation.Payments.Models;
-using Caracal.PayStation.Storage.Simulator;
 
-namespace Caracal.PayStation.PaymentEngine {
+namespace Caracal.PayStation.Payments.Engines {
     public class WithdrawalEngineWithEventBus: WithdrawalEngine {
         private readonly Caracal.EventBus.EventBus _eventBus;
+        private readonly WithdrawalService _withdrawalService;
+        
         private SubscriptionToken _subscription;
 
-        public WithdrawalEngineWithEventBus(Caracal.EventBus.EventBus eventBus) {
+        public WithdrawalEngineWithEventBus(Caracal.EventBus.EventBus eventBus, WithdrawalService withdrawalService) {
             _eventBus = eventBus;
+            _withdrawalService = withdrawalService;
         }
 
         ~WithdrawalEngineWithEventBus() {
@@ -31,16 +29,8 @@ namespace Caracal.PayStation.PaymentEngine {
         }
 
         private async Task ReturnWithdrawals(RequestWithdrawalsEvent evt, CancellationToken token) {
-            var response = await GetWithdrawals(evt.Data);
+            var response = await _withdrawalService.GetWithdrawalsAsync(evt.Data, token);
             await _eventBus.PublishAsync(new ResponseWithdrawalsEvent{Data = response, CorrelationId = evt.CorrelationId}, token);
-        }
-
-
-        private Task<PagedData<Withdrawal>> GetWithdrawals(PagedDataFilter filter) {
-            var response = new PagedData<Withdrawal> {PageNumber = 1, NumberOfResults = 5, NumberOfRows = 5};
-            response.Items.AddRange(Store.Withdrawals.Values.Select(i => new Withdrawal(i.Id, i.Account, i.Amount, i.Status)));
-            
-            return Task.FromResult(response);
         }
     }
 }

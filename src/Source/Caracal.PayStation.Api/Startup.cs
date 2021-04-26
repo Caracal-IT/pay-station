@@ -15,10 +15,12 @@ using Microsoft.OpenApi.Models;
 using Caracal.EventBus;
 using Caracal.PayStation.Application;
 using Caracal.PayStation.Application.Builders.Core;
-using Caracal.PayStation.PaymentEngine;
+using Caracal.PayStation.Payments.Engines;
 using Caracal.PayStation.Payments;
 using Caracal.PayStation.Workflow;
 using Caracal.PayStation.WorkflowEngine;
+
+using Impl = Caracal.PayStation.Payments.Services;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
@@ -63,6 +65,8 @@ namespace Caracal.PayStation.Api {
             services.AddSingleton<Caracal.EventBus.EventBus, MemoryEventBus>();
             services.AddSingleton<WithdrawalEngine, WithdrawalEngineWithEventBus>();
             services.AddSingleton<ChangeStateEngine, ChangeStateEngineWithEventBus>();
+
+            services.AddSingleton<WithdrawalService, Impl.WithdrawalService>();
             
             services.AddSingleton<Start>();
         }
