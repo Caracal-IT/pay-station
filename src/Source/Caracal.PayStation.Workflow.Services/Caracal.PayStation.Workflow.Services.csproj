@@ -3,13 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-    
+
     <ItemGroup>
-      <Folder Include="Model" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\Caracal.PayStation.Payments\Caracal.PayStation.Payments.csproj" />
       <ProjectReference Include="..\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj" />
     </ItemGroup>
 

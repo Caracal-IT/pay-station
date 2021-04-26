@@ -1,20 +1,19 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow.WithdrawalStatusChange;
-using Caracal.PayStation.Workflow.Models.Withdrawals;
-using Caracal.PayStation.Storage.Simulator;
 using Caracal.PayStation.Workflow;
-using Withdrawal = Caracal.PayStation.Storage.Simulator.Model.Withdrawals.Withdrawal;
 
 namespace Caracal.PayStation.WorkflowEngine {
     public class ChangeStateEngineWithEventBus : ChangeStateEngine {
         private readonly Caracal.EventBus.EventBus _eventBus;
+        private readonly StateService _stateService; 
+            
         private SubscriptionToken _subscription;
         
-        public ChangeStateEngineWithEventBus(Caracal.EventBus.EventBus eventBus) {
+        public ChangeStateEngineWithEventBus(Caracal.EventBus.EventBus eventBus, StateService stateService) {
             _eventBus = eventBus;
+            _stateService = stateService;
         }
 
         ~ChangeStateEngineWithEventBus() {
@@ -31,26 +30,8 @@ namespace Caracal.PayStation.WorkflowEngine {
         }
 
         private async Task UpdateWithdrawalStatus(WithdrawalStatusChangeEvent evt, CancellationToken token) {
-            evt.Data
-               .ToList()
-               .ForEach(ChangeStatus);
-
-            var response = evt
-                .Data
-                .Select(UpdateStatus);
-                
+            var response = await _stateService.UpdateWithdrawalStatusAsync(evt.Data, token);
             await _eventBus.PublishAsync(new WithdrawalStatusChangedEvent{Data = response, CorrelationId = evt.CorrelationId}, token);
         }
-
-        private static void ChangeStatus(WithdrawalStatus status) {
-            if (!Store.Withdrawals.Keys.Contains(status.WithdrawalId) || string.IsNullOrWhiteSpace(status.Status))
-                return;
-                
-            var item = Store.Withdrawals[status.WithdrawalId];
-            Store.Withdrawals[status.WithdrawalId] = new Withdrawal(item.Id, item.Account, item.Amount, status.Status);
-        }
-
-        private static WithdrawalStatusUpdateResult UpdateStatus(WithdrawalStatus status) =>
-            new (status, string.Empty, Succeeded: true);
     }
 }

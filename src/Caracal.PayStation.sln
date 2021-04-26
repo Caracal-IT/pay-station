@@ -64,6 +64,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Workflow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Payments.Services", "Source\Caracal.PayStation.Payments.Services\Caracal.PayStation.Payments.Services.csproj", "{A7B2CC97-8CC1-4DB3-A132-7BE572B6E2A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Payments.Postgres", "Source\Caracal.PayStation.Payments.Postgres\Caracal.PayStation.Payments.Postgres.csproj", "{EE487981-5406-48F6-ADF9-4EEEB786AEEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Workflow.Services", "Source\Caracal.PayStation.Workflow.Services\Caracal.PayStation.Workflow.Services.csproj", "{1B5829E3-A907-476D-9989-754E98FA3916}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +104,8 @@ Global
 		{718389EE-E8F2-4453-8521-CF7F0C97A7DF} = {5151CA60-6ADD-4C37-886E-3EE5DA0C4983}
 		{431F4087-EF8D-48AD-8F39-4FAEFD09BE24} = {1710C560-A350-4735-AD8B-5667E528F86F}
 		{A7B2CC97-8CC1-4DB3-A132-7BE572B6E2A6} = {E8D0296D-D568-4A28-8A73-EA64A0BF0FB7}
+		{EE487981-5406-48F6-ADF9-4EEEB786AEEB} = {1710C560-A350-4735-AD8B-5667E528F86F}
+		{1B5829E3-A907-476D-9989-754E98FA3916} = {E8D0296D-D568-4A28-8A73-EA64A0BF0FB7}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C36E3037-F2D3-4E6B-8283-6117AB1430EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -170,5 +176,13 @@ Global
 		{A7B2CC97-8CC1-4DB3-A132-7BE572B6E2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B2CC97-8CC1-4DB3-A132-7BE572B6E2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B2CC97-8CC1-4DB3-A132-7BE572B6E2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE487981-5406-48F6-ADF9-4EEEB786AEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE487981-5406-48F6-ADF9-4EEEB786AEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE487981-5406-48F6-ADF9-4EEEB786AEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE487981-5406-48F6-ADF9-4EEEB786AEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B5829E3-A907-476D-9989-754E98FA3916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5829E3-A907-476D-9989-754E98FA3916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5829E3-A907-476D-9989-754E98FA3916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5829E3-A907-476D-9989-754E98FA3916}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

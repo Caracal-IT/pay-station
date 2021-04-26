@@ -17,10 +17,15 @@ using Caracal.PayStation.Application;
 using Caracal.PayStation.Application.Builders.Core;
 using Caracal.PayStation.Payments.Engines;
 using Caracal.PayStation.Payments;
+using Caracal.PayStation.Payments.Repositories;
+using Caracal.PayStation.Storage.Simulator.Payments;
+using Caracal.PayStation.Storage.Simulator.Workflow;
 using Caracal.PayStation.Workflow;
+using Caracal.PayStation.Workflow.Repositories;
 using Caracal.PayStation.WorkflowEngine;
 
-using Impl = Caracal.PayStation.Payments.Services;
+using PaymentsImpl = Caracal.PayStation.Payments.Services;
+using WfImpl = Caracal.PayStation.Workflow.Services;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
@@ -64,7 +69,11 @@ namespace Caracal.PayStation.Api {
             services.AddSingleton<WithdrawalEngine, WithdrawalEngineWithEventBus>();
             services.AddSingleton<ChangeStateEngine, ChangeStateEngineWithEventBus>();
 
-            services.AddSingleton<WithdrawalService, Impl.WithdrawalService>();
+            services.AddSingleton<WithdrawalService, PaymentsImpl.WithdrawalService>();
+            services.AddSingleton<StateService, WfImpl.StateService>();
+
+            services.AddSingleton<WithdrawalsRepository, MemoryWithdrawalsRepository>();
+            services.AddSingleton<StateRepository, MemoryStateRepository>();
             
             services.AddSingleton<Start>();
         }
