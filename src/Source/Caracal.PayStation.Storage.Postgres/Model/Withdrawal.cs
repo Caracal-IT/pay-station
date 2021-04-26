@@ -7,20 +7,20 @@ namespace Caracal.PayStation.Storage.Postgres.Model {
         [Key]
         [Required]
         [Column("id")]
-        public long Id { get; init; }
+        public long Id { get; set; }
         
         [Required]
         [MaxLength(500)]
         [Column("account")]
-        public string Account { get; init; }
+        public string Account { get; set; }
         
         
         [Column("amount")]
         [MaxLength(100)]
-        public string Amount { get; init; }
+        public string Amount { get; set; }
         
         [MaxLength(32)]
         [Column("status")]
-        public string Status { get; init; }
+        public string Status { get; set; }
     }
 }

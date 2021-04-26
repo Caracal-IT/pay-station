@@ -4,6 +4,7 @@ using Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser;
 using Caracal.Security.Services;
 
 namespace Caracal.PayStation.Application.Builders.Infrastructure {
+    /*
     public class InfrastructureUseCaseBuilder {
         private readonly LoginService _loginService;
         
@@ -14,4 +15,5 @@ namespace Caracal.PayStation.Application.Builders.Infrastructure {
                 _ => default
             };
     }
+    */
 }

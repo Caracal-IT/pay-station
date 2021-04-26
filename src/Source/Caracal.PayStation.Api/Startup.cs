@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Caracal.PayStation.Application.Builders.Infrastructure;
 using Caracal.Security.Services;
 using Caracal.Security.Simulator.Services;
 using Microsoft.AspNetCore.Builder;
@@ -14,13 +13,15 @@ using Microsoft.OpenApi.Models;
 
 using Caracal.EventBus;
 using Caracal.PayStation.Application;
-using Caracal.PayStation.Application.Builders.Core;
+using Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser;
+using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
+using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 using Caracal.PayStation.Payments.Engines;
 using Caracal.PayStation.Payments;
 using Caracal.PayStation.Payments.Repositories;
 using Caracal.PayStation.Storage.Postgres.DbContexts;
-using Caracal.PayStation.Storage.Simulator.Payments;
-using Caracal.PayStation.Storage.Simulator.Workflow;
+using Caracal.PayStation.Storage.Postgres.Services.Payments;
+using Caracal.PayStation.Storage.Postgres.Services.Workflow;
 using Caracal.PayStation.Workflow;
 using Caracal.PayStation.Workflow.Repositories;
 using Caracal.PayStation.WorkflowEngine;
@@ -64,21 +65,33 @@ namespace Caracal.PayStation.Api {
             
             services.AddDbContextPool<WithdrawalDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PayStation"))); 
             
-            services.AddSingleton<LoginService, AuthService>();
-            services.AddSingleton<InfrastructureUseCaseBuilder>();
-            services.AddSingleton<WithdrawalsUseCaseBuilder>();
-
-            services.AddSingleton<Caracal.EventBus.EventBus, MemoryEventBus>();
-            services.AddSingleton<WithdrawalEngine, WithdrawalEngineWithEventBus>();
-            services.AddSingleton<ChangeStateEngine, ChangeStateEngineWithEventBus>();
-
-            services.AddSingleton<WithdrawalService, PaymentsImpl.WithdrawalService>();
-            services.AddSingleton<StateService, WfImpl.StateService>();
-
-            services.AddSingleton<WithdrawalsRepository, MemoryWithdrawalsRepository>();
-            services.AddSingleton<StateRepository, MemoryStateRepository>();
+            services.AddTransient<LoginService, AuthService>();
+           // services.AddSingleton<InfrastructureUseCaseBuilder>();
+            //services.AddSingleton<WithdrawalsUseCaseBuilder>();
             
-            services.AddSingleton<Start>();
+            //nameof(ChangeWithdrawalStatusUseCase) => new ChangeWithdrawalStatusUseCase(_eventBus) as TUseCase,
+            //nameof(GetWithdrawalsUseCase) => new GetWithdrawalsUseCase(_eventBus) as TUseCase,
+            
+            //nameof(LoginUseCase) => new LoginUseCase(_loginService) as TUseCase,
+
+            services.AddTransient<ChangeWithdrawalStatusUseCase>();
+            services.AddTransient<GetWithdrawalsUseCase>();
+            services.AddTransient<LoginUseCase>();
+
+            services.AddTransient<Caracal.EventBus.EventBus, MemoryEventBus>();
+            services.AddTransient<WithdrawalEngine, WithdrawalEngineWithEventBus>();
+            services.AddTransient<ChangeStateEngine, ChangeStateEngineWithEventBus>();
+
+            services.AddTransient<WithdrawalService, PaymentsImpl.WithdrawalService>();
+            services.AddTransient<StateService, WfImpl.StateService>();
+
+           // services.AddSingleton<WithdrawalsRepository, MemoryWithdrawalsRepository>();
+           // services.AddSingleton<StateRepository, MemoryStateRepository>();
+            
+            services.AddTransient<WithdrawalsRepository, EFWithdrawalsRepository>();
+            services.AddTransient<StateRepository, EFStateRepository>();
+            
+            services.AddTransient<Start>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,3 +121,10 @@ namespace Caracal.PayStation.Api {
         }
     }
 }
+
+/*
+ nameof(ChangeWithdrawalStatusUseCase) => new ChangeWithdrawalStatusUseCase(_eventBus) as TUseCase,
+            nameof(GetWithdrawalsUseCase) => new GetWithdrawalsUseCase(_eventBus) as TUseCase,
+            
+            nameof(LoginUseCase) => new LoginUseCase(_loginService) as TUseCase,
+ */

@@ -3,6 +3,7 @@ using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 
 namespace Caracal.PayStation.Application.Builders.Core {
+    /*
     public class WithdrawalsUseCaseBuilder {
         private readonly Caracal.EventBus.EventBus _eventBus;
         
@@ -14,5 +15,6 @@ namespace Caracal.PayStation.Application.Builders.Core {
             //nameof(ChangeWithdrawalStatusUseCase) => new ChangeWithdrawalStatusUseCase(_withdrawalEngine, _eventBus) as TUseCase,
             _ => default
         };
-    }
+    }*/
+    
 }

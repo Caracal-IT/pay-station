@@ -1,6 +1,6 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Local
-
+/*
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.Application.Builders.Infrastructure;
 using Caracal.PayStation.Application.UseCases.Infrastructure.LoginUser;
@@ -33,3 +33,4 @@ namespace Caracal.PayStation.Application.Tests.Builders.Infrastructure {
         private class MockUseCase : UseCase { }
     }
 }
+*/

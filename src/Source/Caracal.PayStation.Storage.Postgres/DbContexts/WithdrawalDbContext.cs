@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Caracal.PayStation.Storage.Postgres.Model;
 
@@ -14,10 +16,11 @@ namespace Caracal.PayStation.Storage.Postgres.DbContexts {
             base.OnModelCreating(builder);
         }
 
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken token = default)
         {
             ChangeTracker.DetectChanges();
-            return base.SaveChanges();
+            
+            return await base.SaveChangesAsync(token);
         }
 
     }
