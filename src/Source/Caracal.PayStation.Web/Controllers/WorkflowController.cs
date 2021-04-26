@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using Caracal.PayStation.Web.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +12,7 @@ namespace Caracal.PayStation.Web.Controllers {
             _environment = environment;
 
         [HttpGet("process/{name}")]
-       // [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 604800)]
+        [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 120)]
         public ActionResult GetProcess(string name) {
             var workflowDir =  _environment.ContentRootFileProvider.GetDirectoryContents("Workflow");
             var process = workflowDir.FirstOrDefault(f => f.Name.Equals($"{name.ToLower()}.wf.json"));

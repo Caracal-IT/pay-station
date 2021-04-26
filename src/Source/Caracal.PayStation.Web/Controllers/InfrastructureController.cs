@@ -10,7 +10,7 @@ namespace Caracal.PayStation.Web.Controllers {
         private bool IsLoggedIn => !string.IsNullOrWhiteSpace(Cookies.GetUserToken(Request));
 
         [HttpGet("settings")]
-       // [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 100000000)]
+        [ResponseCache(Location = ResponseCacheLocation.Any, VaryByHeader = "X-Version", Duration = 120)]
         public ActionResult<Dictionary<string, string>> Settings() {
             return Ok(new Dictionary<string, string> {
                 {"[VERSION]", "1.0.0.3"},

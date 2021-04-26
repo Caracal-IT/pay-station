@@ -24,9 +24,7 @@ using Impl = Caracal.PayStation.Payments.Services;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
-        public Startup(IConfiguration configuration) {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -94,7 +92,7 @@ namespace Caracal.PayStation.Api {
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             var t = Task.Run(async() => await appStart.Initialize());
-            Task.WhenAny(t);
+            Task.WhenAny(t, Task.Delay(10_000));
         }
     }
 }
