@@ -18,12 +18,13 @@ using Caracal.PayStation.Application.Builders.Core;
 using Caracal.PayStation.Payments.Engines;
 using Caracal.PayStation.Payments;
 using Caracal.PayStation.Payments.Repositories;
+using Caracal.PayStation.Storage.Postgres.DbContexts;
 using Caracal.PayStation.Storage.Simulator.Payments;
 using Caracal.PayStation.Storage.Simulator.Workflow;
 using Caracal.PayStation.Workflow;
 using Caracal.PayStation.Workflow.Repositories;
 using Caracal.PayStation.WorkflowEngine;
-
+using Microsoft.EntityFrameworkCore;
 using PaymentsImpl = Caracal.PayStation.Payments.Services;
 using WfImpl = Caracal.PayStation.Workflow.Services;
 
@@ -60,6 +61,8 @@ namespace Caracal.PayStation.Api {
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+            
+            services.AddDbContextPool<WithdrawalDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PayStation"))); 
             
             services.AddSingleton<LoginService, AuthService>();
             services.AddSingleton<InfrastructureUseCaseBuilder>();
