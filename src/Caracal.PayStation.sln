@@ -62,7 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DB6F0D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Application.Tests", "Tests\Caracal.PayStation.Application.Tests\Caracal.PayStation.Application.Tests.csproj", "{E2E9EB5F-A80E-44D6-B3ED-4D83DB052126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Withdrawals", "Source\Caracal.PayStation.Withdrawals\Caracal.PayStation.Withdrawals.csproj", "{55C1D3AD-6024-4240-91DB-E89DAFFF9808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Payments", "Source\Caracal.PayStation.Payments\Caracal.PayStation.Payments.csproj", "{55C1D3AD-6024-4240-91DB-E89DAFFF9808}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caracal.PayStation.Workflow", "Source\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj", "{718389EE-E8F2-4453-8521-CF7F0C97A7DF}"
 EndProject

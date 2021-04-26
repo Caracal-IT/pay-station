@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Caracal.PayStation.Withdrawals;
+using Caracal.PayStation.Payments;
 using Caracal.PayStation.Workflow;
 
 namespace Caracal.PayStation.Application {

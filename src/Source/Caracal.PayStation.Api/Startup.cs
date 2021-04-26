@@ -16,7 +16,7 @@ using Caracal.EventBus;
 using Caracal.PayStation.Application;
 using Caracal.PayStation.Application.Builders.Core;
 using Caracal.PayStation.PaymentEngine;
-using Caracal.PayStation.Withdrawals;
+using Caracal.PayStation.Payments;
 using Caracal.PayStation.Workflow;
 using Caracal.PayStation.WorkflowEngine;
 

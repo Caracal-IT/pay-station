@@ -8,7 +8,7 @@
       <ProjectReference Include="..\Caracal.EventBus\Caracal.EventBus.csproj" />
       <ProjectReference Include="..\Caracal.Framework\Caracal.Framework.csproj" />
       <ProjectReference Include="..\Caracal.PayStation.EventBus.Events\Caracal.PayStation.EventBus.Events.csproj" />
-      <ProjectReference Include="..\Caracal.PayStation.Withdrawals\Caracal.PayStation.Withdrawals.csproj" />
+      <ProjectReference Include="..\Caracal.PayStation.Payments\Caracal.PayStation.Payments.csproj" />
       <ProjectReference Include="..\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj" />
       <ProjectReference Include="..\Caracal.Security.Simulator\Caracal.Security.Simulator.csproj" />
       <ProjectReference Include="..\Caracal.Security\Caracal.Security.csproj" />

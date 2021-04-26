@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Caracal.EventBus;
 using Caracal.Framework.Data;
 using Caracal.PayStation.EventBus.Events.Withdrawals.Withdrawals;
+using Caracal.PayStation.Payments;
+using Caracal.PayStation.Payments.Models;
 using Caracal.PayStation.Storage.Simulator;
-using Caracal.PayStation.Withdrawals;
-using Caracal.PayStation.Withdrawals.Models;
 
 namespace Caracal.PayStation.PaymentEngine {
     public class WithdrawalEngineWithEventBus: WithdrawalEngine {

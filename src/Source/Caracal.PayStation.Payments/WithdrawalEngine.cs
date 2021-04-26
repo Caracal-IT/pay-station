@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Caracal.PayStation.Withdrawals {
+namespace Caracal.PayStation.Payments {
     public interface WithdrawalEngine {
         Task RegisterEventListener();
     }
