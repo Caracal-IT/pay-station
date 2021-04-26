@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.EventBus;
 using Caracal.Framework.UseCases;
-using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow.WithdrawalStatusChange;
+using Caracal.PayStation.EventBus.Events.Withdrawals.Workflow;
 using Caracal.PayStation.Workflow;
 using Model = Caracal.PayStation.Workflow.Models.Withdrawals;
 
@@ -23,10 +23,11 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
         
         public override async Task<ChangeWithdrawalStatusResponse> ExecuteAsync(ChangeWithdrawalStatusRequest request, CancellationToken cancellationToken) {
             Request = request;
-            var evt = new WithdrawalStatusChangeEvent{Data = _mapper.Map<IEnumerable<Model.WithdrawalStatus>>(request)};
             var result = await _service.UpdateWithdrawalStatusAsync(_mapper.Map<IEnumerable<Model.WithdrawalStatus>>(request), cancellationToken); 
-                //await _eventBus.SendAndListenAsync<IEnumerable<Model.WithdrawalStatusUpdateResult>, WithdrawalStatusChangedEvent>(evt, cancellationToken);
             Response = _mapper.Map<ChangeWithdrawalStatusResponse>(result.ToList());
+            
+            var evt = new WithdrawalStatusChangeEvent{Data = _mapper.Map<IEnumerable<Model.WithdrawalStatus>>(request)};
+            await _eventBus.PublishAsync(evt, cancellationToken);
             
             return Response;
         }
