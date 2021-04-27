@@ -16,7 +16,7 @@ namespace Caracal.PayStation.Api {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddSwagger();
-            
+
             services.AddLogin();
             
             services.AddPayStation(Configuration);
