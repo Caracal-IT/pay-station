@@ -17,6 +17,8 @@ namespace Caracal.PayStation.Api {
             services.AddControllers();
             services.AddSwagger();
 
+            services.AddDistributedMemoryCache();
+            
             services.AddLogin();
             
             services.AddPayStation(Configuration);
@@ -39,3 +41,5 @@ namespace Caracal.PayStation.Api {
         }
     }
 }
+
+//IDistributedCache cache
