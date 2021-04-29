@@ -6,5 +6,6 @@ using Caracal.PayStation.Payments.Models;
 namespace Caracal.PayStation.Payments {
     public interface WithdrawalService {
         Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter filter, CancellationToken cancellationToken);
+        Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken);
     }
 }

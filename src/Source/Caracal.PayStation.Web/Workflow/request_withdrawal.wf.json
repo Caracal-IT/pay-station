@@ -1,0 +1,45 @@
+{
+  "name" : "request_withdrawal",
+  "activities": [
+    {
+      "name": "start",
+      "type": "page-activity",
+      "controls": [
+        { "tag" : "div",
+          "id": "small",
+          "controls": [
+            {"tag" : "h1", "innerHTML": "PayStation" },
+            {"tag" : "div", "innerHTML": "Welcome to the PayStation" },
+            {"tag":  "apx-input", "caption":  "Account", "id":"withdrawal.account", "value": "Account 123" },
+            {"tag":  "apx-input", "type": "number", "caption":  "amount", "id":"withdrawal.amount", "value": "22.55" },
+            {"tag" : "apx-button", "caption": "Withdraw", "next": "withdraw", "isDefault": true }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "type": "api-activity",
+      "next": "home",
+      "endpoints": [
+        {
+          "url": "[ELSA]/withdrawal/request",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "withdrawal.account", "remote": "account", "direction": "out"},
+            {"client": "withdrawal.amount", "remote": "amount", "direction": "out"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "type": "ipc-activity",
+      "process" : "home",
+      "next": ""
+    }
+  ]
+}

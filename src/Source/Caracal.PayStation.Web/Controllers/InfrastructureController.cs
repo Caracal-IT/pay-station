@@ -15,6 +15,7 @@ namespace Caracal.PayStation.Web.Controllers {
             return Ok(new Dictionary<string, string> {
                 {"[VERSION]", "1.0.0.3"},
                 {"[WF]", "workflow/process[SELF]?v=[VERSION]"},
+                {"[ELSA]", "https://localhost:5001[SELF]"},
                 {"[AUTH_API]", "[SELF]"},
                 {"[DATA]", "assets/workflow/data/[SELF].json"},
                 {"[WITHDRAWAL_API]", "withdrawal/[SELF]"},
@@ -35,6 +36,7 @@ namespace Caracal.PayStation.Web.Controllers {
             new (new List<MenuItemViewModel> {
                 new("Home", "home"),
                 new("Logout", "logout"),
+                new ("Withdraw Funds", "request_withdrawal"),
                 new("Withdrawals", "withdrawals")
             }, IsLoggedIn:true);
     }

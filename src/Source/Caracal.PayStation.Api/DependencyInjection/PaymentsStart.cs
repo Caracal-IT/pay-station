@@ -10,8 +10,8 @@ namespace Caracal.PayStation.Api.DependencyInjection {
         public static void AddPayments(this IServiceCollection services) {
             services.AddTransient<ChangeWithdrawalStatusUseCase>();
             services.AddTransient<WithdrawalService, Payments.Services.WithdrawalService>();
-            //services.AddTransient<WithdrawalsRepository, EFWithdrawalsRepository>();
-             services.AddSingleton<WithdrawalsRepository, MemoryWithdrawalsRepository>(); 
+            services.AddTransient<WithdrawalsRepository, EFWithdrawalsRepository>();
+            //services.AddSingleton<WithdrawalsRepository, MemoryWithdrawalsRepository>(); 
         }
     }
 }

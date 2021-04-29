@@ -8,4 +8,7 @@
       <ProjectReference Include="..\Caracal.Framework\Caracal.Framework.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Elsa" Version="1.5.4.1816" />
+    </ItemGroup>
 </Project>

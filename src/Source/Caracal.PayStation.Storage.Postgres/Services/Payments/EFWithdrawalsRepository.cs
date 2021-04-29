@@ -31,5 +31,19 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
                 throw;
             }
         }
+
+        public async Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken) {
+            var item = new Model.Withdrawal {
+                Account = withdrawal.Account,
+                Amount = withdrawal.Amount,
+                Status = string.Empty
+            };
+            
+            _dbContext.Withdrawals.Add(item);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return new Withdrawal(item.Id, item.Account, item.Amount, item.Status);
+        }
     }
 }

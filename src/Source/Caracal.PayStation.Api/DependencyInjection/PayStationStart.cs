@@ -11,7 +11,7 @@ namespace Caracal.PayStation.Api.DependencyInjection {
         public static void AddPayStation(this IServiceCollection services, IConfiguration configuration) {
             services.AddDbContextPool<WithdrawalDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("PayStation"))); 
             
-           // services.AddTransient<IStartupFilter, MigrationStartupFilter<WithdrawalDbContext>>();
+            services.AddTransient<IStartupFilter, MigrationStartupFilter<WithdrawalDbContext>>();
             services.AddTransient<Caracal.EventBus.EventBus, MemoryEventBus>();
         }
     }

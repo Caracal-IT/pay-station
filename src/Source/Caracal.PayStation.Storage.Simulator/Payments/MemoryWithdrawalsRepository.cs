@@ -13,5 +13,24 @@ namespace Caracal.PayStation.Storage.Simulator.Payments {
             
             return Task.FromResult(response);
         }
+
+        public Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken) {
+            var id = Store.Withdrawals.Count + 1;
+            
+            Store.Withdrawals.Add(
+                id, 
+                new Model.Withdrawals.Withdrawal(
+                    id,
+                    withdrawal.Account,
+                    withdrawal.Amount,
+                    withdrawal.Status
+                ));
+
+            return Task.FromResult(new Withdrawal(
+                id, 
+                withdrawal.Account, 
+                withdrawal.Amount, 
+                withdrawal.Status));
+        }
     }
 }

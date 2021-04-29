@@ -12,6 +12,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.5" NoWarn="NU1605" />        
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
 
+        <PackageReference Include="Elsa" Version="1.5.4.1816" />
+        <PackageReference Include="Elsa.Dashboard" Version="1.5.4.1816" />
+        <PackageReference Include="Elsa.Persistence.EntityFrameworkCore" Version="1.5.4.1816" />      
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
