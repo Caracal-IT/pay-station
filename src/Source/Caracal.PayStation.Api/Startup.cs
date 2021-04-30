@@ -4,10 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Caracal.PayStation.Api.DependencyInjection;
-using Caracal.PayStation.Api.Filters;
-using Caracal.PayStation.Payments.Activities;
-using Caracal.PayStation.Storage.Postgres.DbContexts;
-using Caracal.PayStation.Workflow.Activities;
+using Caracal.PayStation.Api.Workflow.Activities.Withdrawals;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.Http.Extensions;
 using Elsa.Activities.Timers.Extensions;
@@ -27,7 +24,7 @@ namespace Caracal.PayStation.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddSingleton(System.Console.Out);
-            services.AddActivity<ChangeState>();
+            services.AddActivity<ChangeStatus>();
             services.AddActivity<RequestWithdrawal>();
             
             services // Required services for Elsa to work. Registers things like `IWorkflowInvoker`.

@@ -3,9 +3,4 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="Elsa" Version="1.5.4.1816" />
-    </ItemGroup>
-
 </Project>

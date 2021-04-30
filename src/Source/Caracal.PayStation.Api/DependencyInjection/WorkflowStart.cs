@@ -9,7 +9,7 @@ namespace Caracal.PayStation.Api.DependencyInjection {
     public static class WorkflowStart {
         public static void AddWorkflow(this IServiceCollection services) {
             services.AddTransient<GetWithdrawalsUseCase>();
-            services.AddTransient<StateService, Workflow.Services.StateService>();
+            services.AddTransient<StateService, Caracal.PayStation.Workflow.Services.StateService>();
             services.AddTransient<StateRepository, EFStateRepository>();
              //services.AddSingleton<StateRepository, MemoryStateRepository>();
         } 
