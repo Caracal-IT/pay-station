@@ -1,5 +1,4 @@
 using AutoMapper;
-using Model = Caracal.PayStation.Workflow.Models.Withdrawals;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
     public class Mappings {
@@ -7,10 +6,10 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
             new MapperConfiguration(CreateMappings).CreateMapper();
 
         private static void CreateMappings(IMapperConfigurationExpression cfg) {
-            cfg.CreateMap<WithdrawalStatus, Model.WithdrawalStatus>()
+            cfg.CreateMap<WithdrawalStatus, Payments.Models.WithdrawalStatus>()
                 .ReverseMap();
             
-            cfg.CreateMap<Model.WithdrawalStatusUpdateResult, WithdrawalStatusUpdateResult>();
+            cfg.CreateMap<Payments.Models.WithdrawalStatusUpdateResult, WithdrawalStatusUpdateResult>();
         }
     }
 }

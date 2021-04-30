@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,17 +47,35 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
             return new Withdrawal(item.Id, item.Account, item.Amount, item.Status);
         }
 
-        public async Task<Withdrawal> UpdateWFUrl(long withdrawalId, string url,  CancellationToken token) {
+        public async Task<bool> UpdateWfUrlAsync(long withdrawalId, string url,  CancellationToken token) {
             var withdrawal = await _dbContext.Withdrawals.FirstOrDefaultAsync(w => w.Id == withdrawalId, token);
 
             if (withdrawal == null)
-                return null;
+                return false;
             
             withdrawal.WorkflowUrl = url;
 
+            return await _dbContext.SaveChangesAsync(token) > 0;
+        }
+
+        public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses,
+            CancellationToken token) {
+            var results = new List<WithdrawalStatusUpdateResult>();
+            foreach (var withdrawalStatus in statuses)
+                results.Add(await UpdateStatusAsync(withdrawalStatus));
+
             await _dbContext.SaveChangesAsync(token);
-            
-            return new Withdrawal(withdrawal.Id, withdrawal.Account, withdrawal.Amount, withdrawal.Status);
+            return results;
+
+            async Task<WithdrawalStatusUpdateResult> UpdateStatusAsync(WithdrawalStatus withdrawalStatus) {
+                var withdrawal = await _dbContext.Withdrawals.FirstOrDefaultAsync(w => w.Id == withdrawalStatus.WithdrawalId, token);
+
+                if (withdrawal == null || string.IsNullOrWhiteSpace(withdrawalStatus.Status))
+                    return new WithdrawalStatusUpdateResult(withdrawalStatus, "Not Found");
+
+                withdrawal.Status = withdrawalStatus.Status;
+                return new WithdrawalStatusUpdateResult(withdrawalStatus, string.Empty, true);
+            }
         }
     }
 }

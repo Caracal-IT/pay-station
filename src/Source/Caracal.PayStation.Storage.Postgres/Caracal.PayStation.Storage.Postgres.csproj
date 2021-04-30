@@ -7,7 +7,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Caracal.Framework\Caracal.Framework.csproj" />
       <ProjectReference Include="..\Caracal.PayStation.Payments\Caracal.PayStation.Payments.csproj" />
-      <ProjectReference Include="..\Caracal.PayStation.Workflow\Caracal.PayStation.Workflow.csproj" />
     </ItemGroup>
 
     <ItemGroup>

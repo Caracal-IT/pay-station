@@ -51,8 +51,7 @@ namespace Caracal.PayStation.Api {
             
             services.AddPayStation(Configuration);
             services.AddPayments();
-            services.AddWorkflow();
-            
+
             services.AddElsaDashboard();
 //https://localhost:5001/withdrawal/request
             services.AddCors(options =>

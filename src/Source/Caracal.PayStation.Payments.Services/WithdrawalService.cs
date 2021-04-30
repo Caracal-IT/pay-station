@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.Framework.Data;
@@ -18,5 +19,11 @@ namespace Caracal.PayStation.Payments.Services {
         public async Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken) {
             return await _repository.AddWithdrawalAsync(withdrawal, cancellationToken);
         }
+        
+        public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses, CancellationToken token) => 
+            await _repository.UpdateWithdrawalStatusAsync(statuses, token);
+
+        public async Task<bool> UpdateWfUrlAsync(long withdrawalId, string url, CancellationToken token) =>
+            await _repository.UpdateWfUrlAsync(withdrawalId, url, token);
     }
 }
