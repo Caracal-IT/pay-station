@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Caracal.PayStation.Api.DependencyInjection;
+using Caracal.PayStation.Api.Filters;
 using Caracal.PayStation.Payments.Activities;
+using Caracal.PayStation.Storage.Postgres.DbContexts;
 using Caracal.PayStation.Workflow.Activities;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.Http.Extensions;
@@ -33,6 +35,8 @@ namespace Caracal.PayStation.Api {
                     .AddEntityFrameworkStores<PostgreSqlContext>(options => options
                         .UseNpgsql(Configuration.GetConnectionString("Workflow"))
                     ));
+            
+            //services.AddTransient<IStartupFilter, MigrationStartupFilter<PostgreSqlContext>>();
 
             services.AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
                 .AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
