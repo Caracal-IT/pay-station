@@ -10,5 +10,6 @@ namespace Caracal.PayStation.Payments.Repositories {
         Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken);
         Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses, CancellationToken token);
         Task<bool> UpdateWfUrlAsync(long withdrawalId, string url, CancellationToken token);
+        Task<Withdrawal> GetWithdrawal(long id, CancellationToken token);
     }
 }

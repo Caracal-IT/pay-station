@@ -26,7 +26,8 @@ namespace Caracal.PayStation.Web.Controllers {
         [HttpPost("filter")]
         public async Task<ActionResult<WithdrawalSearchResponseViewModel>> FilterAsync([FromBody] WithdrawalSearchRequestViewModel request, CancellationToken cancellationToken) {
             var resp = await _withdrawalGateway.GetWithdrawalsAsync(_mapper.Map<PagedDataFilter>(request), cancellationToken);
-            return Ok(_mapper.Map<WithdrawalSearchResponseViewModel>(resp));
+            var result = _mapper.Map<WithdrawalSearchResponseViewModel>(resp);
+            return Ok(result);
         }
 
         [HttpPost("status/change")]

@@ -25,5 +25,8 @@ namespace Caracal.PayStation.Payments.Services {
 
         public async Task<bool> UpdateWfUrlAsync(long withdrawalId, string url, CancellationToken token) =>
             await _repository.UpdateWfUrlAsync(withdrawalId, url, token);
+
+        public async Task<Withdrawal> GetWithdrawal(long id, CancellationToken token) =>
+            await _repository.GetWithdrawal(id, token);
     }
 }

@@ -38,7 +38,7 @@
     {
       "name": "home",
       "type": "ipc-activity",
-      "process" : "home",
+      "process" : "withdrawals",
       "next": ""
     }
   ]
