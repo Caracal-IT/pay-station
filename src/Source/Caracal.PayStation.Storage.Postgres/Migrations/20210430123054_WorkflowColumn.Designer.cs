@@ -2,15 +2,17 @@
 using Caracal.PayStation.Storage.Postgres.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Caracal.PayStation.Storage.Postgres.Migrations
 {
     [DbContext(typeof(WithdrawalDbContext))]
-    partial class WithdrawalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210430123054_WorkflowColumn")]
+    partial class WorkflowColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

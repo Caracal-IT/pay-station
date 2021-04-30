@@ -32,5 +32,9 @@ namespace Caracal.PayStation.Storage.Simulator.Payments {
                 withdrawal.Amount, 
                 withdrawal.Status));
         }
+
+        public Task<Withdrawal> UpdateWFUrl(long withdrawalId, string url, CancellationToken token) {
+            return Task.FromResult(new Withdrawal());
+        }
     }
 }

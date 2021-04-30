@@ -26,4 +26,4 @@ namespace Caracal.PayStation.Storage.Postgres.DbContexts {
     }
 }
 
-//dotnet ef migrations add InitialCreate -s ../Caracal.PayStation.Api/Caracal.PayStation.Api.csproj
+//dotnet ef migrations add InitialCreate -c WithdrawalDbContext -s ../Caracal.PayStation.Api/Caracal.PayStation.Api.csproj 

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Caracal.PayStation.Api.DependencyInjection;
+using Caracal.PayStation.Api.Workflow.Activities;
 using Caracal.PayStation.Api.Workflow.Activities.Withdrawals;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.Http.Extensions;
@@ -26,6 +27,7 @@ namespace Caracal.PayStation.Api {
             services.AddSingleton(System.Console.Out);
             services.AddActivity<ChangeStatus>();
             services.AddActivity<RequestWithdrawal>();
+            services.AddActivity<ClientEvent>();
             
             services // Required services for Elsa to work. Registers things like `IWorkflowInvoker`.
                 .AddElsa( elsa => elsa

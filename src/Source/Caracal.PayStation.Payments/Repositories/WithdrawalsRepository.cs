@@ -7,5 +7,7 @@ namespace Caracal.PayStation.Payments.Repositories {
     public interface WithdrawalsRepository {
         Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter filter, CancellationToken cancellationToken);
         Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken);
+
+        Task<Withdrawal> UpdateWFUrl(long withdrawalId, string url, CancellationToken token);
     }
 }

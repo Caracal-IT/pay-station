@@ -22,5 +22,9 @@ namespace Caracal.PayStation.Storage.Postgres.Model {
         [MaxLength(32)]
         [Column("status")]
         public string Status { get; set; }
+
+        [MaxLength(2048)]
+        [Column("workflowUrl")]
+        public string WorkflowUrl { get; set; }
     }
 }
