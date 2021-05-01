@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "caracal_apex": "^2.9.0",
-    "caracal_polaris": "^2.0.3",
-    "chart.js": "^3.1.1"
+    "caracal_polaris": "^3.0.1",
+    "chart.js": "^3.2.0"
   }
 }
