@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.PayStation.Application.UseCases.Withdrawals.UpdateClientEvent;
+using Caracal.PayStation.Payments.Models;
 using Caracal.PayStation.Payments.Repositories;
 using Elsa;
 using Elsa.Activities.Http.Activities;
@@ -58,14 +59,12 @@ namespace Caracal.PayStation.Api.Workflow.Activities {
 
             var requestModel = workflowContext.CurrentScope.LastResult.Value as HttpRequestModel;
             var body = requestModel?.Body.ToString();
-            if (body != null) {
-                var request = JsonConvert.DeserializeObject<AllocateRequest>(body);
+            var request = JsonConvert.DeserializeObject<Withdrawal?>(body??"");
 
-                if (!string.IsNullOrWhiteSpace(request.Amount)) {
-                    var withdrawalId = Convert.ToInt64(workflowContext.CurrentScope.GetVariable("withdrawalId"));
-                    await _repository.UpdateAmountAsync(withdrawalId, request.Amount, cancellationToken);
-                }
-            }
+            if (string.IsNullOrWhiteSpace(request?.Amount)) return result;
+                
+            var withdrawalId = Convert.ToInt64(workflowContext.CurrentScope.GetVariable("withdrawalId"));
+            await _repository.UpdateAmountAsync(withdrawalId, request.Amount, cancellationToken);
 
             return result;
         }
