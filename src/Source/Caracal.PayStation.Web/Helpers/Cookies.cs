@@ -10,7 +10,7 @@ namespace Caracal.PayStation.Web.Helpers {
             response.Cookies.Append(TokenKey, token, option);
         }
 
-        public static string GetUserToken(HttpRequest request) => 
+        public static string? GetUserToken(HttpRequest request) => 
             request.Cookies[TokenKey];
     }
 }

@@ -12,8 +12,9 @@ namespace Caracal.PayStation.Web.Pages {
     public class ErrorModel : PageModel {
         private readonly ILogger<ErrorModel> _logger;
 
-        public ErrorModel(ILogger<ErrorModel> logger) {
+        public ErrorModel(ILogger<ErrorModel> logger, string requestId) {
             _logger = logger;
+            RequestId = requestId;
         }
 
         public string RequestId { get; set; }

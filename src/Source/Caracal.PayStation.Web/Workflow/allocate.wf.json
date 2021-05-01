@@ -21,7 +21,7 @@
       "name": "update-state",
       "type": "code-activity",
       "next": "update-state-api",
-      "expression": "ctx.model.setValue('withdrawals.allocate', [{ \"withdrawalId\": ctx.model.getValue('withdrawals.withdrawalId'), \"status\": \"\" }]);"
+      "expression": "ctx.model.setValue('withdrawals.allocate', [{ \"withdrawalId\": ctx.model.getValue('withdrawals.withdrawalId')}]);"
     },
     {
       "name": "update-state-api",
@@ -29,7 +29,7 @@
       "next": "home",
       "endpoints": [
         {
-          "url": "[WITHDRAWAL_API]status/change",
+          "url": "[AUTH_API]/workflow/client/action",
           "method": "POST",
           "headers": [
             {"content-type": "application/json"}

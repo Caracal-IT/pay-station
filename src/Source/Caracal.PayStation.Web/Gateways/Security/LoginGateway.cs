@@ -10,7 +10,7 @@ using static System.Text.Json.JsonSerializer;
 
 namespace Caracal.PayStation.Web.Gateways.Security {
     public interface LoginGateway {
-        Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
+        Task<LoginResponse?> LoginAsync(LoginRequest request, CancellationToken cancellationToken);
     }
 
     public class ApiLoginGateway : LoginGateway {
@@ -23,7 +23,7 @@ namespace Caracal.PayStation.Web.Gateways.Security {
 
         public ApiLoginGateway(HttpClient client) => _client = client;
 
-        public async Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken) {
+        public async Task<LoginResponse?> LoginAsync(LoginRequest request, CancellationToken cancellationToken) {
             var responseMessage = await _client.PostAsJsonAsync("users/login", request, cancellationToken);
             var stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken);
             return await DeserializeAsync<LoginResponse>(stream, _options, cancellationToken);

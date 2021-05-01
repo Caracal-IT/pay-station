@@ -11,6 +11,6 @@ namespace Caracal.PayStation.Web.ViewModel.Withdrawals {
         public string Amount { get; set; }
         public string Status { get; set; }
         public bool IsSelectable { get; set; }
-        public string ClientWF { get; set; } 
+        public string? ClientWF { get; set; } 
     }
 }

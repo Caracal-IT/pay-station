@@ -10,8 +10,8 @@ using static System.Text.Json.JsonSerializer;
 
 namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
     public interface WithdrawalGateway {
-        Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter request, CancellationToken cancellationToken);
-        Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateStatusAsync(IEnumerable<WithdrawalStatus> request, CancellationToken cancellationToken);
+        Task<PagedData<Withdrawal>?> GetWithdrawalsAsync(PagedDataFilter request, CancellationToken cancellationToken);
+        Task<List<WorkflowAction>?> ProcessClientActionAsync(List<WorkflowAction> request, CancellationToken cancellationToken);
     }
     
     public class ApiWithdrawalGateway: WithdrawalGateway {
@@ -24,16 +24,19 @@ namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
 
         public ApiWithdrawalGateway(HttpClient client) => _client = client;
         
-        public async Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter request, CancellationToken cancellationToken) {
+        public async Task<PagedData<Withdrawal>?> GetWithdrawalsAsync(PagedDataFilter request, CancellationToken cancellationToken) {
             var responseMessage = await _client.PostAsJsonAsync("withdrawal/filter", request, cancellationToken);
             var stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken);
             return await DeserializeAsync<PagedData<Withdrawal>>(stream, _options, cancellationToken);
         }
-        
-        public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateStatusAsync(IEnumerable<WithdrawalStatus> request, CancellationToken cancellationToken) {
-            var responseMessage = await _client.PostAsJsonAsync("withdrawal/status/update", request, cancellationToken);
+
+        public async Task<List<WorkflowAction>?> ProcessClientActionAsync(
+            List<WorkflowAction> request,
+            CancellationToken cancellationToken) {
+            
+            var responseMessage = await _client.PostAsJsonAsync("withdrawal/client/action", request, cancellationToken);
             var stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken);
-            return await DeserializeAsync<IEnumerable<WithdrawalStatusUpdateResult>>(stream, _options, cancellationToken);
+            return await DeserializeAsync<List<WorkflowAction>>(stream, _options, cancellationToken);
         }
     }
 }

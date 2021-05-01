@@ -1,11 +1,15 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
 using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
+using Caracal.PayStation.Application.UseCases.Withdrawals.ProcessWFClientAction;
 using Microsoft.AspNetCore.Mvc;
+
+using Model = Caracal.PayStation.Api.Models.Core.Withdrawals;
 
 namespace Caracal.PayStation.Api.Controllers.Core {
     /// <summary>
@@ -40,18 +44,30 @@ namespace Caracal.PayStation.Api.Controllers.Core {
         }
 
         /// <summary>
-        /// Get the withdrawals for the user.
+        /// Execute the workflow action for the client
         /// </summary>
-        /// <param name="request">The statuses to update</param>
-        /// <returns>The filtered withdrawals</returns>
-        [HttpPost("status/update")]
-        public async Task<ActionResult<IEnumerable<WithdrawalStatusUpdateResult>>> UpdateWithdrawalStatusAsync(
-            [FromServices] ChangeWithdrawalStatusUseCase uc, [FromBody] IEnumerable<WithdrawalStatus> request, CancellationToken cancellationToken) {
-            return await TryExecute(UpdateStatusAsync, cancellationToken);
+        /// <param name="request">The request to execute</param>
+        /// <returns>Executes a workflow action</returns>
+        [HttpPost("client/action")]
+        public async Task<ActionResult<List<Model.WorkflowAction>>> ProcessClientActionAsync(
+            [FromServices] ProcessWFClientActionUseCase uc,
+            [FromBody] List<Model.WorkflowAction> request, 
+            CancellationToken cancellationToken) {
+            return await TryExecute(ProcessAsync, cancellationToken);
 
-            async Task<ActionResult<IEnumerable<WithdrawalStatusUpdateResult>>> UpdateStatusAsync(CancellationToken token) {
-                var resp = await uc.ExecuteAsync(_mapper.Map<ChangeWithdrawalStatusRequest>(request), cancellationToken);
-                return Ok(_mapper.Map<IEnumerable<WithdrawalStatusUpdateResult>>(resp));
+            async Task<ActionResult<List<Model.WorkflowAction>>> ProcessAsync(CancellationToken token) {
+                var resp = await uc.ExecuteAsync(new ProcessWFClientActionRequest {
+                    Items = request.Select(i => new WorkflowAction {
+                        WithdrawalId = i.WithdrawalId, 
+                        Payload = i.Payload
+                    }).ToList()
+                }, token);
+
+                return Ok(resp.Items.Select(i => new Model.WorkflowAction {
+                    WithdrawalId = i.WithdrawalId,
+                    Payload = i.Payload,
+                    Succeeded = i.Succeeded
+                }).ToList());
             }
         }
     }

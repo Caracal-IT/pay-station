@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
-using Caracal.PayStation.Payments;
 using Elsa.Attributes;
 using Elsa.Results;
 using Elsa.Services;
@@ -11,10 +10,10 @@ using Elsa.Services.Models;
 
 namespace Caracal.PayStation.Api.Workflow.Activities.Withdrawals {
     public class ChangeStatus: Activity {
-        private WithdrawalService _service;
+        private ChangeWithdrawalStatusUseCase _useCase;
         
-        public ChangeStatus(WithdrawalService service) => 
-            _service = service;
+        public ChangeStatus(ChangeWithdrawalStatusUseCase useCase) => 
+            _useCase = useCase;
 
         [ActivityProperty(Hint = "The next status of the withdrawal")]
         public string WorkflowStatus { 
@@ -25,11 +24,11 @@ namespace Caracal.PayStation.Api.Workflow.Activities.Withdrawals {
         protected override async Task<ActivityExecutionResult> OnExecuteAsync(WorkflowExecutionContext context, CancellationToken cancellationToken) {
             var id = Convert.ToInt64(context.CurrentScope.GetVariable("withdrawalId"));
             
-            var request = new List<Payments.Models.WithdrawalStatus> {
+            var request = new ChangeWithdrawalStatusRequest{
                 new (id, WorkflowStatus)
             };
             
-            var result = await _service.UpdateWithdrawalStatusAsync(request, cancellationToken);
+            var result = await _useCase.ExecuteAsync(request, cancellationToken);
             context.CurrentScope.LastResult.Value = result;
             
             return Done();

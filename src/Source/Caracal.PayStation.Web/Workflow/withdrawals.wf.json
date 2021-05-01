@@ -86,7 +86,7 @@
       "name": "update-state",
       "type": "code-activity",
       "next": "update-state-api",
-      "expression": "var items = ctx.model.getValue('withdrawals.searchResult').filter(i => i.selected).map(i => {return { \"withdrawalId\": i.id, \"status\": \"\" }});if(items.length > 0){ctx.model.setValue('withdrawals.status', [...items]);}"
+      "expression": "var items = ctx.model.getValue('withdrawals.searchResult').filter(i => i.selected).map(i => {return { \"withdrawalId\": i.id }});if(items.length > 0){ctx.model.setValue('withdrawals.status', [...items]);}"
     },
     {
       "name": "update-state-api",
@@ -94,7 +94,7 @@
       "next": "start",
       "endpoints": [
         {
-          "url": "[WITHDRAWAL_API]status/change",
+          "url": "[AUTH_API]/workflow/client/action",
           "method": "POST",
           "headers": [
             {"content-type": "application/json"}
