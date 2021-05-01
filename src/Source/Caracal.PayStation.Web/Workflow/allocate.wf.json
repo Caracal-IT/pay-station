@@ -15,9 +15,9 @@
           "id": "small",
           "controls": [
             {"tag" : "h1", "innerHTML": "Allocate" },
-            {"tag":  "apx-input", "caption":  "Account", "id":"withdrawal.account" },
+            {"tag":  "h2", "innerHTML":  "Account - {{withdrawal.account}}" },
             {"tag":  "apx-input", "type": "number", "caption":  "amount", "id":"withdrawal.amount" },
-            {"tag" : "apx-button", "caption": "Withdraw", "next": "update-state", "isDefault": true }
+            {"tag" : "apx-button", "caption": "Allocate", "next": "update-state", "isDefault": true }
           ]
         }
       ]
