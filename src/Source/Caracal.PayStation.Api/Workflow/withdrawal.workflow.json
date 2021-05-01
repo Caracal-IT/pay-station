@@ -1,47 +1,84 @@
 {
   "activities": [
     {
-      "id": "35bc18f4-5893-4b9e-890d-5098f9aa1954",
-      "type": "ReceiveHttpRequest",
-      "left": 46,
-      "top": 55,
-      "state": {
-        "path": "/withdrawal/request",
-        "method": "POST",
-        "readContent": "true",
-        "name": "Request Withdrawal",
-        "title": "Start",
-        "description": "Request to pay money into an account."
-      },
-      "blocking": false,
-      "executed": false,
-      "faulted": false
-    },
-    {
       "id": "4dbdbe74-48c7-44b3-acad-11ade5d95d6f",
       "type": "ChangeStatus",
-      "left": 564,
-      "top": 582,
+      "left": 31,
+      "top": 207,
       "state": {
-        "workflowStatus": "Approved",
-        "name": "ApprovedStatus",
-        "title": "Set Status To Approved",
-        "description": "Set the withdrawal status to approved"
+        "workflowStatus": "Processed",
+        "name": "ProcessedStatus",
+        "title": "Set Status To Processed",
+        "description": "Set the withdrawal status to processed"
       },
       "blocking": false,
       "executed": false,
       "faulted": false
     },
     {
-      "id": "b0928daf-3ed8-419a-9427-3e63c819de5c",
-      "type": "ChangeStatus",
-      "left": 72,
-      "top": 533,
+      "id": "cb9e2be0-3090-4cd6-9855-78981bd8e32d",
+      "type": "RequestWithdrawal",
+      "left": 701,
+      "top": 377,
       "state": {
-        "workflowStatus": "Requested",
-        "name": "RequestedStatus",
-        "title": "Set Status To Requested",
-        "description": "Set the withdrawal status to requested"
+        "name": "Request Withdrawal",
+        "title": "Request Withdrawal",
+        "description": "Request a withdrawal"
+      },
+      "blocking": false,
+      "executed": false,
+      "faulted": false
+    },
+    {
+      "id": "5a5e3faa-10ae-4cb1-86c5-0b2a9fb797fd",
+      "type": "IfElse",
+      "left": 451,
+      "top": 568,
+      "state": {
+        "conditionExpression": {
+          "expression": "amount <= 1000",
+          "syntax": "JavaScript"
+        },
+        "name": "Approved",
+        "title": "Min Amount 1000",
+        "description": "Min Amount 1000"
+      },
+      "blocking": false,
+      "executed": false,
+      "faulted": false
+    },
+    {
+      "id": "e9f0f3e0-c2ac-4be3-93fc-09b974795922",
+      "type": "SetVariable",
+      "left": 407,
+      "top": 73,
+      "state": {
+        "name": "Amount",
+        "variableName": "amount",
+        "valueExpression": {
+          "expression": "lastResult().Body.amount",
+          "syntax": "JavaScript"
+        },
+        "title": "Set Amount From Request",
+        "description": "Set Amount From Request"
+      },
+      "blocking": false,
+      "executed": false,
+      "faulted": false
+    },
+    {
+      "id": "57fbda8a-07ee-4fe4-9b3b-394097d9d16c",
+      "type": "ClientEvent",
+      "left": 64,
+      "top": 788,
+      "state": {
+        "clientWf": "allocate_funds",
+        "path": "{{ 'Processed' | signal_url }}",
+        "method": "POST",
+        "readContent": "true",
+        "name": "Wait for Manual Allocation",
+        "title": "ManualAllocation",
+        "description": "Wait for Manual Allocation Of Funds."
       },
       "blocking": false,
       "executed": false,
@@ -54,12 +91,12 @@
       "top": 355,
       "state": {
         "conditionExpression": {
-          "expression": "amount > 500",
+          "expression": "amount >= 500",
           "syntax": "JavaScript"
         },
-        "name": "Max Amount 500",
-        "title": "Max Amount 500",
-        "description": "Max Amount 500"
+        "name": "Min Amount 500",
+        "title": "Min Amount 500",
+        "description": "Min Amount 500"
       },
       "blocking": false,
       "executed": false,
@@ -90,51 +127,80 @@
       "faulted": false
     },
     {
-      "id": "e9f0f3e0-c2ac-4be3-93fc-09b974795922",
-      "type": "SetVariable",
-      "left": 407,
-      "top": 73,
+      "id": "b0928daf-3ed8-419a-9427-3e63c819de5c",
+      "type": "ChangeStatus",
+      "left": 60,
+      "top": 558,
       "state": {
-        "name": "Amount",
-        "variableName": "amount",
-        "valueExpression": {
-          "expression": "lastResult().Body.amount",
-          "syntax": "JavaScript"
-        },
-        "title": "Set Amount From Request",
-        "description": "Set Amount From Request"
+        "workflowStatus": "Requested",
+        "name": "RequestedStatus",
+        "title": "Set Status To Requested",
+        "description": "Set the withdrawal status to requested"
       },
       "blocking": false,
       "executed": false,
       "faulted": false
     },
     {
-      "id": "cb9e2be0-3090-4cd6-9855-78981bd8e32d",
-      "type": "RequestWithdrawal",
-      "left": 701,
-      "top": 377,
+      "id": "2a797746-227c-4571-a28d-837c96454a08",
+      "type": "ChangeStatus",
+      "left": 732,
+      "top": 625,
       "state": {
-        "name": "Request Withdrawal",
-        "title": "Request Withdrawal",
-        "description": "Request a withdrawal"
+        "workflowStatus": "Approved",
+        "name": "Set Status To Approved",
+        "title": "Set Status To Approved",
+        "description": "Approved"
       },
       "blocking": false,
       "executed": false,
       "faulted": false
     },
     {
-      "id": "57fbda8a-07ee-4fe4-9b3b-394097d9d16c",
-      "type": "ClientEvent",
-      "left": 64,
-      "top": 788,
+      "id": "4bc9874e-5986-4f23-83e1-af61baea7aab",
+      "type": "ChangeStatus",
+      "left": 62,
+      "top": 1019,
       "state": {
-        "clientWf": "allocate_funds",
-        "path": "{{ 'Activate' | signal_url }}",
+        "workflowStatus": "Processed",
+        "name": "Processed",
+        "title": "Set State To Processed",
+        "description": "The the workflow state to processed."
+      },
+      "blocking": false,
+      "executed": false,
+      "faulted": false
+    },
+    {
+      "id": "35bc18f4-5893-4b9e-890d-5098f9aa1954",
+      "type": "ReceiveHttpRequest",
+      "left": 46,
+      "top": 55,
+      "state": {
+        "path": "/withdrawal/request",
         "method": "POST",
         "readContent": "true",
-        "name": "Wait for Manual Allocation",
-        "title": "ManualAllocation",
-        "description": "Wait for Manual Allocation Of Funds."
+        "name": "Request Withdrawal",
+        "title": "Start",
+        "description": "Request to pay money into an account."
+      },
+      "blocking": false,
+      "executed": false,
+      "faulted": false
+    },
+    {
+      "id": "84e2270c-5b80-4533-a671-f04307273f2f",
+      "type": "ClientEvent",
+      "left": 627,
+      "top": 823,
+      "state": {
+        "clientWf": "approved",
+        "path": "{{ 'Approved' | signal_url }}",
+        "method": "POST",
+        "readContent": "true",
+        "name": "Wait For Approval",
+        "title": "Wait For Approval",
+        "description": "Wait For Approval"
       },
       "blocking": false,
       "executed": false,
@@ -143,14 +209,9 @@
   ],
   "connections": [
     {
-      "sourceActivityId": "35bc18f4-5893-4b9e-890d-5098f9aa1954",
-      "destinationActivityId": "e9f0f3e0-c2ac-4be3-93fc-09b974795922",
-      "outcome": "Done"
-    },
-    {
-      "sourceActivityId": "4f7bc8fb-b5bb-4728-84ae-6df2af0ee592",
-      "destinationActivityId": "cb9e2be0-3090-4cd6-9855-78981bd8e32d",
-      "outcome": "Done"
+      "sourceActivityId": "d598e4b0-9da0-4f34-b41d-57c82d54d91d",
+      "destinationActivityId": "5a5e3faa-10ae-4cb1-86c5-0b2a9fb797fd",
+      "outcome": "True"
     },
     {
       "sourceActivityId": "d598e4b0-9da0-4f34-b41d-57c82d54d91d",
@@ -158,9 +219,9 @@
       "outcome": "False"
     },
     {
-      "sourceActivityId": "d598e4b0-9da0-4f34-b41d-57c82d54d91d",
-      "destinationActivityId": "b0928daf-3ed8-419a-9427-3e63c819de5c",
-      "outcome": "True"
+      "sourceActivityId": "35bc18f4-5893-4b9e-890d-5098f9aa1954",
+      "destinationActivityId": "e9f0f3e0-c2ac-4be3-93fc-09b974795922",
+      "outcome": "Done"
     },
     {
       "sourceActivityId": "cb9e2be0-3090-4cd6-9855-78981bd8e32d",
@@ -176,6 +237,36 @@
       "sourceActivityId": "b0928daf-3ed8-419a-9427-3e63c819de5c",
       "destinationActivityId": "57fbda8a-07ee-4fe4-9b3b-394097d9d16c",
       "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "4f7bc8fb-b5bb-4728-84ae-6df2af0ee592",
+      "destinationActivityId": "cb9e2be0-3090-4cd6-9855-78981bd8e32d",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "84e2270c-5b80-4533-a671-f04307273f2f",
+      "destinationActivityId": "4bc9874e-5986-4f23-83e1-af61baea7aab",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "2a797746-227c-4571-a28d-837c96454a08",
+      "destinationActivityId": "84e2270c-5b80-4533-a671-f04307273f2f",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "5a5e3faa-10ae-4cb1-86c5-0b2a9fb797fd",
+      "destinationActivityId": "2a797746-227c-4571-a28d-837c96454a08",
+      "outcome": "True"
+    },
+    {
+      "sourceActivityId": "57fbda8a-07ee-4fe4-9b3b-394097d9d16c",
+      "destinationActivityId": "4bc9874e-5986-4f23-83e1-af61baea7aab",
+      "outcome": "Done"
+    },
+    {
+      "sourceActivityId": "5a5e3faa-10ae-4cb1-86c5-0b2a9fb797fd",
+      "destinationActivityId": "b0928daf-3ed8-419a-9427-3e63c819de5c",
+      "outcome": "False"
     }
   ]
 }

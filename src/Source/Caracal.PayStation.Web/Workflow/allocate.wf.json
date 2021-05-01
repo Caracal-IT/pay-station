@@ -1,0 +1,50 @@
+{
+  "name" : "allocate",
+  "activities": [
+    {
+      "name": "start",
+      "type": "page-activity",
+      "controls": [
+        { "tag" : "div",
+          "id": "small",
+          "controls": [
+            {"tag" : "h1", "innerHTML": "PayStation" },
+            {"tag" : "div", "innerHTML": "Allocate Amount" },
+            {"tag":  "apx-input", "caption":  "Account", "id":"withdrawal.account", "value": "Account 123" },
+            {"tag":  "apx-input", "type": "number", "caption":  "amount", "id":"withdrawal.amount", "value": "22.55" },
+            {"tag" : "apx-button", "caption": "Withdraw", "next": "update-state", "isDefault": true }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "update-state",
+      "type": "code-activity",
+      "next": "update-state-api",
+      "expression": "ctx.model.setValue('withdrawals.allocate', [{ \"withdrawalId\": ctx.model.getValue('withdrawals.withdrawalId'), \"status\": \"\" }]);"
+    },
+    {
+      "name": "update-state-api",
+      "type": "api-activity",
+      "next": "home",
+      "endpoints": [
+        {
+          "url": "[WITHDRAWAL_API]status/change",
+          "method": "POST",
+          "headers": [
+            {"content-type": "application/json"}
+          ],
+          "mappings":[
+            {"client": "withdrawals.allocate", "remote": "items", "direction": "out"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "home",
+      "type": "ipc-activity",
+      "process" : "withdrawals",
+      "next": ""
+    }
+  ]
+}
