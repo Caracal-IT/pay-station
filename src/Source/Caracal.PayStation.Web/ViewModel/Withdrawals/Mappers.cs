@@ -1,6 +1,5 @@
 using AutoMapper;
 using Caracal.PayStation.Web.Gateways.Core.Withdrawals.Model;
-using Caracal.PayStation.Web.ViewModel.Withdrawals.Workflow;
 
 namespace Caracal.PayStation.Web.ViewModel.Withdrawals {
     public class Mappers : Profile{

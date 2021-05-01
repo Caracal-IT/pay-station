@@ -29,7 +29,7 @@
       "next": "home",
       "endpoints": [
         {
-          "url": "[AUTH_API]/workflow/client/action",
+          "url": "[WITHDRAWAL_API]client/action",
           "method": "POST",
           "headers": [
             {"content-type": "application/json"}
