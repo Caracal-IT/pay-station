@@ -3,15 +3,20 @@
   "activities": [
     {
       "name": "start",
+      "type": "code-activity",
+      "next": "landing",
+      "expression": "var id = ctx.model.getValue('withdrawals.withdrawalId');const withdrawal = ctx.model.getValue('withdrawals.searchResult').filter(i => i.id === id);ctx.model.setValue('withdrawal', withdrawal[0]);"
+    },
+    {
+      "name": "landing",
       "type": "page-activity",
       "controls": [
         { "tag" : "div",
           "id": "small",
           "controls": [
-            {"tag" : "h1", "innerHTML": "PayStation" },
-            {"tag" : "div", "innerHTML": "Allocate Amount" },
-            {"tag":  "apx-input", "caption":  "Account", "id":"withdrawal.account", "value": "Account 123" },
-            {"tag":  "apx-input", "type": "number", "caption":  "amount", "id":"withdrawal.amount", "value": "22.55" },
+            {"tag" : "h1", "innerHTML": "Allocate" },
+            {"tag":  "apx-input", "caption":  "Account", "id":"withdrawal.account" },
+            {"tag":  "apx-input", "type": "number", "caption":  "amount", "id":"withdrawal.amount" },
             {"tag" : "apx-button", "caption": "Withdraw", "next": "update-state", "isDefault": true }
           ]
         }
@@ -21,7 +26,7 @@
       "name": "update-state",
       "type": "code-activity",
       "next": "update-state-api",
-      "expression": "ctx.model.setValue('withdrawals.allocate', [{ \"withdrawalId\": ctx.model.getValue('withdrawals.withdrawalId')}]);"
+      "expression": "const amount = ctx.model.getValue('withdrawal.amount');ctx.model.setValue('withdrawals.allocate', [{\"withdrawalId\": ctx.model.getValue('withdrawals.withdrawalId'), \"payload\": {amount: amount}}]);"
     },
     {
       "name": "update-state-api",

@@ -26,11 +26,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.ProcessWFClientAct
                 if(string.IsNullOrWhiteSpace(withdrawal.WorkflowUrl))
                     continue;
                 
-                var body = action.Payload == null 
-                    ? string.Empty 
-                    : JsonSerializer.Serialize(action.Payload);
-                
-                wfUpdates.Add(SendWfRequestAsync(withdrawal.WorkflowUrl, body, cancellationToken));
+                wfUpdates.Add(SendWfRequestAsync(withdrawal.WorkflowUrl, action.Payload, cancellationToken));
                 await _service.UpdateWfUrlAsync(withdrawal.Id, string.Empty, cancellationToken);
                 action.Succeeded = true;
             }
@@ -40,7 +36,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.ProcessWFClientAct
             return new ProcessWFClientActionResponse {Items = request.Items};
         }
         
-        private async Task SendWfRequestAsync(string url, string body, CancellationToken cancellationToken) => 
+        private async Task SendWfRequestAsync(string url, object body, CancellationToken cancellationToken) => 
             await _workflow.SendClientEventAsync(url, body, cancellationToken);
     }
 }

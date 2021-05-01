@@ -3,6 +3,6 @@ using System.Threading.Tasks;
 
 namespace Caracal.PayStation.Payments.Gateways {
     public interface WorkflowGateway {
-        Task SendClientEventAsync(string url, string body, CancellationToken cancellationToken);
+        Task SendClientEventAsync(string url, object body, CancellationToken cancellationToken);
     }
 }

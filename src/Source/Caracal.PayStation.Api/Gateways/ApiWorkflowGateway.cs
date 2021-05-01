@@ -9,7 +9,7 @@ namespace Caracal.PayStation.Api.Gateways {
         private readonly HttpClient _client;
         public ApiWorkflowGateway(HttpClient client) => _client = client;
         
-        public async Task SendClientEventAsync(string url, string request, CancellationToken cancellationToken) {
+        public async Task SendClientEventAsync(string url, object request, CancellationToken cancellationToken) {
             await _client.PostAsJsonAsync(url, request, cancellationToken);
         }
     }

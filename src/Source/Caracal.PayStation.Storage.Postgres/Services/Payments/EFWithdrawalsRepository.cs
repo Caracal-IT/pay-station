@@ -63,6 +63,17 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
             return new Withdrawal(w.Id, w.Account, w.Amount, w.Status, w.WorkflowUrl);
         }
 
+        public async Task<bool> UpdateAmountAsync(long id, string amount, CancellationToken token) {
+            var w = await _dbContext.Withdrawals.FirstOrDefaultAsync(w => w.Id == id, token);
+
+            if (w == null || string.IsNullOrWhiteSpace(amount))
+                return false;
+
+            w.Amount = amount;
+            await _dbContext.SaveChangesAsync(token);
+            return true;
+        }
+
         public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses,
             CancellationToken token) {
             var results = new List<WithdrawalStatusUpdateResult>();
