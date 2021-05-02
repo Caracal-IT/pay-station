@@ -53,7 +53,7 @@ namespace Caracal.PayStation.Api {
             services.AddPayments();
 
             services.AddElsaDashboard();
-//https://localhost:5001/withdrawal/request
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
