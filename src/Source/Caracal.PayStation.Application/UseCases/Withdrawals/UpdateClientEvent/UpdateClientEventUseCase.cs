@@ -1,7 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.Framework.UseCases;
-using Caracal.PayStation.Application.UseCases.Withdrawals.RequestWithdrawal;
 using Caracal.PayStation.Payments;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.UpdateClientEvent {
@@ -15,7 +14,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.UpdateClientEvent 
             Request = request;
             var result = await _service.UpdateWfUrlAsync(request.WithdrawalId, request.WorkflowUrl, cancellationToken);
             Response = new UpdateClientEventResponse { IsSuccessful = result };
-            
+
             return Response;
         }
     }

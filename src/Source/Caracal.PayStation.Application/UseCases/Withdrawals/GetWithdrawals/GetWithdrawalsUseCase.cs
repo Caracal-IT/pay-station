@@ -18,7 +18,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals {
             Request = request;
             var result = await _service.GetWithdrawalsAsync(request, cancellationToken);
             Response = _mapper.Map<GetWithdrawalsResponse>(result);
-            
+
             return Response;
         }
     }

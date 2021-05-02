@@ -16,10 +16,8 @@ namespace Caracal.PayStation.Payments.Services {
         public async Task<PagedData<Withdrawal>> GetWithdrawalsAsync(PagedDataFilter filter, CancellationToken cancellationToken) => 
             await _repository.GetWithdrawalsAsync(filter, cancellationToken);
 
-        public async Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken) {
-            return await _repository.AddWithdrawalAsync(withdrawal, cancellationToken);
-        }
-        
+        public async Task<Withdrawal> AddWithdrawalAsync(Withdrawal withdrawal, CancellationToken cancellationToken) => await _repository.AddWithdrawalAsync(withdrawal, cancellationToken);
+
         public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses, CancellationToken token) => 
             await _repository.UpdateWithdrawalStatusAsync(statuses, token);
 
@@ -28,5 +26,8 @@ namespace Caracal.PayStation.Payments.Services {
 
         public async Task<Withdrawal> GetWithdrawal(long id, CancellationToken token) =>
             await _repository.GetWithdrawal(id, token);
+
+        public async Task<bool> UpdateAmountAsync(long id, string amount, CancellationToken token) => 
+            await _repository.UpdateAmountAsync(id, amount, token);
     }
 }

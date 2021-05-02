@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -29,7 +28,7 @@ namespace Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus {
 
             var evt = new WithdrawalStatusChangeEvent{Data = _mapper.Map<IEnumerable<Payments.Models.WithdrawalStatus>>(request)};
             await _eventBus.PublishAsync(evt, cancellationToken);
-            
+
             return Response;
         }
     }

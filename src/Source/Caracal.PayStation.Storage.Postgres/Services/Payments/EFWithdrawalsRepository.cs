@@ -40,10 +40,10 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
                 Status = string.Empty
             };
             
-            _dbContext.Withdrawals.Add(item);
-
+            var result = await _dbContext.Withdrawals.AddAsync(item, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
-
+            item = result.Entity;
+            
             return new Withdrawal(item.Id, item.Account, item.Amount, item.Status, item.WorkflowUrl);
         }
 
@@ -54,8 +54,8 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
                 return false;
             
             withdrawal.WorkflowUrl = url;
-
-            return await _dbContext.SaveChangesAsync(token) > 0;
+            await _dbContext.SaveChangesAsync(token);
+            return true;
         }
 
         public async Task<Withdrawal> GetWithdrawal(long id, CancellationToken token) {
@@ -71,16 +71,18 @@ namespace Caracal.PayStation.Storage.Postgres.Services.Payments {
 
             w.Amount = amount;
             await _dbContext.SaveChangesAsync(token);
+            
             return true;
         }
-
+        
         public async Task<IEnumerable<WithdrawalStatusUpdateResult>> UpdateWithdrawalStatusAsync(IEnumerable<WithdrawalStatus> statuses,
             CancellationToken token) {
             var results = new List<WithdrawalStatusUpdateResult>();
             foreach (var withdrawalStatus in statuses)
                 results.Add(await UpdateStatusAsync(withdrawalStatus));
-
+            
             await _dbContext.SaveChangesAsync(token);
+            
             return results;
 
             async Task<WithdrawalStatusUpdateResult> UpdateStatusAsync(WithdrawalStatus withdrawalStatus) {

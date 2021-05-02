@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Caracal.PayStation.Application.UseCases.Withdrawals.UpdateClientEvent;
+using Caracal.PayStation.Payments;
 using Caracal.PayStation.Payments.Models;
-using Caracal.PayStation.Payments.Repositories;
 using Elsa;
 using Elsa.Activities.Http.Activities;
 using Elsa.Activities.Http.Models;
@@ -26,13 +26,13 @@ namespace Caracal.PayStation.Api.Workflow.Activities {
         Outcomes = new[] {OutcomeNames.Done}
     )]
     public class ClientEvent : ReceiveHttpRequest {
-        private UpdateClientEventUseCase _useCase;
-        private WithdrawalsRepository _repository;
+        private readonly UpdateClientEventUseCase _useCase;
+        private readonly WithdrawalService _service;
 
-        public ClientEvent(IHttpContextAccessor httpContextAccessor, IEnumerable<IHttpRequestBodyParser> parsers, UpdateClientEventUseCase useCase, WithdrawalsRepository repository)
+        public ClientEvent(IHttpContextAccessor httpContextAccessor, IEnumerable<IHttpRequestBodyParser> parsers, UpdateClientEventUseCase useCase, WithdrawalService service)
             : base(httpContextAccessor, parsers) {
             _useCase = useCase;
-            _repository = repository;
+            _service = service;
         }
 
         [ActivityProperty(Hint = "Client workflow to run")]
@@ -54,23 +54,20 @@ namespace Caracal.PayStation.Api.Workflow.Activities {
             return await base.OnHaltedAsync(context, token);
         }
 
-        protected override async Task<ActivityExecutionResult> OnResumeAsync(WorkflowExecutionContext workflowContext, CancellationToken cancellationToken) {
-            var result = await  base.OnResumeAsync(workflowContext, cancellationToken);
+        protected override async Task<ActivityExecutionResult> OnResumeAsync(WorkflowExecutionContext workflowContext,
+            CancellationToken cancellationToken) {
+            var result = await base.OnResumeAsync(workflowContext, cancellationToken);
 
             var requestModel = workflowContext.CurrentScope.LastResult.Value as HttpRequestModel;
             var body = requestModel?.Body.ToString();
-            var request = JsonConvert.DeserializeObject<Withdrawal?>(body??"");
+            var request = JsonConvert.DeserializeObject<Withdrawal?>(body ?? "");
 
             if (string.IsNullOrWhiteSpace(request?.Amount)) return result;
-                
+
             var withdrawalId = Convert.ToInt64(workflowContext.CurrentScope.GetVariable("withdrawalId"));
-            await _repository.UpdateAmountAsync(withdrawalId, request.Amount, cancellationToken);
+            await _service.UpdateAmountAsync(withdrawalId, request.Amount, cancellationToken);
 
             return result;
-        }
-
-        public class AllocateRequest {
-            public string Amount { get; set; } = "";
         }
     }
 }

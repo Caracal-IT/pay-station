@@ -28,7 +28,7 @@ namespace Caracal.PayStation.Api {
             services.AddActivity<ChangeStatus>();
             services.AddActivity<RequestWithdrawal>();
             services.AddActivity<ClientEvent>();
-            
+
             services // Required services for Elsa to work. Registers things like `IWorkflowInvoker`.
                 .AddElsa( elsa => elsa
                     .AddEntityFrameworkStores<PostgreSqlContext>(options => options
@@ -48,7 +48,7 @@ namespace Caracal.PayStation.Api {
             services.AddDistributedMemoryCache();
             
             services.AddLogin();
-            
+
             services.AddPayStation(Configuration);
             services.AddPayments();
 

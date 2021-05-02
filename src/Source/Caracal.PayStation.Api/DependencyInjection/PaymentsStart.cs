@@ -8,6 +8,8 @@ using Caracal.PayStation.Payments.Repositories;
 using Caracal.PayStation.Storage.Postgres.Services.Payments;
 using Microsoft.Extensions.DependencyInjection;
 
+using Services = Caracal.PayStation.Payments.Services;
+
 namespace Caracal.PayStation.Api.DependencyInjection {
     public static class PaymentsStart {
         public static void AddPayments(this IServiceCollection services) {
@@ -17,7 +19,7 @@ namespace Caracal.PayStation.Api.DependencyInjection {
             services.AddTransient<UpdateClientEventUseCase>();
             services.AddTransient<ProcessWFClientActionUseCase>();
             
-            services.AddTransient<WithdrawalService, Payments.Services.WithdrawalService>();
+            services.AddTransient<WithdrawalService, Services.WithdrawalService>();
             services.AddTransient<WithdrawalsRepository, EFWithdrawalsRepository>();
         }
     }
