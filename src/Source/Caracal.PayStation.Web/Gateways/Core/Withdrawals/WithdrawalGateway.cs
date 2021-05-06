@@ -12,6 +12,8 @@ namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
     public interface WithdrawalGateway {
         Task<PagedData<Withdrawal>?> GetWithdrawalsAsync(PagedDataFilter request, CancellationToken cancellationToken);
         Task<List<WorkflowAction>?> ProcessClientActionAsync(List<WorkflowAction> request, CancellationToken cancellationToken);
+
+        Task<string> ExportAsync(CancellationToken cancellationToken);
     }
     
     public class ApiWithdrawalGateway: WithdrawalGateway {
@@ -37,6 +39,11 @@ namespace Caracal.PayStation.Web.Gateways.Core.Withdrawals {
             var responseMessage = await _client.PostAsJsonAsync("withdrawal/client/action", request, cancellationToken);
             var stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken);
             return await DeserializeAsync<List<WorkflowAction>>(stream, _options, cancellationToken);
+        }
+
+        public async Task<string> ExportAsync(CancellationToken cancellationToken) {
+            var responseMessage = await _client.GetAsync("withdrawal/export", cancellationToken);
+            return await responseMessage.Content.ReadAsStringAsync(cancellationToken);
         }
     }
 }

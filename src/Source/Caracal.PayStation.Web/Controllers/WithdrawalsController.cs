@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Unicode;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,6 +9,7 @@ using Caracal.PayStation.Web.Gateways.Core.Withdrawals.Model;
 using Caracal.PayStation.Web.ViewModel.Withdrawals;
 using Caracal.PayStation.Web.ViewModel.Withdrawals.WithdrawalSearch;
 using Microsoft.AspNetCore.Mvc;
+using static System.Text.Encoding;
 
 namespace Caracal.PayStation.Web.Controllers {
     [ApiController]
@@ -36,6 +38,16 @@ namespace Caracal.PayStation.Web.Controllers {
             var resp = await _withdrawalGateway.ProcessClientActionAsync(_mapper.Map<List<WorkflowAction>>(request.Items), cancellationToken);
             var result = _mapper.Map<List<WorkflowActionViewModel>>(resp);
             return Ok(result);
+        }
+
+        [HttpGet("export")]
+        public async Task<ActionResult> Export(CancellationToken cancellationToken) {
+            var content = await _withdrawalGateway.ExportAsync(cancellationToken);
+            var result = new FileContentResult(UTF8.GetBytes(content), "application/xml") {
+                FileDownloadName = "test.xml"
+            };
+            
+            return result;
         }
     }
 }

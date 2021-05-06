@@ -53,7 +53,8 @@
         {"tag" : "hr" },
         {"tag":  "div",
             "controls": [
-           {"tag" : "apx-button", "caption": "Process", "next": "update-state", "isDefault": true }
+           {"tag" : "apx-button", "caption": "Process", "next": "update-state", "isDefault": true },
+           {"tag" : "apx-button", "caption": "Export", "next": "export-api" }
          ]
         }
       ]
@@ -104,6 +105,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "export-api",
+      "type": "code-activity",
+      "expression": "var url = ctx.model.getValue('[WITHDRAWAL_API]');window.document.location.href = `${url.replace('[SELF]', 'export')}`;"
     },
     {
       "name": "allocate",

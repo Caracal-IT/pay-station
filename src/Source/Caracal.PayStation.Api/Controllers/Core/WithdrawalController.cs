@@ -4,12 +4,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
-using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
+using Caracal.PayStation.Application.UseCases.Withdrawals.Export;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 using Caracal.PayStation.Application.UseCases.Withdrawals.ProcessWFClientAction;
 using Microsoft.AspNetCore.Mvc;
 
 using Model = Caracal.PayStation.Api.Models.Core.Withdrawals;
+using Withdrawal = Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals.Withdrawal;
 
 namespace Caracal.PayStation.Api.Controllers.Core {
     /// <summary>
@@ -68,6 +69,24 @@ namespace Caracal.PayStation.Api.Controllers.Core {
                     Payload = i.Payload,
                     Succeeded = i.Succeeded
                 }).ToList());
+            }
+        }
+
+        /// <summary>
+        /// Export the withdrawals.
+        /// </summary>
+        /// <returns>The exported withdrawals</returns>
+        [HttpGet("export")]
+        public async Task<ActionResult<string>> Export(
+            [FromServices] ExportUseCase uc,
+            CancellationToken cancellationToken) {
+            
+            return await TryExecute(ExportAsync, cancellationToken);
+
+            async Task<ActionResult<string>> ExportAsync(CancellationToken token) {
+                var resp = await uc.ExecuteAsync(new ExportRequest(), token);
+
+                return Ok(resp.Content);
             }
         }
     }
