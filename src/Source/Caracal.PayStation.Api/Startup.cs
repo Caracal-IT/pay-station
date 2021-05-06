@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +15,7 @@ using Elsa.Dashboard.Extensions;
 using Elsa.Persistence.EntityFrameworkCore.DbContexts;
 using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace Caracal.PayStation.Api {
     public class Startup {
@@ -22,13 +25,18 @@ namespace Caracal.PayStation.Api {
 
         public IConfiguration Configuration { get; }
 
+        private IWebHostEnvironment _environment;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddSingleton(System.Console.Out);
+            IFileProvider physicalProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            services.AddSingleton(physicalProvider);
+            
+            services.AddSingleton(Console.Out);
             services.AddActivity<ChangeStatus>();
             services.AddActivity<RequestWithdrawal>();
             services.AddActivity<ClientEvent>();
-
+            
             services // Required services for Elsa to work. Registers things like `IWorkflowInvoker`.
                 .AddElsa( elsa => elsa
                     .AddEntityFrameworkStores<PostgreSqlContext>(options => options

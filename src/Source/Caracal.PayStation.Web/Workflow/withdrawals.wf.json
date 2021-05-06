@@ -109,7 +109,7 @@
     {
       "name": "export-api",
       "type": "code-activity",
-      "expression": "var url = ctx.model.getValue('[WITHDRAWAL_API]');window.document.location.href = `${url.replace('[SELF]', 'export')}`;"
+      "expression": "var url = ctx.model.getValue('[WITHDRAWAL_API]');window.open(`${url.replace('[SELF]', 'export')}`, '_self');"
     },
     {
       "name": "allocate",

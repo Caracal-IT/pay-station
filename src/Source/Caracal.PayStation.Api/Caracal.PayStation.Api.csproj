@@ -30,6 +30,14 @@
       <ProjectReference Include="..\Caracal.PayStation.Storage.Postgres\Caracal.PayStation.Storage.Postgres.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Export" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Export\Templates\default.xslt" />
+    </ItemGroup>
+
     <PropertyGroup>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>
