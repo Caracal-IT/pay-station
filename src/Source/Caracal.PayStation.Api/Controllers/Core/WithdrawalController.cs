@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Caracal.Framework.Data;
+using Caracal.PayStation.Application.UseCases.Withdrawals.AutoAllocate;
 using Caracal.PayStation.Application.UseCases.Withdrawals.Export;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
 using Caracal.PayStation.Application.UseCases.Withdrawals.ProcessWFClientAction;
@@ -91,6 +92,26 @@ namespace Caracal.PayStation.Api.Controllers.Core {
                 }, token);
 
                 return Ok(resp.Content);
+            }
+        }
+        
+        /// <summary>
+        /// Perform auto allocations on the withdrawal
+        /// </summary>
+        /// <param name="id">The withdrawal identifier</param>
+        /// <returns>The auto allocation result</returns>
+        [HttpGet("auto-allocate/{id:long}")]
+        public async Task<ActionResult<string>> AutoAllocate(
+            [FromServices] AutoAllocateUseCase uc,
+            long id,
+            CancellationToken cancellationToken) {
+
+            return await TryExecute(Allocate, cancellationToken);
+            
+            async Task<ActionResult<string>> Allocate(CancellationToken token) {
+                var resp = await uc.ExecuteAsync(new AutoAllocateRequest(), token);
+
+                return Ok(resp.Result);
             }
         }
     }

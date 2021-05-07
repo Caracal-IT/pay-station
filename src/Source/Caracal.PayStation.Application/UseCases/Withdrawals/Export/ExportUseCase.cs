@@ -2,7 +2,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Caracal.Framework.Data;
 using Caracal.Framework.UseCases;
 using Caracal.PayStation.Payments;
@@ -12,12 +11,10 @@ using Microsoft.Extensions.FileProviders;
 
 namespace Caracal.PayStation.Application.UseCases.Withdrawals.Export {
     public class ExportUseCase: UseCase<ExportResponse, ExportRequest> {
-        private readonly IMapper _mapper;
         private readonly WithdrawalService _service;
         private readonly IFileProvider _fileProvider;
         
         public ExportUseCase(WithdrawalService service, IFileProvider fileProvider) {
-            _mapper = Mappings.Create();
             _service = service;
             _fileProvider = fileProvider;
         }

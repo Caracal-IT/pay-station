@@ -1,3 +1,4 @@
+using Caracal.PayStation.Application.UseCases.Withdrawals.AutoAllocate;
 using Caracal.PayStation.Application.UseCases.Withdrawals.ChangeStatus;
 using Caracal.PayStation.Application.UseCases.Withdrawals.Export;
 using Caracal.PayStation.Application.UseCases.Withdrawals.GetWithdrawals;
@@ -20,6 +21,7 @@ namespace Caracal.PayStation.Api.DependencyInjection {
             services.AddTransient<UpdateClientEventUseCase>();
             services.AddTransient<ProcessWFClientActionUseCase>();
             services.AddTransient<ExportUseCase>();
+            services.AddTransient<AutoAllocateUseCase>();
             
             services.AddTransient<WithdrawalService, Services.WithdrawalService>();
             services.AddTransient<WithdrawalsRepository, EFWithdrawalsRepository>();
