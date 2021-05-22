@@ -18,6 +18,6 @@
   "dependencies": {
     "caracal_apex": "^3.0.5",
     "caracal_polaris": "^3.0.5",
-    "chart.js": "^3.2.0"
+    "chart.js": "^3.2.1"
   }
 }
